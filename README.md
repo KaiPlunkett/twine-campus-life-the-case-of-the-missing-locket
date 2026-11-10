@@ -1,6 +1,6 @@
 # twine-campus-life-the-case-of-the-missing-locket
 
-AC1-Inform-D
+AC1-Informing ideas-Distinction
 ____________
 + The concept is original, detailed, and engages with the "More Human Than Human" theme in a thoughtful and specific way
 + Research is broad, specific, and well-applied, all cited with clear relevance, and the thematic analysis draws meaningful connections between these sources and the game's design decisions
@@ -13,7 +13,7 @@ ________________________________________________________________________________
 - The GDD world background and social structure sections, while competent, offer relatively broad observations about AI in society that could be more specifically connected to the game's setting and narrative
 - Character relationship map in the GDD is presented as a simple text list rather than a visual diagram
 
-AC2-Prob-D
+AC2-Problem solving-Distinction
 __________
 + Three-phase game structure (The Meet, The Plan, The Mission) demonstrates sophisticated narrative problem-solving and shows genuine understanding of pacing and progressive complexity
 + The decision to use Link Reveal commands to create deep multi-choice conversations without reloading the page layout is an elegant and technically informed solution to a real design problem
@@ -27,7 +27,7 @@ ________________________________________________________________________________
 - The image rendering issue for external users — caused by a difference between desktop and web Twine file path handling — remains unresolved in the final submission, which is a meaningful technical gap
 - Some negative paths in the game feel more like punishments than meaningful design choices, which slightly undermines the player experience problem-solving
 
-AC3-Tech-D
+AC3-Technical skills-Distinction
 __________
 + The Twine implementation is the most technically advanced in the cohort — 175 passages, 11,718 words, a live countdown timer implemented in Harlowe using a `(live:)` macro, persistent state variables tracking detections, ratings, and item discovery, randomised narrative elements, and a dynamic two-column CSS layout all represent a level of technical achievement well beyond the brief's requirements
 + Custom CSS styling is applied throughout with genuine skill — colour-coded dialogue bubbles with character-specific hues, responsive layout containers, and styled question prompts demonstrate confident and professional front-end design
@@ -40,7 +40,7 @@ ________________________________________________________________________________
 - External image rendering does not work for users outside the student's own environment — this is a significant playability issue that affects the polish of the final submitted product
 - The game is not submitted as a standard HTML export as specified in the brief — it is submitted as a .twee zip file, which requires Twine to open
 
-AC4-Prof-D
+AC4-Professionall practice-Distinction
 __________
 + Version control is completed with three meaningful entries, which is the strongest example of documented versioning in the cohort
 + Feedback documentation is extensive and exemplary — multiple tutor and peer contributors are named, dated, and their feedback summarised, with a clear column indicating whether each piece of feedback was enacted
@@ -52,7 +52,7 @@ __________
 ______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 - The project timeline condenses the work into two weeks, which, while accurate to the actual timeframe, does not reflect the full scope of the project as well as a more granular plan might
 
-AC5-C-D
+AC5-Communication-Distinction
 _______
 + The Twine narrative communicates character voice with exceptional consistency and skill
 + The narrator's commentary is one of the most entertaining and well-executed communication devices in the cohort — the fourth-wall breaks are funny and tonally consistent
