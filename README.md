@@ -9,6 +9,7 @@ ____________
 + The hero's journey stage (Call to Adventure) is correctly identified and clearly justified in relation to the scene's narrative structure
 + The decision to focus on a positive portrayal of AI is well-reasoned and well-executed — the thematic analysis in both the portfolio and GDD demonstrates sophisticated understanding of the brief's possibilities
 + The agile project management approach, inspired by a conversation with the student's father, is a genuinely personal and thoughtful piece of research that demonstrates real-world awareness
+______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 - The GDD world background and social structure sections, while competent, offer relatively broad observations about AI in society that could be more specifically connected to the game's setting and narrative
 - Character relationship map in the GDD is presented as a simple text list rather than a visual diagram
 
@@ -22,6 +23,7 @@ __________
 + Bug capture documentation is referenced explicitly, demonstrating professional quality assurance thinking
 + Version control table shows three dated entries with meaningful descriptions, which is one of the strongest examples of document versioning in the cohort
 + The reflection on the GDD as a "living document" shows mature understanding of professional design workflows
+______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 - The image rendering issue for external users — caused by a difference between desktop and web Twine file path handling — remains unresolved in the final submission, which is a meaningful technical gap
 - Some negative paths in the game feel more like punishments than meaningful design choices, which slightly undermines the player experience problem-solving
 
@@ -34,6 +36,7 @@ __________
 + The `(digit-format:)` randomised pin number system creates genuine replay variation and shows initiative in exploring Harlowe's less commonly used functions
 + Code commenting throughout the Twine passages is consistent and clear, demonstrating professional coding habits
 + File naming conventions are followed correctly
+______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 - External image rendering does not work for users outside the student's own environment — this is a significant playability issue that affects the polish of the final submitted product
 - The game is not submitted as a standard HTML export as specified in the brief — it is submitted as a .twee zip file, which requires Twine to open
 
@@ -46,6 +49,7 @@ __________
 + AI tool usage is declared with exceptional transparency — tool names, version numbers, and specific use cases are all documented, which is the most thorough AI declaration in the cohort
 + References cover both primary technical sources (Harlowe manual, Stack Overflow) and industry examples, with W3Schools cited specifically for the CSS work
 + The project approach description demonstrates genuine awareness of professional methodologies — the explicit reference to Agile is well-evidenced in the game's structure
+______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 - The project timeline condenses the work into two weeks, which, while accurate to the actual timeframe, does not reflect the full scope of the project as well as a more granular plan might
 
 AC5-C-D
@@ -56,6 +60,7 @@ _______
 + The GDD is comprehensively completed with clear and detailed responses across nearly every section, making it genuinely useful as a design reference document
 + The feedback table format, with named contributors, dates, specific feedback, and enactment confirmation, is the clearest and most professional piece of communication documentation in the submission
 + Technical writing in the portfolio demonstrates awareness of audience — the explicit reference to tailoring documentation for developers versus executives shows real understanding of professional communication contexts
+______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 - The maze-like structure of some negative paths, while a creative choice, occasionally undermines the communication of clear player agency — some dead ends feel abrupt rather than meaningfully signposted
 - Some inner dialogue and narrator commentary may read as inside jokes that could leave players unfamiliar with the student's creative voice feeling excluded rather than entertained
 
