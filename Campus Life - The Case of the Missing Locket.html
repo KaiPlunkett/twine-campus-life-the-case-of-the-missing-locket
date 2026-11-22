@@ -35,6 +35,18 @@ tw-passage {
   margin: 0;
 }
 
+tw-passage > tw-consecutive-br:first-child {
+  display: none;
+}
+
+tw-passage > br:first-child {
+  display: none;
+}
+
+tw-passage > .all-container {
+  margin-top: 0;
+}
+
 .all-container {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
