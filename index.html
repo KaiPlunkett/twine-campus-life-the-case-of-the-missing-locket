@@ -9,7 +9,8 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Campus Life - The Case of the Missing Locket.</tw-noscript></noscript></tw-story>
-<tw-storydata name="Campus Life - The Case of the Missing Locket" startnode="1" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="a73a0585-f677-44e1-a123-40ab0aa008a3" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* =========================================
+<tw-storydata name="Campus Life - The Case of the Missing Locket" startnode="1" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="a73a0585-f677-44e1-a123-40ab0aa008a3" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
+/* =========================================
    BASE PAGE AND HARLOWE
    ========================================= */
 
@@ -564,8 +565,8 @@ tw-sidebar {
 @media (max-width: 767px) and (orientation: portrait) {
 
   /*
-   * Keep the entire game inside the
-   * available iPhone viewport.
+   * Keep the game within the iPhone
+   * viewport, including story padding.
    */
 
   tw-story {
@@ -581,14 +582,11 @@ tw-sidebar {
   }
 
   /*
-   * Four layout rows:
-   *
+   * Four rows:
    * 1. Statistics
    * 2. Background and title
    * 3. Scrollable narrative
    * 4. Fixed 120px prompts
-   *
-   * Prompts remain inside the grid.
    */
 
   .all-container {
@@ -607,10 +605,7 @@ tw-sidebar {
     overflow: hidden;
   }
 
-  /*
-   * Three rows when statistics
-   * are empty.
-   */
+  /* Three rows when statistics are empty. */
 
   .all-container:has(.stats-container:empty),
   .all-container:has(
@@ -622,7 +617,7 @@ tw-sidebar {
       120px;
   }
 
-  /* Limit background image height. */
+  /* Limit image height. */
 
   .background-image {
     max-height: 28dvh;
@@ -675,9 +670,7 @@ tw-sidebar {
 
   /*
    * Fixed prompts pane.
-   *
-   * Uses the grid rather than
-   * absolute positioning.
+   * Remains in the CSS grid.
    */
 
   .prompts-container {
@@ -692,6 +685,38 @@ tw-sidebar {
     overflow: hidden;
     box-sizing: border-box;
     align-self: stretch;
+  }
+
+  /*
+   * Standalone Harlowe links in prompts.
+   *
+   * Example:
+   * (replace: ?prompts)[ [[Start...->maingate]] ]
+   *
+   * The link is styled separately because
+   * it is not inside .questions .question.
+   */
+
+  .prompts-container > tw-hook > tw-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 48px;
+    box-sizing: border-box;
+
+    padding: 10px 12px;
+
+    border: 2px solid #004526;
+    border-radius: 14px;
+
+    background-color: #367c2b;
+    color: white;
+
+    font-size: 90%;
+    text-align: center;
+    overflow-wrap: anywhere;
   }
 
   /*
@@ -714,7 +739,7 @@ tw-sidebar {
   }
 
   /*
-   * Buttons fill their grid cells.
+   * Choice buttons fill their cells.
    */
 
   .prompts-container .questions .question {
