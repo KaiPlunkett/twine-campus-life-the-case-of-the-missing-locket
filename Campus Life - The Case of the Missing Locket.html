@@ -276,7 +276,7 @@ tw-sidebar {
 
 .speechbad > :last-child,
 .speechgood > :last-child,
-.speechnormal > :last-child,
+.speechnormal > :first-child,
 .speechjess > :last-child,
 .speechrafa > :last-child,
 .speechbarc > :last-child,
@@ -626,10 +626,6 @@ tw-sidebar {
     overflow: hidden;
   }
 
-  /*
-   * Preserve image aspect ratio.
-   */
-
   .background-image {
     display: block;
     width: 100%;
@@ -639,7 +635,7 @@ tw-sidebar {
     object-fit: contain;
   }
 
-  /* Title remains over the image. */
+  /* Title overlay */
 
   .titletext-container {
     grid-area: image;
@@ -677,8 +673,6 @@ tw-sidebar {
       inset 0 -12px 12px -14px
       rgba(255, 255, 255, 0.7);
   }
-
-  /* Narrative scrollbar styling */
 
   .maintext-container::-webkit-scrollbar {
     width: 5px;
@@ -720,9 +714,7 @@ tw-sidebar {
   }
 
   /*
-   * Restore normal Harlowe flow.
-   * Do not force the prompts hook
-   * into a flexbox layout.
+   * Restore normal Harlowe content flow.
    */
 
   .prompts-container > tw-hook {
@@ -735,11 +727,6 @@ tw-sidebar {
      NUMBERED TEXT CHOICES
      ===================================== */
 
-  /*
-   * Preserve conventional list
-   * formatting in existing passages.
-   */
-
   .prompts-container ol {
     margin: 0.35rem 0;
     padding-left: 1.75rem;
@@ -750,11 +737,6 @@ tw-sidebar {
     padding-left: 0.15rem;
     margin-bottom: 0.3rem;
   }
-
-  /*
-   * Keep the number and link
-   * aligned on the same line.
-   */
 
   .prompts-container li tw-link {
     display: inline;
@@ -787,13 +769,8 @@ tw-sidebar {
   }
 
   /* =====================================
-     PASSWORD CHOICES: 2 x 2 GRID
+     PASSWORD AND DIALOGUE CHOICE GRIDS
      ===================================== */
-
-  /*
-   * Apply grid styling only to
-   * .questions, not ordinary lists.
-   */
 
   .prompts-container .questions {
     display: grid !important;
@@ -802,20 +779,20 @@ tw-sidebar {
       repeat(2, minmax(0, 1fr));
 
     grid-template-rows:
-      repeat(2, minmax(0, 1fr));
+      repeat(2, minmax(44px, 1fr));
 
     gap: 0.35rem;
 
     width: 100%;
     min-height: 0;
-
     box-sizing: border-box;
+
     align-content: stretch;
   }
 
   /*
-   * Harlowe-generated wrappers
-   * should not occupy grid cells.
+   * Harlowe creates tw-hook wrappers
+   * around generated choices.
    */
 
   .prompts-container .questions tw-hook {
@@ -823,7 +800,7 @@ tw-sidebar {
   }
 
   /*
-   * Individual password buttons.
+   * Individual buttons.
    */
 
   .prompts-container .questions .question {
@@ -855,6 +832,65 @@ tw-sidebar {
     max-width: 100%;
     overflow-wrap: anywhere;
     text-align: center;
+  }
+
+  /* =====================================
+     FIX: "SAY..." HEADING IN QUESTION GRID
+     ===================================== */
+
+  /*
+   * When a .questions element contains
+   * four direct .question children,
+   * reserve a row for heading text.
+   *
+   * This accommodates passages such as
+   * the-plan-prompts-1 without modifying
+   * their Harlowe source.
+   */
+
+  .prompts-container .questions:has(
+    > .question:nth-of-type(4)
+  ) {
+    grid-template-rows:
+      auto
+      repeat(2, minmax(44px, 1fr));
+
+    height: 100%;
+  }
+
+  /*
+   * The unwrapped "Say..." text
+   * occupies the first grid row.
+   *
+   * Position buttons in rows 2 and 3.
+   */
+
+  .prompts-container .questions:has(
+    > .question:nth-of-type(4)
+  ) > .question:nth-of-type(1) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .prompts-container .questions:has(
+    > .question:nth-of-type(4)
+  ) > .question:nth-of-type(2) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .prompts-container .questions:has(
+    > .question:nth-of-type(4)
+  ) > .question:nth-of-type(3) {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .prompts-container .questions:has(
+    > .question:nth-of-type(4)
+  ) > .question:nth-of-type(4) {
+    grid-column: 2;
+    grid-row: 3;
   }
 }
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).ready(function () {
