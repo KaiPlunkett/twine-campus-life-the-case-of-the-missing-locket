@@ -575,7 +575,7 @@ tw-sidebar {
    * Statistics: automatic height
    * Image: 28dvh
    * Narrative: remaining space
-   * Prompts: 120px
+   * Prompts: 180px
    */
 
   .all-container {
@@ -588,19 +588,19 @@ tw-sidebar {
     box-sizing: border-box;
 
     grid-template-columns: minmax(0, 1fr);
+
     grid-template-rows:
       auto
       28dvh
       minmax(0, 1fr)
-      120px;
+      180px;
 
     align-items: stretch;
     overflow: hidden;
   }
 
   /*
-   * Remove the statistics row
-   * when statistics are empty.
+   * Remove statistics row when empty.
    */
 
   .all-container:has(.stats-container:empty),
@@ -610,7 +610,7 @@ tw-sidebar {
     grid-template-rows:
       28dvh
       minmax(0, 1fr)
-      120px;
+      180px;
   }
 
   /* =====================================
@@ -619,17 +619,15 @@ tw-sidebar {
 
   .background-container {
     grid-area: image;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     min-height: 0;
     overflow: hidden;
   }
 
   /*
-   * Preserve original image proportions.
+   * Preserve image aspect ratio.
    */
 
   .background-image {
@@ -638,11 +636,10 @@ tw-sidebar {
     height: 100%;
     max-width: 100%;
     max-height: 100%;
-
     object-fit: contain;
   }
 
-  /* Title overlay */
+  /* Title remains over the image. */
 
   .titletext-container {
     grid-area: image;
@@ -652,7 +649,7 @@ tw-sidebar {
   }
 
   /* =====================================
-     FIXED NARRATIVE AREA
+     NARRATIVE AREA
      ===================================== */
 
   .maintext-container {
@@ -681,7 +678,7 @@ tw-sidebar {
       rgba(255, 255, 255, 0.7);
   }
 
-  /* Scrollbar styling */
+  /* Narrative scrollbar styling */
 
   .maintext-container::-webkit-scrollbar {
     width: 5px;
@@ -705,32 +702,62 @@ tw-sidebar {
     position: static;
     grid-area: choices;
 
-    display: flex;
-    flex-direction: column;
+    display: block;
 
     width: 100%;
-    height: 120px;
+    height: 180px;
     min-height: 0;
-    max-height: 120px;
+    max-height: 180px;
 
     box-sizing: border-box;
     align-self: stretch;
-    overflow: hidden;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   /*
-   * Harlowe's prompts hook may contain
-   * a heading such as "Answer..."
-   * followed by the choice buttons.
+   * Restore normal Harlowe flow.
+   * Do not force the prompts hook
+   * into a flexbox layout.
    */
 
   .prompts-container > tw-hook {
-    display: flex;
-    flex-direction: column;
-
-    flex: 1 1 auto;
-    min-height: 0;
+    display: block;
     width: 100%;
+    min-height: 0;
+  }
+
+  /* =====================================
+     NUMBERED TEXT CHOICES
+     ===================================== */
+
+  /*
+   * Preserve conventional list
+   * formatting in existing passages.
+   */
+
+  .prompts-container ol {
+    margin: 0.35rem 0;
+    padding-left: 1.75rem;
+  }
+
+  .prompts-container li {
+    display: list-item;
+    padding-left: 0.15rem;
+    margin-bottom: 0.3rem;
+  }
+
+  /*
+   * Keep the number and link
+   * aligned on the same line.
+   */
+
+  .prompts-container li tw-link {
+    display: inline;
   }
 
   /* =====================================
@@ -760,8 +787,13 @@ tw-sidebar {
   }
 
   /* =====================================
-     2 x 2 CHOICE BUTTON GRID
+     PASSWORD CHOICES: 2 x 2 GRID
      ===================================== */
+
+  /*
+   * Apply grid styling only to
+   * .questions, not ordinary lists.
+   */
 
   .prompts-container .questions {
     display: grid !important;
@@ -775,22 +807,15 @@ tw-sidebar {
     gap: 0.35rem;
 
     width: 100%;
-    height: auto;
     min-height: 0;
 
-    flex: 1 1 auto;
     box-sizing: border-box;
-
     align-content: stretch;
   }
 
   /*
-   * Harlowe's (for:) and (link:)
-   * macros generate tw-hook wrappers.
-   *
-   * Make wrappers transparent so
-   * .question elements can occupy
-   * individual CSS Grid cells.
+   * Harlowe-generated wrappers
+   * should not occupy grid cells.
    */
 
   .prompts-container .questions tw-hook {
@@ -798,7 +823,7 @@ tw-sidebar {
   }
 
   /*
-   * Each button occupies one grid cell.
+   * Individual password buttons.
    */
 
   .prompts-container .questions .question {
@@ -807,13 +832,12 @@ tw-sidebar {
     justify-content: center;
 
     width: 100%;
-    height: 100%;
-
     min-width: 0;
-    min-height: 0;
+    min-height: 44px;
+    height: auto;
 
     margin: 0;
-    padding: 4px 6px;
+    padding: 6px 8px;
 
     flex: none;
     box-sizing: border-box;
@@ -825,17 +849,10 @@ tw-sidebar {
     overflow: hidden;
   }
 
-  /*
-   * Keep link text centred
-   * inside each button.
-   */
-
   .prompts-container .questions .question tw-link {
     display: block;
-
     width: 100%;
     max-width: 100%;
-
     overflow-wrap: anywhere;
     text-align: center;
   }
