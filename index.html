@@ -37,8 +37,7 @@ tw-passage {
   margin: 0;
 }
 
-/* Prevent Harlowe's sidebar occupying
-   space above the game layout. */
+/* Hide Harlowe's sidebar. */
 
 tw-sidebar {
   display: none !important;
@@ -202,6 +201,8 @@ tw-sidebar {
   text-align: center;
   overflow-wrap: anywhere;
 }
+
+/* Choice button colours. */
 
 .questions .question:nth-of-type(1) {
   background-color: #367c2b; /* John Deere Green. */
@@ -562,9 +563,15 @@ tw-sidebar {
 
 @media (max-width: 767px) and (orientation: portrait) {
 
+  /*
+   * Keep the entire game inside the
+   * available iPhone viewport.
+   */
+
   tw-story {
     height: 100dvh;
     min-height: 0;
+    box-sizing: border-box;
     overflow: hidden;
   }
 
@@ -574,24 +581,36 @@ tw-sidebar {
   }
 
   /*
-   * Reserve 120px for prompts.
-   * Prompts are positioned independently
-   * of the grid's content height.
+   * Four layout rows:
+   *
+   * 1. Statistics
+   * 2. Background and title
+   * 3. Scrollable narrative
+   * 4. Fixed 120px prompts
+   *
+   * Prompts remain inside the grid.
    */
 
   .all-container {
+    position: relative;
     height: 100%;
     min-height: 0;
-    padding-bottom: calc(120px + 0.75rem);
+    padding-bottom: 0;
     box-sizing: border-box;
+
     grid-template-rows:
       auto
       auto
-      minmax(0, 1fr);
+      minmax(0, 1fr)
+      120px;
+
     overflow: hidden;
   }
 
-  /* Grid when statistics are empty. */
+  /*
+   * Three rows when statistics
+   * are empty.
+   */
 
   .all-container:has(.stats-container:empty),
   .all-container:has(
@@ -599,28 +618,43 @@ tw-sidebar {
   ) {
     grid-template-rows:
       auto
-      minmax(0, 1fr);
+      minmax(0, 1fr)
+      120px;
   }
+
+  /* Limit background image height. */
 
   .background-image {
     max-height: 28dvh;
     object-fit: contain;
   }
 
-  /* Independently scrollable narrative. */
+  /*
+   * Narrative occupies remaining space
+   * and scrolls independently.
+   */
 
   .maintext-container {
     min-height: 0;
     height: 100%;
-    overflow-y: scroll;
+    box-sizing: border-box;
+
+    overflow-y: auto;
     overflow-x: hidden;
+
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
+
     padding-right: 0.35rem;
+
     scrollbar-width: thin;
     scrollbar-color: #888 #292929;
+
     border-bottom: 1px solid #555;
-    box-shadow: inset 0 -12px 12px -14px rgba(255, 255, 255, 0.7);
+
+    box-shadow:
+      inset 0 -12px 12px -14px
+      rgba(255, 255, 255, 0.7);
   }
 
   /* Scrollbar styling where supported. */
@@ -640,47 +674,63 @@ tw-sidebar {
   }
 
   /*
-   * Fixed prompts pane:
-   * 120px high, no scrolling.
+   * Fixed prompts pane.
+   *
+   * Uses the grid rather than
+   * absolute positioning.
    */
 
   .prompts-container {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    position: static;
+    grid-area: choices;
+
     width: 100%;
     height: 120px;
+    min-height: 0;
+    max-height: 120px;
+
     overflow: hidden;
     box-sizing: border-box;
+    align-self: stretch;
   }
 
   /*
    * Maximum four choices:
-   * two columns, two rows.
+   * two columns and two rows.
    */
 
   .prompts-container .questions {
     display: grid;
+
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
+
     grid-template-rows:
       repeat(2, minmax(0, 1fr));
+
     gap: 0.5rem;
     height: 100%;
     align-content: stretch;
   }
+
+  /*
+   * Buttons fill their grid cells.
+   */
 
   .prompts-container .questions .question {
     width: 100%;
     height: 100%;
     min-width: 0;
     min-height: 0;
+
     margin: 0;
     padding: 6px 8px;
+
     box-sizing: border-box;
+
     font-size: 80%;
     line-height: 1.2;
+
     overflow: hidden;
   }
 }
