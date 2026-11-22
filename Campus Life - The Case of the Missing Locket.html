@@ -591,9 +591,6 @@ You&#39;re going to need to identify yourself as a friend by quoting the passwor
 
 (set: $backgroundurl to &quot;bush-passage-1024x768.webp&quot;)
 
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
 
@@ -615,7 +612,10 @@ There&#39;s also a //trough// sitting to the left.]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="3" name="bin-path" tags="" position="1900,500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="3" name="bin-path" tags="" position="1900,500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon section visit. --&gt;
 (if: $binmistake is true) [
@@ -623,9 +623,6 @@ There&#39;s also a //trough// sitting to the left.]
 ] (else:) [
     (set: $backgroundurl to &quot;bin-passage-1024x768.webp&quot;)
 ]
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -664,15 +661,15 @@ It&#39;s difficult to see what&#39;s in the shadows and your view only extends a
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="4" name="gate-path" tags="" position="900,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="4" name="gate-path" tags="" position="900,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
     (set: $gatemistake to true)
 ]
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -699,7 +696,10 @@ Unsurprisingly, at this hour, the gate is locked!
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="5" name="stats-timer-update" tags="" position="300,1500" size="100,100">&lt;!-- This path is called from main paths. --&gt; \
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="5" name="stats-timer-update" tags="" position="300,1500" size="100,100">&lt;!-- This path is called from main paths. --&gt; \
 &lt;span&gt;Name: (text-colour:blue)[$givenname]&lt;/span&gt; \
 &lt;span&gt;Achievement: (text-colour:blue)[(round: $rating)]%&lt;/span&gt; \
 &lt;span&gt;Times Detected: (text-colour:blue) [$timesdetected]&lt;/span&gt; \
@@ -707,9 +707,6 @@ Unsurprisingly, at this hour, the gate is locked!
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bin-passage-chock-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -728,10 +725,10 @@ Perhaps that can stabilise the wheels? ]
     2. [[Return to main gate.-&gt;maingate]] ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="7" name="bin-path-fail-1" tags="" position="1700,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
 
 &lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="7" name="bin-path-fail-1" tags="" position="1700,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -750,7 +747,10 @@ Perhaps something can stabilise it? ]
     2. [[Return to main gate.-&gt;maingate]] ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="8" name="pick-up-chock" tags="" position="2300,500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="8" name="pick-up-chock" tags="" position="2300,500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
@@ -759,9 +759,6 @@ Perhaps something can stabilise it? ]
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bin-passage-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -779,7 +776,10 @@ Perhaps something can stabilise it? ]
     3. [[Return to main gate.-&gt;maingate]] ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="9" name="bin-path-fail-2" tags="" position="2100,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="9" name="bin-path-fail-2" tags="" position="2100,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
@@ -789,9 +789,6 @@ Perhaps something can stabilise it? ]
 
 &lt;!-- Set variables upon progress. --&gt;
 (set: $backgroundurl to &quot;bin-passage-bin-broken-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -822,16 +819,16 @@ Perhaps something can stabilise it? ]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="10" name="bush-path-look" tags="" position="500,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="10" name="bush-path-look" tags="" position="500,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon progress. --&gt;
 (if: $bushmoved is true) [ (go-to: &quot;bush-path-moved&quot;) ]
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bush-passage-1024x768.webp&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -854,10 +851,10 @@ Hmmm...]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="11" name="bush-path-fail-1" tags="" position="100,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
 
 &lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="11" name="bush-path-fail-1" tags="" position="100,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -877,7 +874,10 @@ Better try something else.]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="12" name="bush-path-look-closer" tags="" position="100,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="12" name="bush-path-look-closer" tags="" position="100,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon progress. --&gt;
 (if: $bushmoved is true) [ (go-to: &quot;bush-path-moved&quot;) ]
@@ -888,9 +888,6 @@ Better try something else.]
 ] (else-if: $bushmoved is false) [
     (set: $backgroundurl to &quot;bush-passage-1024x768.webp&quot;)
 ]
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -916,7 +913,10 @@ That&#39;s... //handy//!
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)	</tw-passagedata><tw-passagedata pid="13" name="pick-up-gloves" tags="" position="100,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="13" name="pick-up-gloves" tags="" position="100,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon progress. --&gt;
 (if: $bushmoved is false) [
@@ -924,9 +924,6 @@ That&#39;s... //handy//!
 ] (else:) [
     (set: $backgroundurl to &quot;bush-passage-hole-1024-768.webp&quot;)
 ]
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -943,7 +940,10 @@ That&#39;s... //handy//!
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="14" name="bush-path-clear" tags="" position="500,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="14" name="bush-path-clear" tags="" position="500,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if: visits is 1) [
@@ -953,9 +953,6 @@ That&#39;s... //handy//!
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-ahead-passage-1024x768.webp&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -976,7 +973,10 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="15" name="bush-path-trough-fail" tags="" position="500,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="15" name="bush-path-trough-fail" tags="" position="500,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
@@ -985,9 +985,6 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bush-passage-trough-1024x768.webp&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1018,7 +1015,10 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
 ]
 
 &lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="16" name="lab-path" tags="" position="1100,900" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="16" name="lab-path" tags="" position="1100,900" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
@@ -1039,9 +1039,6 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-entrance-passage-1024x768.webp&quot;)
 
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
-
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
 
@@ -1054,16 +1051,16 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
 &lt;!-- Update prompts content. --&gt;
 (replace: ?prompts) [ What do you want to do?
     1. [[Go back to the wall.-&gt;bush-path-clear]]
-]</tw-passagedata><tw-passagedata pid="17" name="stats-notimer-update" tags="" position="400,1500" size="100,100">&lt;!-- This path is called from main paths. --&gt; \
+]
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]</tw-passagedata><tw-passagedata pid="17" name="stats-notimer-update" tags="" position="400,1500" size="100,100">&lt;!-- This path is called from main paths. --&gt; \
 &lt;span&gt;Name: (text-colour:blue)[$givenname]&lt;/span&gt; \
 &lt;span&gt;Achievement: (text-colour:blue)[(round: $rating)]%&lt;/span&gt; \
 &lt;span&gt;Times Detected: (text-colour:blue) [$timesdetected]&lt;span&gt;</tw-passagedata><tw-passagedata pid="18" name="ask-for-password" tags="" position="1100,1000" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-entrance-passage-jess-silhouette-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1085,15 +1082,15 @@ You hear a whispered voice from the shadows...
 &lt;!-- Update &quot;prompts&quot; content. --&gt;
 (replace: ?prompts) [ Answer...
     (display: &quot;password-template&quot;)
-]</tw-passagedata><tw-passagedata pid="19" name="wrong-password" tags="" position="1050,1100" size="100,100">&lt;!-- This path is called from &quot;ask-for-password&quot; path. --&gt;
+]
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]</tw-passagedata><tw-passagedata pid="19" name="wrong-password" tags="" position="1050,1100" size="100,100">&lt;!-- This path is called from &quot;ask-for-password&quot; path. --&gt;
 (set: $passwrongchoicecount to it + 1)
 (go-to: &quot;ask-for-password&quot;)</tw-passagedata><tw-passagedata pid="20" name="right-password" tags="" position="1150,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-entrance-passage-jess-silhouette-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1107,16 +1104,16 @@ You hear a whispered voice from the shadows...
 ]
 
 &lt;!-- Update prompts content. --&gt;
-(replace: ?prompts) [ [[Continue...-&gt;tj-friends-meet]] ]</tw-passagedata><tw-passagedata pid="21" name="tj-friends-meet" tags="" position="1300,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(replace: ?prompts) [ [[Continue...-&gt;tj-friends-meet]] ]
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]</tw-passagedata><tw-passagedata pid="21" name="tj-friends-meet" tags="" position="1300,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Initialise meet diag number upon every visit. --&gt;
 (set: $meet_diag_num to 1)
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-entrance-passage-jess-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1147,13 +1144,13 @@ You hear a whispered voice from the shadows...
     ] (else:) [
         (go-to: &quot;the-plan-start&quot;)
     ]
-] ]</tw-passagedata><tw-passagedata pid="22" name="tj-friends-leave" tags="" position="900,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+] ]
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]</tw-passagedata><tw-passagedata pid="22" name="tj-friends-leave" tags="" position="900,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-entrance-passage-jess-silhouette-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1169,7 +1166,10 @@ You hear a whispered voice from the shadows...
 &lt;!-- Update &quot;prompts&quot; content. --&gt;
 (replace: ?prompts) []
 
-(display: &quot;the-end-template&quot;)</tw-passagedata><tw-passagedata pid="23" name="meet-diag-1" tags="" position="850,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
+(display: &quot;the-end-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]</tw-passagedata><tw-passagedata pid="23" name="meet-diag-1" tags="" position="850,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
 &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Hi, my name&#39;s Jessica Belcher...
 
 And before you say anything, I&#39;ve heard all the jokes, thankyou!
@@ -1215,9 +1215,6 @@ The SD card is in that locket, so I must get it back!&lt;/span&gt;&lt;/span&gt;<
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;)
 
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
 
@@ -1245,7 +1242,10 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="36" name="the-mission-start" tags="" position="1100,1700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="36" name="the-mission-start" tags="" position="1100,1700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
@@ -1680,9 +1680,6 @@ Prof. Duh, more like!!!&lt;/span&gt;&lt;/span&gt;
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;maingate-found-note-1024x768.webp&quot;)
 
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
 
@@ -1709,7 +1706,10 @@ A code, perhaps?]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="73" name="pick-up-the-paper" tags="" position="1300,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="73" name="pick-up-the-paper" tags="" position="1300,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
@@ -1719,9 +1719,6 @@ A code, perhaps?]
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1748,15 +1745,15 @@ Better remember that. It could come in handy!
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="74" name="try-pin-number-on-gate" tags="" position="900,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="74" name="try-pin-number-on-gate" tags="" position="900,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
     (set: $gatemistake to true)
 ]
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1777,7 +1774,10 @@ Maybe the pin can be used somewhere else?]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="75" name="bin-path-found-gate" tags="" position="2100,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="75" name="bin-path-found-gate" tags="" position="2100,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
@@ -1786,9 +1786,6 @@ Maybe the pin can be used somewhere else?]
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bin-passage-gate-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1806,13 +1803,13 @@ Maybe the pin can be used somewhere else?]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="76" name="bin-path-enter-pin" tags="" position="2100,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="76" name="bin-path-enter-pin" tags="" position="2100,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bin-passage-gate-keypad-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1841,7 +1838,10 @@ Maybe the pin can be used somewhere else?]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="77" name="bin-path-clear" tags="" position="1700,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="77" name="bin-path-clear" tags="" position="1700,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if: visits is 1) [
@@ -1851,9 +1851,6 @@ Maybe the pin can be used somewhere else?]
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-ahead-passage-1024x768.webp&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1875,7 +1872,10 @@ Maybe the pin can be used somewhere else?]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="78" name="bg-template" tags="" position="300,1400" size="100,100">(replace: ?background) [ (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;) ] &lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="79" name="lab-block-left-1st-passage" tags="" position="1900,2100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="78" name="bg-template" tags="" position="300,1400" size="100,100">(replace: ?background) [ (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;) ] &lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="79" name="lab-block-left-1st-passage" tags="" position="1900,2100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-entrance-passage-left-1024x768.webp&quot;)
@@ -2732,9 +2732,6 @@ Thank the heavens!!!
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bin-passage-gate-open-1024x768.webp&quot;)
 
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
 
@@ -2754,7 +2751,10 @@ Thank the heavens!!!
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="108" name="bush-path-moved" tags="" position="300,900" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="108" name="bush-path-moved" tags="" position="300,900" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if: visits is 1) [
@@ -2763,9 +2763,6 @@ Thank the heavens!!!
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bush-passage-hole-1024-768.webp&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -2786,7 +2783,10 @@ Ooo, it&#39;s very dark in there. Better not be any spiders!? ]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="109" name="times-detected-inc" tags="" position="300,1600" size="100,100">{
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="109" name="times-detected-inc" tags="" position="300,1600" size="100,100">{
     (set: $timesdetected to it +1)
     (set: _comment_list to (a:
         &quot;Try to be more careful!&quot;,

@@ -9,72 +9,105 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Campus Life - The Case of the Missing Locket.</tw-noscript></noscript></tw-story>
-<tw-storydata name="Campus Life - The Case of the Missing Locket" startnode="1" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="a73a0585-f677-44e1-a123-40ab0aa008a3" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* =========================================
-   BASE PAGE AND HARLOWE
-   ========================================= */
-
-html, body {
+<tw-storydata name="Campus Life - The Case of the Missing Locket" startnode="1" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="a73a0585-f677-44e1-a123-40ab0aa008a3" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">html,
+body {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   margin: 0;
-  overflow-x: hidden;
+  padding: 0;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 tw-story {
+  display: block;
   width: 100%;
-  min-height: 100dvh;
-  padding: clamp(0.75rem, 1.5vw, 2rem);
-  overflow: visible;
-  font-size: clamp(16px, 1.15vw + 8px, 30px);
+  max-width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  margin: 0 auto;
+  padding: 12px;
+  overflow: hidden;
+  font-size: 16px;
   line-height: 1.5;
 }
 
 tw-passage {
   display: block;
   width: 100%;
+  height: 100%;
   min-width: 0;
-  padding: 0;
+  min-height: 0;
   margin: 0;
+  padding: 0;
 }
 
 tw-sidebar {
   display: none !important;
 }
 
-/* =========================================
-   MAIN DESKTOP LAYOUT
-   ========================================= */
-
-.all-container {
-  display: grid;
-  grid-template-columns:
-    minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-areas:
-    "stats stats"
-    "image title"
-    "image narrative"
-    "choices narrative";
-  grid-template-rows: auto auto auto 1fr;
-  gap: 1rem 1.5rem;
-  width: 100%;
-  max-width: 1800px;
-  margin: 0 auto;
-  align-items: start;
+@media (min-width: 768px) {
+  tw-story {
+    max-width: 900px;
+  }
 }
 
-/* =========================================
-   STATISTICS
-   ========================================= */
+@media (min-width: 1280px) {
+  tw-story {
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 1920px) {
+  tw-story {
+    max-width: 1500px;
+  }
+}
+
+@media (min-width: 2560px) {
+  tw-story {
+    max-width: 1800px;
+  }
+}
+
+.all-container {
+  --content-width: min(100%, 1024px);
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "stats"
+    "image"
+    "narrative"
+    "choices";
+  grid-template-rows:
+    auto
+    minmax(0, auto)
+    minmax(0, 1fr)
+    180px;
+  gap: 10px;
+  align-items: stretch;
+  overflow: hidden;
+}
 
 .stats-container {
   grid-area: stats;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  width: 100%;
+  width: var(--content-width);
+  max-width: 100%;
   min-width: 0;
+  justify-self: center;
+  gap: 4px 10px;
   font-size: 80%;
-  gap: 0.5rem 1rem;
 }
 
 .stats-container span {
@@ -91,56 +124,88 @@ tw-sidebar {
   .stats-container:not(:has(tw-hook:not(:empty)))
 ) {
   grid-template-areas:
-    "image title"
-    "image narrative"
-    "choices narrative";
-  grid-template-rows: auto auto 1fr;
+    "image"
+    "narrative"
+    "choices";
+  grid-template-rows:
+    minmax(0, auto)
+    minmax(0, 1fr)
+    180px;
 }
-
-/* =========================================
-   BACKGROUND IMAGE
-   ========================================= */
 
 .background-container {
   grid-area: image;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--content-width);
+  max-width: 100%;
   min-width: 0;
+  min-height: 0;
+  justify-self: center;
+  overflow: hidden;
+  z-index: 0;
 }
 
 .background-image {
   display: block;
   width: 100%;
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
+  object-position: center;
+  margin: 0 auto;
 }
 
-/* =========================================
-   TITLE
-   ========================================= */
-
 .titletext-container {
-  grid-area: title;
-  width: 100%;
-  min-width: 0;
-  margin: 0;
+  grid-area: image;
+  z-index: 1;
+  justify-self: center;
+  align-self: start;
+  width: fit-content;
+  max-width: calc(100% - 20px);
+  margin-top: 10px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.65);
+  color: white;
   font-size: 120%;
   text-align: center;
 }
 
-/* =========================================
-   MAIN NARRATIVE
-   ========================================= */
-
 .maintext-container {
   grid-area: narrative;
-  width: 100%;
+  width: var(--content-width);
+  max-width: 100%;
   min-width: 0;
+  min-height: 0;
   height: auto;
-  overflow: visible;
+  justify-self: center;
+  padding: 0 5px 8px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   overflow-wrap: anywhere;
-  font-size: clamp(16px, 1.3vw + 4px, 30px);
-  line-height: 1.45;
+  font-size: 1em;
+  line-height: 1.5;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #292929;
+  border-bottom: 1px solid #555;
+}
+
+.maintext-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.maintext-container::-webkit-scrollbar-track {
+  background: #292929;
+}
+
+.maintext-container::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 5px;
 }
 
 .maintext-container::after {
@@ -152,49 +217,102 @@ tw-sidebar {
 .maintext-container .title-image {
   display: block;
   float: left;
-  width: 90px;
+  width: 65px;
   max-width: 25%;
   height: auto;
-  margin: 0 15px 10px 0;
+  margin: 0 12px 8px 0;
   padding: 0;
   object-fit: contain;
 }
 
-/* =========================================
-   PROMPTS AND CHOICE BUTTONS
-   ========================================= */
-
 .prompts-container {
   grid-area: choices;
-  width: 100%;
+  display: block;
+  width: var(--content-width);
+  max-width: 100%;
+  height: 180px;
   min-width: 0;
+  min-height: 0;
+  justify-self: center;
+  padding: 4px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  font-size: 1em;
+  line-height: 1.4;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #292929;
+}
+
+.prompts-container > tw-hook {
+  display: block;
+  width: 100%;
+}
+
+.prompts-container ol {
+  display: block;
+  margin: 6px 0;
+  padding-left: 30px;
+}
+
+.prompts-container li {
+  display: list-item;
+  margin: 0 0 5px;
+  padding: 0;
+  line-height: 1.4;
+}
+
+.prompts-container li tw-link {
+  display: inline;
+}
+
+.prompts-container tw-link {
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .questions {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  gap: 0.5rem;
+  align-content: flex-start;
+  width: 100%;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.questions tw-hook {
+  display: contents;
 }
 
 .questions .question {
   display: flex;
+  flex: 0 0 calc(50% - 4px);
   align-items: center;
   justify-content: center;
-  flex: 1 1 calc(50% - 0.5rem);
   min-width: 0;
-  min-height: 44px;
-  padding: 8px 10px;
+  min-height: 48px;
   margin: 0;
+  padding: 8px;
   border-style: solid;
   border-width: 2px;
   border-radius: 14px;
-  font-size: 75%;
+  font-size: 80%;
+  line-height: 1.2;
   text-align: center;
   overflow-wrap: anywhere;
 }
 
-/* Choice button colours */
+.questions .question tw-link {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  color: white;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
 
 .questions .question:nth-of-type(1) {
   background-color: #367c2b;
@@ -216,18 +334,27 @@ tw-sidebar {
   border-color: #082567;
 }
 
-.questions span tw-link {
+.questions .question tw-link,
+.questions .question tw-link:hover,
+.questions .question tw-link:active {
   color: white;
 }
 
-.questions .question tw-link {
-  max-width: 100%;
-  overflow-wrap: anywhere;
+.prompts-container > tw-hook > tw-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 2px solid #004526;
+  border-radius: 14px;
+  background-color: #367c2b;
+  color: white;
+  font-size: 90%;
+  text-align: center;
 }
-
-/* =========================================
-   SPEECH BUBBLES
-   ========================================= */
 
 .speechbad,
 .speechgood,
@@ -240,7 +367,7 @@ tw-sidebar {
 .speechplayer {
   display: inline-flex;
   flex-direction: column;
-  width: 50%;
+  width: 88%;
   max-width: 100%;
   min-width: 0;
   margin: 3px;
@@ -249,11 +376,9 @@ tw-sidebar {
   border-radius: 5px;
   border-bottom-left-radius: 0;
   font-size: 0.9em;
-  line-height: 1.3;
+  line-height: 1.4;
   overflow-wrap: anywhere;
 }
-
-/* Speech bubble headings */
 
 .speechbad > :first-child,
 .speechgood > :first-child,
@@ -272,8 +397,6 @@ tw-sidebar {
   opacity: 0.9;
 }
 
-/* Speech bubble content */
-
 .speechbad > :last-child,
 .speechgood > :last-child,
 .speechnormal > :last-child,
@@ -285,10 +408,6 @@ tw-sidebar {
 .speechplayer > :last-child {
   padding: 10px;
 }
-
-/* =========================================
-   SPEECH COLOURS
-   ========================================= */
 
 .speechbad,
 .speechproft {
@@ -331,206 +450,17 @@ tw-sidebar {
   margin-right: 3px;
 }
 
-/* =========================================
-   TABLET AND SMALL DESKTOP
-   ========================================= */
-
-@media (min-width: 768px) and (max-width: 1400px) {
-
-  .maintext-container {
-    font-size: clamp(16px, 1.15vw + 4px, 21px);
-    line-height: 1.45;
-  }
-
-  .speechbad,
-  .speechgood,
-  .speechnormal,
-  .speechjess,
-  .speechrafa,
-  .speechbarc,
-  .speechnarrator,
-  .speechproft,
-  .speechplayer {
-    font-size: 0.9em;
-    line-height: 1.3;
-  }
-}
-
-@media (max-width: 1024px) {
-
-  tw-story {
-    padding: 1rem;
-  }
-
-  .all-container {
-    column-gap: 1rem;
-  }
-
-  .speechbad,
-  .speechgood,
-  .speechnormal,
-  .speechjess,
-  .speechrafa,
-  .speechbarc,
-  .speechnarrator,
-  .speechproft,
-  .speechplayer {
-    width: 75%;
-  }
-}
-
-/* =========================================
-   MOBILE LAYOUT
-   ========================================= */
-
-@media (max-width: 767px) {
-
-  tw-story {
-    padding: 0.75rem;
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
-  .all-container {
-    position: relative;
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      "stats"
-      "image"
-      "narrative"
-      "choices";
-    grid-template-rows: auto;
-    gap: 0.75rem;
-  }
-
-  .all-container:has(.stats-container:empty),
-  .all-container:has(
-    .stats-container:not(:has(tw-hook:not(:empty)))
-  ) {
-    grid-template-areas:
-      "image"
-      "narrative"
-      "choices";
-    grid-template-rows: auto;
-  }
-
-  .stats-container {
-    font-size: 75%;
-    gap: 0.35rem 0.75rem;
-  }
-
-  /* Title overlay */
-
-  .background-container,
-  .titletext-container {
-    grid-area: image;
-  }
-
-  .background-container {
-    z-index: 0;
-  }
-
-  .background-image {
-    width: 100%;
-    height: auto;
-  }
-
-  .titletext-container {
-    z-index: 1;
-    justify-self: center;
-    align-self: start;
-    width: fit-content;
-    max-width: calc(100% - 2rem);
-    margin-top: 0.75rem;
-    padding: 0.4rem 0.9rem;
-    border-radius: 8px;
-    background: rgba(0, 0, 0, 0.65);
-    color: white;
-    font-size: 110%;
-    text-align: center;
-  }
-
-  .maintext-container {
-    font-size: 1em;
-    line-height: 1.55;
-  }
-
-  .maintext-container .title-image {
-    width: 65px;
-    max-width: 25%;
-    margin: 0 12px 8px 0;
-  }
-
-  .speechbad,
-  .speechgood,
-  .speechnormal,
-  .speechjess,
-  .speechrafa,
-  .speechbarc,
-  .speechnarrator,
-  .speechproft,
-  .speechplayer {
-    width: 88%;
-    font-size: 0.9em;
-    line-height: 1.4;
-  }
-
-  .speechplayer {
-    margin-left: auto;
-    margin-right: 2px;
-  }
-
-  /* Mobile choices outside portrait mode */
-
-  .questions {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .questions .question {
-    width: 100%;
-    flex: none;
-    min-height: 44px;
-    padding: 10px 12px;
-    font-size: 90%;
-  }
-}
-
-/* =========================================
-   LANDSCAPE ADJUSTMENTS
-   ========================================= */
-
-@media (orientation: landscape) and (max-height: 500px) {
-
-  tw-story {
-    padding: 0.5rem;
-  }
-
-  .background-image {
-    width: auto;
-    max-width: 100%;
-    max-height: 65dvh;
-    margin-inline: auto;
-  }
-
-  .all-container {
-    row-gap: 0.5rem;
-  }
-}
-
-/* =========================================
-   SMALL IPHONE ADJUSTMENTS
-   ========================================= */
-
 @media (max-width: 380px) {
-
   tw-story {
-    padding: 0.5rem;
+    padding: 8px;
+  }
+
+  .all-container {
+    gap: 8px;
   }
 
   .maintext-container .title-image {
     width: 55px;
-    max-width: 25%;
     margin: 0 10px 6px 0;
   }
 
@@ -545,319 +475,36 @@ tw-sidebar {
   .speechplayer {
     width: 95%;
   }
+
+  .questions .question {
+    font-size: 75%;
+    padding: 6px;
+  }
 }
 
-/* =========================================
-   IPHONE PORTRAIT: FIXED LAYOUT
-   ========================================= */
-
-@media (max-width: 767px) and (orientation: portrait) {
-
-  /*
-   * Keep the game inside the viewport.
-   */
-
-  tw-story {
-    height: 100dvh;
-    min-height: 0;
-    box-sizing: border-box;
-    overflow: hidden;
-  }
-
-  tw-passage {
-    height: 100%;
-    min-height: 0;
-  }
-
-  /*
-   * Fixed layout:
-   *
-   * Statistics: automatic height
-   * Image: 28dvh
-   * Narrative: remaining space
-   * Prompts: 180px
-   */
-
+@media (max-height: 550px) {
   .all-container {
-    display: grid;
-    position: relative;
-
-    height: 100%;
-    min-height: 0;
-    padding-bottom: 0;
-    box-sizing: border-box;
-
-    grid-template-columns: minmax(0, 1fr);
-
     grid-template-rows:
       auto
-      28dvh
+      minmax(0, auto)
       minmax(0, 1fr)
-      180px;
-
-    align-items: stretch;
-    overflow: hidden;
+      160px;
   }
-
-  /*
-   * Remove statistics row when empty.
-   */
 
   .all-container:has(.stats-container:empty),
   .all-container:has(
     .stats-container:not(:has(tw-hook:not(:empty)))
   ) {
     grid-template-rows:
-      28dvh
+      minmax(0, auto)
       minmax(0, 1fr)
-      180px;
+      160px;
   }
-
-  /* =====================================
-     FIXED IMAGE AREA
-     ===================================== */
-
-  .background-container {
-    grid-area: image;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  /*
-   * Preserve image aspect ratio.
-   */
-
-  .background-image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-  }
-
-  /* Title remains over the image. */
-
-  .titletext-container {
-    grid-area: image;
-    z-index: 1;
-    justify-self: center;
-    align-self: start;
-  }
-
-  /* =====================================
-     NARRATIVE AREA
-     ===================================== */
-
-  .maintext-container {
-    grid-area: narrative;
-
-    min-height: 0;
-    height: auto;
-    align-self: stretch;
-    box-sizing: border-box;
-
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-
-    padding-right: 0.35rem;
-
-    scrollbar-width: thin;
-    scrollbar-color: #888 #292929;
-
-    border-bottom: 1px solid #555;
-
-    box-shadow:
-      inset 0 -12px 12px -14px
-      rgba(255, 255, 255, 0.7);
-  }
-
-  /* Narrative scrollbar styling */
-
-  .maintext-container::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  .maintext-container::-webkit-scrollbar-track {
-    background: #292929;
-    border-radius: 5px;
-  }
-
-  .maintext-container::-webkit-scrollbar-thumb {
-    background: #999;
-    border-radius: 5px;
-  }
-
-  /* =====================================
-     FIXED PROMPTS AREA
-     ===================================== */
 
   .prompts-container {
-    position: static;
-    grid-area: choices;
-
-    display: block;
-
-    width: 100%;
-    height: 180px;
-    min-height: 0;
-    max-height: 180px;
-
-    box-sizing: border-box;
-    align-self: stretch;
-
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
+    height: 160px;
   }
-
-  /*
-   * Restore normal Harlowe flow.
-   * Do not force the prompts hook
-   * into a flexbox layout.
-   */
-
-  .prompts-container > tw-hook {
-    display: block;
-    width: 100%;
-    min-height: 0;
-  }
-
-  /* =====================================
-     NUMBERED TEXT CHOICES
-     ===================================== */
-
-  /*
-   * Preserve conventional list
-   * formatting in existing passages.
-   */
-
-  .prompts-container ol {
-    margin: 0.35rem 0;
-    padding-left: 1.75rem;
-  }
-
-  .prompts-container li {
-    display: list-item;
-    padding-left: 0.15rem;
-    margin-bottom: 0.3rem;
-  }
-
-  /*
-   * Keep the number and link
-   * aligned on the same line.
-   */
-
-  .prompts-container li tw-link {
-    display: inline;
-  }
-
-  /* =====================================
-     STANDALONE LINKS (START...)
-     ===================================== */
-
-  .prompts-container > tw-hook > tw-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-    min-height: 48px;
-
-    padding: 10px 12px;
-    box-sizing: border-box;
-
-    border: 2px solid #004526;
-    border-radius: 14px;
-
-    background-color: #367c2b;
-    color: white;
-
-    font-size: 90%;
-    text-align: center;
-    overflow-wrap: anywhere;
-  }
-
-  /* =====================================
-     PASSWORD CHOICES: 2 x 2 GRID
-     ===================================== */
-
-  /*
-   * Apply grid styling only to
-   * .questions, not ordinary lists.
-   */
-
-  .prompts-container .questions {
-    display: grid !important;
-
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-
-    grid-template-rows:
-      repeat(2, minmax(0, 1fr));
-
-    gap: 0.35rem;
-
-    width: 100%;
-    min-height: 0;
-
-    box-sizing: border-box;
-    align-content: stretch;
-  }
-
-  /*
-   * Harlowe-generated wrappers
-   * should not occupy grid cells.
-   */
-
-  .prompts-container .questions tw-hook {
-    display: contents;
-  }
-
-  /*
-   * Individual password buttons.
-   */
-
-  .prompts-container .questions .question {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-    min-width: 0;
-    min-height: 44px;
-    height: auto;
-
-    margin: 0;
-    padding: 6px 8px;
-
-    flex: none;
-    box-sizing: border-box;
-
-    font-size: 75%;
-    line-height: 1.15;
-    text-align: center;
-
-    overflow: hidden;
-  }
-
-  .prompts-container .questions .question tw-link {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    text-align: center;
-  }
-}
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).ready(function () {
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).ready(function () {
   let activePane = null;
   let observer = null;
   let previousHeight = 0;
@@ -944,9 +591,6 @@ You&#39;re going to need to identify yourself as a friend by quoting the passwor
 
 (set: $backgroundurl to &quot;bush-passage-1024x768.webp&quot;)
 
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
 
@@ -968,7 +612,10 @@ There&#39;s also a //trough// sitting to the left.]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="3" name="bin-path" tags="" position="1900,500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="3" name="bin-path" tags="" position="1900,500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon section visit. --&gt;
 (if: $binmistake is true) [
@@ -976,9 +623,6 @@ There&#39;s also a //trough// sitting to the left.]
 ] (else:) [
     (set: $backgroundurl to &quot;bin-passage-1024x768.webp&quot;)
 ]
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1017,15 +661,15 @@ It&#39;s difficult to see what&#39;s in the shadows and your view only extends a
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="4" name="gate-path" tags="" position="900,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="4" name="gate-path" tags="" position="900,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
     (set: $gatemistake to true)
 ]
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1052,7 +696,10 @@ Unsurprisingly, at this hour, the gate is locked!
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="5" name="stats-timer-update" tags="" position="300,1500" size="100,100">&lt;!-- This path is called from main paths. --&gt; \
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="5" name="stats-timer-update" tags="" position="300,1500" size="100,100">&lt;!-- This path is called from main paths. --&gt; \
 &lt;span&gt;Name: (text-colour:blue)[$givenname]&lt;/span&gt; \
 &lt;span&gt;Achievement: (text-colour:blue)[(round: $rating)]%&lt;/span&gt; \
 &lt;span&gt;Times Detected: (text-colour:blue) [$timesdetected]&lt;/span&gt; \
@@ -1060,9 +707,6 @@ Unsurprisingly, at this hour, the gate is locked!
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bin-passage-chock-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1081,10 +725,10 @@ Perhaps that can stabilise the wheels? ]
     2. [[Return to main gate.-&gt;maingate]] ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="7" name="bin-path-fail-1" tags="" position="1700,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
 
 &lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="7" name="bin-path-fail-1" tags="" position="1700,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1103,7 +747,10 @@ Perhaps something can stabilise it? ]
     2. [[Return to main gate.-&gt;maingate]] ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="8" name="pick-up-chock" tags="" position="2300,500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="8" name="pick-up-chock" tags="" position="2300,500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
@@ -1112,9 +759,6 @@ Perhaps something can stabilise it? ]
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bin-passage-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1132,7 +776,10 @@ Perhaps something can stabilise it? ]
     3. [[Return to main gate.-&gt;maingate]] ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="9" name="bin-path-fail-2" tags="" position="2100,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="9" name="bin-path-fail-2" tags="" position="2100,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
@@ -1142,9 +789,6 @@ Perhaps something can stabilise it? ]
 
 &lt;!-- Set variables upon progress. --&gt;
 (set: $backgroundurl to &quot;bin-passage-bin-broken-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1175,16 +819,16 @@ Perhaps something can stabilise it? ]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="10" name="bush-path-look" tags="" position="500,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="10" name="bush-path-look" tags="" position="500,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon progress. --&gt;
 (if: $bushmoved is true) [ (go-to: &quot;bush-path-moved&quot;) ]
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bush-passage-1024x768.webp&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1207,10 +851,10 @@ Hmmm...]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="11" name="bush-path-fail-1" tags="" position="100,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
 
 &lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="11" name="bush-path-fail-1" tags="" position="100,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1230,7 +874,10 @@ Better try something else.]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="12" name="bush-path-look-closer" tags="" position="100,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="12" name="bush-path-look-closer" tags="" position="100,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon progress. --&gt;
 (if: $bushmoved is true) [ (go-to: &quot;bush-path-moved&quot;) ]
@@ -1241,9 +888,6 @@ Better try something else.]
 ] (else-if: $bushmoved is false) [
     (set: $backgroundurl to &quot;bush-passage-1024x768.webp&quot;)
 ]
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1269,7 +913,10 @@ That&#39;s... //handy//!
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)	</tw-passagedata><tw-passagedata pid="13" name="pick-up-gloves" tags="" position="100,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="13" name="pick-up-gloves" tags="" position="100,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon progress. --&gt;
 (if: $bushmoved is false) [
@@ -1277,9 +924,6 @@ That&#39;s... //handy//!
 ] (else:) [
     (set: $backgroundurl to &quot;bush-passage-hole-1024-768.webp&quot;)
 ]
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1296,7 +940,10 @@ That&#39;s... //handy//!
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="14" name="bush-path-clear" tags="" position="500,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="14" name="bush-path-clear" tags="" position="500,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if: visits is 1) [
@@ -1306,9 +953,6 @@ That&#39;s... //handy//!
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-ahead-passage-1024x768.webp&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1329,7 +973,10 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="15" name="bush-path-trough-fail" tags="" position="500,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="15" name="bush-path-trough-fail" tags="" position="500,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
@@ -1338,9 +985,6 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bush-passage-trough-1024x768.webp&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1371,7 +1015,10 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
 ]
 
 &lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="16" name="lab-path" tags="" position="1100,900" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="16" name="lab-path" tags="" position="1100,900" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
@@ -1392,9 +1039,6 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-entrance-passage-1024x768.webp&quot;)
 
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
-
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
 
@@ -1407,16 +1051,16 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
 &lt;!-- Update prompts content. --&gt;
 (replace: ?prompts) [ What do you want to do?
     1. [[Go back to the wall.-&gt;bush-path-clear]]
-]</tw-passagedata><tw-passagedata pid="17" name="stats-notimer-update" tags="" position="400,1500" size="100,100">&lt;!-- This path is called from main paths. --&gt; \
+]
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]</tw-passagedata><tw-passagedata pid="17" name="stats-notimer-update" tags="" position="400,1500" size="100,100">&lt;!-- This path is called from main paths. --&gt; \
 &lt;span&gt;Name: (text-colour:blue)[$givenname]&lt;/span&gt; \
 &lt;span&gt;Achievement: (text-colour:blue)[(round: $rating)]%&lt;/span&gt; \
 &lt;span&gt;Times Detected: (text-colour:blue) [$timesdetected]&lt;span&gt;</tw-passagedata><tw-passagedata pid="18" name="ask-for-password" tags="" position="1100,1000" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-entrance-passage-jess-silhouette-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1438,15 +1082,15 @@ You hear a whispered voice from the shadows...
 &lt;!-- Update &quot;prompts&quot; content. --&gt;
 (replace: ?prompts) [ Answer...
     (display: &quot;password-template&quot;)
-]</tw-passagedata><tw-passagedata pid="19" name="wrong-password" tags="" position="1050,1100" size="100,100">&lt;!-- This path is called from &quot;ask-for-password&quot; path. --&gt;
+]
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]</tw-passagedata><tw-passagedata pid="19" name="wrong-password" tags="" position="1050,1100" size="100,100">&lt;!-- This path is called from &quot;ask-for-password&quot; path. --&gt;
 (set: $passwrongchoicecount to it + 1)
 (go-to: &quot;ask-for-password&quot;)</tw-passagedata><tw-passagedata pid="20" name="right-password" tags="" position="1150,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-entrance-passage-jess-silhouette-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1460,16 +1104,16 @@ You hear a whispered voice from the shadows...
 ]
 
 &lt;!-- Update prompts content. --&gt;
-(replace: ?prompts) [ [[Continue...-&gt;tj-friends-meet]] ]</tw-passagedata><tw-passagedata pid="21" name="tj-friends-meet" tags="" position="1300,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(replace: ?prompts) [ [[Continue...-&gt;tj-friends-meet]] ]
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]</tw-passagedata><tw-passagedata pid="21" name="tj-friends-meet" tags="" position="1300,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Initialise meet diag number upon every visit. --&gt;
 (set: $meet_diag_num to 1)
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-entrance-passage-jess-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1500,13 +1144,13 @@ You hear a whispered voice from the shadows...
     ] (else:) [
         (go-to: &quot;the-plan-start&quot;)
     ]
-] ]</tw-passagedata><tw-passagedata pid="22" name="tj-friends-leave" tags="" position="900,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+] ]
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]</tw-passagedata><tw-passagedata pid="22" name="tj-friends-leave" tags="" position="900,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-entrance-passage-jess-silhouette-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -1522,7 +1166,10 @@ You hear a whispered voice from the shadows...
 &lt;!-- Update &quot;prompts&quot; content. --&gt;
 (replace: ?prompts) []
 
-(display: &quot;the-end-template&quot;)</tw-passagedata><tw-passagedata pid="23" name="meet-diag-1" tags="" position="850,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
+(display: &quot;the-end-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]</tw-passagedata><tw-passagedata pid="23" name="meet-diag-1" tags="" position="850,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
 &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Hi, my name&#39;s Jessica Belcher...
 
 And before you say anything, I&#39;ve heard all the jokes, thankyou!
@@ -1568,9 +1215,6 @@ The SD card is in that locket, so I must get it back!&lt;/span&gt;&lt;/span&gt;<
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;)
 
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
 
@@ -1598,7 +1242,10 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="36" name="the-mission-start" tags="" position="1100,1700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="36" name="the-mission-start" tags="" position="1100,1700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
@@ -2033,9 +1680,6 @@ Prof. Duh, more like!!!&lt;/span&gt;&lt;/span&gt;
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;maingate-found-note-1024x768.webp&quot;)
 
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
 
@@ -2062,7 +1706,10 @@ A code, perhaps?]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="73" name="pick-up-the-paper" tags="" position="1300,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="73" name="pick-up-the-paper" tags="" position="1300,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
@@ -2072,9 +1719,6 @@ A code, perhaps?]
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -2101,15 +1745,15 @@ Better remember that. It could come in handy!
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="74" name="try-pin-number-on-gate" tags="" position="900,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="74" name="try-pin-number-on-gate" tags="" position="900,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
     (set: $gatemistake to true)
 ]
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -2130,7 +1774,10 @@ Maybe the pin can be used somewhere else?]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="75" name="bin-path-found-gate" tags="" position="2100,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="75" name="bin-path-found-gate" tags="" position="2100,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if:visits is 1) [
@@ -2139,9 +1786,6 @@ Maybe the pin can be used somewhere else?]
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bin-passage-gate-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -2159,13 +1803,13 @@ Maybe the pin can be used somewhere else?]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="76" name="bin-path-enter-pin" tags="" position="2100,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="76" name="bin-path-enter-pin" tags="" position="2100,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bin-passage-gate-keypad-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -2194,7 +1838,10 @@ Maybe the pin can be used somewhere else?]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="77" name="bin-path-clear" tags="" position="1700,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="77" name="bin-path-clear" tags="" position="1700,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if: visits is 1) [
@@ -2204,9 +1851,6 @@ Maybe the pin can be used somewhere else?]
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-ahead-passage-1024x768.webp&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -2228,7 +1872,10 @@ Maybe the pin can be used somewhere else?]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="78" name="bg-template" tags="" position="300,1400" size="100,100">(replace: ?background) [ (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;) ] &lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="79" name="lab-block-left-1st-passage" tags="" position="1900,2100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="78" name="bg-template" tags="" position="300,1400" size="100,100">(replace: ?background) [ (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;) ] &lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="79" name="lab-block-left-1st-passage" tags="" position="1900,2100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;lab-entrance-passage-left-1024x768.webp&quot;)
@@ -3085,9 +2732,6 @@ Thank the heavens!!!
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bin-passage-gate-open-1024x768.webp&quot;)
 
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
 
@@ -3107,7 +2751,10 @@ Thank the heavens!!!
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="108" name="bush-path-moved" tags="" position="300,900" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update &quot;stats&quot; content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="108" name="bush-path-moved" tags="" position="300,900" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon first visit. --&gt;
 (if: visits is 1) [
@@ -3116,9 +2763,6 @@ Thank the heavens!!!
 
 &lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;bush-passage-hole-1024-768.webp&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 
 &lt;!-- Update &quot;background&quot; content. --&gt;
 (display: &quot;bg-template&quot;)
@@ -3139,7 +2783,10 @@ Ooo, it&#39;s very dark in there. Better not be any spiders!? ]
 ]
 
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="109" name="times-detected-inc" tags="" position="300,1600" size="100,100">{
+(display: &quot;the-meet-live-template&quot;)
+
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="109" name="times-detected-inc" tags="" position="300,1600" size="100,100">{
     (set: $timesdetected to it +1)
     (set: _comment_list to (a:
         &quot;Try to be more careful!&quot;,
