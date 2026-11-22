@@ -9,69 +9,147 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Campus Life - The Case of the Missing Locket.</tw-noscript></noscript></tw-story>
-<tw-storydata name="Campus Life - The Case of the Missing Locket" startnode="1" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="a73a0585-f677-44e1-a123-40ab0aa008a3" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.all-container {
-  display: flex;
-  flex-direction: row;
+<tw-storydata name="Campus Life - The Case of the Missing Locket" startnode="1" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="a73a0585-f677-44e1-a123-40ab0aa008a3" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
+html, body {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  margin: 0;
+  overflow-x: hidden;
 }
 
-.left-container, .right-container {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  height: 100%;
-  padding: 1%;
+tw-story {
+  width: 100%;
+  min-height: 100dvh;
+  padding: clamp(0.75rem, 1.5vw, 2rem);
+  overflow: visible;
+  font-size: clamp(16px, 1.15vw + 8px, 30px);
+  line-height: 1.5;
+}
+
+tw-passage {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.all-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "stats stats"
+    "image title"
+    "image narrative"
+    "choices narrative";
+  grid-template-rows: auto auto auto 1fr;
+  gap: 1rem 1.5rem;
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  align-items: start;
 }
 
 .stats-container {
+  grid-area: stats;
   display: flex;
   flex-direction: row;
-  font-size: 80%;
+  flex-wrap: wrap;
+  align-items: center;
   width: 100%;
+  min-width: 0;
+  height: auto;
+  font-size: 80%;
+  gap: 0.5rem 1rem;
 }
 
 .stats-container span {
   display: inline-block;
 }
 
+.background-container {
+  grid-area: image;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+}
+
+.background-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 .titletext-container {
-  margin: 5%;
+  grid-area: title;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
   font-size: 120%;
   text-align: center;
 }
 
-.background-container {
-  height: 600px;
-}
-
 .maintext-container {
-  font-size: 80%;
-  height: 600px;
-  overflow: hidden;
-}
-
-.background-image {
+  grid-area: narrative;
   width: 100%;
+  min-width: 0;
+  height: auto;
+  overflow: visible;
+  overflow-wrap: anywhere;
+  font-size: clamp(16px, 1.3vw + 4px, 30px);
+  line-height: 1.45;
 }
 
-.title-image {
-  width: 20%;
-  height: auto;
+.maintext-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.maintext-container .title-image {
+  display: block;
   float: left;
-  padding: 0px;
-  padding-top: 30px;
-  padding-right: 20px;
+  width: 90px;
+  max-width: 25%;
+  height: auto;
+  margin: 0 15px 10px 0;
+  padding: 0;
+  object-fit: contain;
+}
+
+.prompts-container {
+  grid-area: choices;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  overflow: visible;
+}
+
+.questions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: stretch;
 }
 
 .questions .question {
-  padding: 5px;
-  margin: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 calc(50% - 0.5rem);
+  min-width: 0;
+  width: auto;
+  min-height: 44px;
+  height: auto;
+  margin: 0;
+  padding: 8px 10px;
+  border-style: solid;
   border-width: 2px;
   border-radius: 14px;
-  width: 45%;
-  height: auto;
   font-size: 75%;
   text-align: center;
-  display: inline-block;
+  overflow-wrap: anywhere;
 }
 
 .questions .question:nth-of-type(1) {
@@ -91,33 +169,61 @@
 
 .questions .question:nth-of-type(4) {
   background-color: #2a52be; /* Cerulean. */
-  border-color: #082567; /* Saphire. */
+  border-color: #082567; /* Sapphire. */
 }
 
 .questions span tw-link {
   color: white;
 }
 
+.questions .question tw-link {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
 .speechbad, .speechgood, .speechnormal, .speechjess, .speechrafa, .speechbarc, .speechnarrator, .speechproft, .speechplayer {
-  width: 50%;
-  margin: 3px;
-  border-radius: 5px;
-  border-bottom-left-radius: 0px;
-  font-size: 12pt;
-  line-height: 14pt;
   display: inline-flex;
   flex-direction: column;
-  & > :first-child {
-    display: block;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background-color: rgb(54, 69, 79, 0.5);
-    opacity: 0.9;
-    padding: 5px;
-  };
-  & > :last-child {
-    padding: 10px;
-  }
+  width: 50%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 3px;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+  font-size: 0.9em;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.speechbad > :first-child,
+.speechgood > :first-child,
+.speechnormal > :first-child,
+.speechjess > :first-child,
+.speechrafa > :first-child,
+.speechbarc > :first-child,
+.speechnarrator > :first-child,
+.speechproft > :first-child,
+.speechplayer > :first-child {
+  display: block;
+  padding: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: rgba(54, 69, 79, 0.5);
+  opacity: 0.9;
+}
+
+.speechbad > :last-child,
+.speechgood > :last-child,
+.speechnormal > :last-child,
+.speechjess > :last-child,
+.speechrafa > :last-child,
+.speechbarc > :last-child,
+.speechnarrator > :last-child,
+.speechproft > :last-child,
+.speechplayer > :last-child {
+  padding: 10px;
 }
 
 .speechbad, .speechproft {
@@ -132,7 +238,7 @@
 
 .speechnormal, .speechnarrator {
   background-color: #2a52be; /* Cerulean. */
-  box-shadow: 2px 2px #082567; /* Saphire. */
+  box-shadow: 2px 2px #082567; /* Sapphire. */
 }
 
 .speechjess {
@@ -146,22 +252,154 @@
 }
 
 .speechbarc {
-  background-color: #954535; /* Chesnut. */
+  background-color: #954535; /* Chestnut. */
   box-shadow: 2px 2px #7B3F00; /* Chocolate. */
-}
-
-.speechnarrator {
-  background-color: #2a52be; /* Cerulean. */
-  box-shadow: 2px 2px #082567; /* Saphire. */
 }
 
 .speechplayer {
   background-color: #808080; /* Grey 80 80 80. */
   box-shadow: 2px 2px #404040; /* Grey 40 40 40. */
   border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 0px;
-  margin-left: 48%;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).ready(function() {  
+  border-bottom-right-radius: 0;
+  margin-left: auto;
+  margin-right: 3px;
+}
+
+@media (min-width: 768px) and (max-width: 1400px) {
+  .maintext-container {
+    font-size: clamp(16px, 1.15vw + 4px, 21px);
+    line-height: 1.45;
+  }
+
+  .speechbad, .speechgood, .speechnormal, .speechjess, .speechrafa, .speechbarc, .speechnarrator, .speechproft, .speechplayer {
+    font-size: 0.9em;
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 1024px) {
+  tw-story {
+    padding: 1rem;
+  }
+
+  .all-container {
+    column-gap: 1rem;
+  }
+
+  .speechbad, .speechgood, .speechnormal, .speechjess, .speechrafa, .speechbarc, .speechnarrator, .speechproft, .speechplayer {
+    width: 75%;
+  }
+}
+
+@media (max-width: 767px) {
+  tw-story {
+    padding: 0.75rem;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .all-container {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "stats"
+      "image"
+      "title"
+      "narrative"
+      "choices";
+    grid-template-rows: auto;
+    gap: 0.75rem;
+  }
+
+  .stats-container {
+    font-size: 75%;
+    gap: 0.35rem 0.75rem;
+  }
+
+  .background-image {
+    width: 100%;
+    height: auto;
+    max-height: none;
+  }
+
+  .titletext-container {
+    margin: 0;
+    font-size: 110%;
+  }
+
+  .maintext-container {
+    height: auto;
+    overflow: visible;
+    font-size: 1em;
+    line-height: 1.55;
+  }
+
+  .maintext-container .title-image {
+    width: 65px;
+    max-width: 25%;
+    height: auto;
+    margin: 0 12px 8px 0;
+  }
+
+  .speechbad, .speechgood, .speechnormal, .speechjess, .speechrafa, .speechbarc, .speechnarrator, .speechproft, .speechplayer {
+    width: 88%;
+    max-width: 100%;
+    font-size: 0.9em;
+    line-height: 1.4;
+  }
+
+  .speechplayer {
+    margin-left: auto;
+    margin-right: 2px;
+  }
+
+  .questions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .questions .question {
+    width: 100%;
+    flex: none;
+    min-height: 44px;
+    margin: 0;
+    padding: 10px 12px;
+    font-size: 90%;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  tw-story {
+    padding: 0.5rem;
+  }
+
+  .background-image {
+    width: auto;
+    max-width: 100%;
+    max-height: 65dvh;
+    margin-inline: auto;
+  }
+
+  .all-container {
+    row-gap: 0.5rem;
+  }
+}
+
+@media (max-width: 380px) {
+  tw-story {
+    padding: 0.5rem;
+  }
+
+  .maintext-container .title-image {
+    width: 55px;
+    max-width: 25%;
+    margin: 0 10px 6px 0;
+  }
+
+  .speechbad, .speechgood, .speechnormal, .speechjess, .speechrafa, .speechbarc, .speechnarrator, .speechproft, .speechplayer {
+    width: 95%;
+  }
+}
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).ready(function() {  
   setInterval(function() {
     if ($('.maintext-container')) {
       $('.maintext-container').scrollTop($('.maintext-container').get(0).scrollHeight);
@@ -963,28 +1201,28 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
 
 &lt;!-- Update &quot;prompts&quot; content. --&gt;
 (replace: ?prompts) [ (display: &quot;the-plan-prompts-1&quot;) ]</tw-passagedata><tw-passagedata pid="39" name="layout-template" tags="" position="200,1400" size="100,100">&lt;!--
-    Container Layout Template, spans duriven by CSS. This template is loaded into every main passage.
-    
-    all-container
-        left-container
-            stats-container
-            background-container
-            prompts-container
-        right-container
-            title-container
-            maintext-container
+    Responsive Layout Template
+
+    Desktop:
+        Statistics
+        Image     | Title
+        Choices  | Narrative
+
+    Mobile:
+        Statistics
+        Image
+        Title
+        Narrative
+        Choices
 --&gt; \
 &lt;div class=&quot;all-container&quot;&gt; \
-    &lt;div class=&quot;left-container&quot;&gt; \
-        &lt;div class=&quot;stats-container&quot;&gt;|stats&gt;[]&lt;/div&gt; \
-        &lt;div class=&quot;background-container&quot;&gt;|background&gt;[]&lt;/div&gt; \
-        &lt;div class=&quot;prompts-container&quot;&gt;|prompts&gt;[]&lt;/div&gt; \
-    &lt;/div&gt; \
-    &lt;div class=&quot;right-container&quot;&gt; \
-        &lt;div class=&quot;titletext-container&quot;&gt;|titletext&gt;[]&lt;/div&gt; \
-        &lt;div class=&quot;maintext-container&quot;&gt;|maintext&gt;[]&lt;/div&gt; \
-    &lt;/div&gt; \
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="40" name="the-meet-live-template" tags="" position="200,1600" size="100,100">&lt;!-- Dynamically refreshed content. --&gt;
+    &lt;div class=&quot;stats-container&quot;&gt;|stats&gt;[]&lt;/div&gt; \
+    &lt;div class=&quot;background-container&quot;&gt;|background&gt;[]&lt;/div&gt; \
+    &lt;div class=&quot;titletext-container&quot;&gt;|titletext&gt;[]&lt;/div&gt; \
+    &lt;div class=&quot;maintext-container&quot;&gt;|maintext&gt;[]&lt;/div&gt; \
+    &lt;div class=&quot;prompts-container&quot;&gt;|prompts&gt;[]&lt;/div&gt; \
+&lt;/div&gt;
+</tw-passagedata><tw-passagedata pid="40" name="the-meet-live-template" tags="" position="200,1600" size="100,100">&lt;!-- Dynamically refreshed content. --&gt;
 (live: 1s) [
     (if: $timer &gt; 0) [ (set: $timer to it -1) ]
     (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
