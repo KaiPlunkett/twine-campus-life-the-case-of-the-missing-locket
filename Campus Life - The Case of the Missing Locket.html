@@ -493,13 +493,115 @@ tw-sidebar {
 
 }
 
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).ready(function() {  
-  setInterval(function() {
-    if ($('.maintext-container')) {
-      $('.maintext-container').scrollTop($('.maintext-container').get(0).scrollHeight);
-    }
-  }, 100);
-});</script><tw-passagedata pid="1" name="start" tags="" position="1100,100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
+@media (max-width: 767px) {
+
+  .all-container {
+    position: relative;
+  }
+
+  .background-container,
+  .titletext-container {
+    grid-area: image;
+  }
+
+  .background-container {
+    z-index: 0;
+  }
+
+  .titletext-container {
+    z-index: 1;
+    justify-self: center;
+    align-self: start;
+    width: fit-content;
+    max-width: calc(100% - 2rem);
+    margin-top: 0.75rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.65);
+    color: white;
+    text-align: center;
+  }
+
+  .all-container {
+    grid-template-areas:
+      "stats"
+      "image"
+      "narrative"
+      "choices";
+  }
+
+  .all-container:has(.stats-container:empty),
+  .all-container:has(.stats-container:not(:has(tw-hook:not(:empty)))) {
+    grid-template-areas:
+      "image"
+      "narrative"
+      "choices";
+  }
+
+}
+
+@media (max-width: 767px) and (orientation: portrait) {
+
+  .all-container {
+    grid-template-rows:
+      auto
+      auto
+      minmax(0, 1fr)
+      auto;
+  }
+
+  .all-container:has(.stats-container:empty),
+  .all-container:has(.stats-container:not(:has(tw-hook:not(:empty)))) {
+    grid-template-rows:
+      auto
+      minmax(0, 1fr)
+      auto;
+  }
+
+}
+
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).ready(function () {
+  let activePane = null;
+  let observer = null;
+  let previousHeight = 0;
+
+  function watchMainText() {
+    const pane = document.querySelector(".maintext-container");
+
+    if (!pane || pane === activePane) return;
+
+    if (observer) observer.disconnect();
+
+    activePane = pane;
+    previousHeight = pane.scrollHeight;
+
+    observer = new MutationObserver(function () {
+      const newHeight = pane.scrollHeight;
+
+      if (newHeight > previousHeight) {
+        pane.scrollTop = newHeight;
+      }
+
+      previousHeight = newHeight;
+    });
+
+    observer.observe(pane, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+  }
+
+  const passageObserver = new MutationObserver(watchMainText);
+
+  passageObserver.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+  watchMainText();
+});
+</script><tw-passagedata pid="1" name="start" tags="" position="1100,100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon game start. --&gt;
 (set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;)
