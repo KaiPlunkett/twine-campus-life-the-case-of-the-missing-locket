@@ -9,9 +9,12 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Campus Life - The Case of the Missing Locket.</tw-noscript></noscript></tw-story>
-<tw-storydata name="Campus Life - The Case of the Missing Locket" startnode="1" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="a73a0585-f677-44e1-a123-40ab0aa008a3" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">html, body {
+<tw-storydata name="Campus Life - The Case of the Missing Locket" startnode="1" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="a73a0585-f677-44e1-a123-40ab0aa008a3" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* =========================================
+   BASE PAGE AND HARLOWE
+   ========================================= */
+
+html, body {
   width: 100%;
-  height: auto;
   min-height: 100%;
   margin: 0;
   overflow-x: hidden;
@@ -34,18 +37,21 @@ tw-passage {
   margin: 0;
 }
 
-tw-passage > br,
-tw-passage > tw-consecutive-br {
-  display: none;
-}
+/* Prevent Harlowe's sidebar occupying
+   space above the game layout. */
 
 tw-sidebar {
   display: none !important;
 }
 
+/* =========================================
+   MAIN DESKTOP LAYOUT
+   ========================================= */
+
 .all-container {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns:
+    minmax(0, 1fr) minmax(0, 1fr);
   grid-template-areas:
     "stats stats"
     "image title"
@@ -59,15 +65,17 @@ tw-sidebar {
   align-items: start;
 }
 
+/* =========================================
+   STATISTICS
+   ========================================= */
+
 .stats-container {
   grid-area: stats;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   width: 100%;
   min-width: 0;
-  height: auto;
   font-size: 80%;
   gap: 0.5rem 1rem;
 }
@@ -76,13 +84,19 @@ tw-sidebar {
   display: inline-block;
 }
 
+/* Hide empty statistics. */
+
 .stats-container:empty,
 .stats-container:not(:has(tw-hook:not(:empty))) {
   display: none;
 }
 
+/* Remove statistics row when empty. */
+
 .all-container:has(.stats-container:empty),
-.all-container:has(.stats-container:not(:has(tw-hook:not(:empty)))) {
+.all-container:has(
+  .stats-container:not(:has(tw-hook:not(:empty)))
+) {
   grid-template-areas:
     "image title"
     "image narrative"
@@ -90,11 +104,14 @@ tw-sidebar {
   grid-template-rows: auto auto 1fr;
 }
 
+/* =========================================
+   BACKGROUND IMAGE
+   ========================================= */
+
 .background-container {
   grid-area: image;
   width: 100%;
   min-width: 0;
-  height: auto;
 }
 
 .background-image {
@@ -105,6 +122,10 @@ tw-sidebar {
   object-fit: contain;
 }
 
+/* =========================================
+   TITLE
+   ========================================= */
+
 .titletext-container {
   grid-area: title;
   width: 100%;
@@ -113,6 +134,10 @@ tw-sidebar {
   font-size: 120%;
   text-align: center;
 }
+
+/* =========================================
+   MAIN NARRATIVE
+   ========================================= */
 
 .maintext-container {
   grid-area: narrative;
@@ -124,6 +149,8 @@ tw-sidebar {
   font-size: clamp(16px, 1.3vw + 4px, 30px);
   line-height: 1.45;
 }
+
+/* Clear floated images inside narrative. */
 
 .maintext-container::after {
   content: "";
@@ -142,19 +169,21 @@ tw-sidebar {
   object-fit: contain;
 }
 
+/* =========================================
+   PROMPTS AND CHOICE BUTTONS
+   ========================================= */
+
 .prompts-container {
   grid-area: choices;
   width: 100%;
   min-width: 0;
-  height: auto;
-  overflow: visible;
 }
 
 .questions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
   align-items: stretch;
+  gap: 0.5rem;
 }
 
 .questions .question {
@@ -163,11 +192,9 @@ tw-sidebar {
   justify-content: center;
   flex: 1 1 calc(50% - 0.5rem);
   min-width: 0;
-  width: auto;
   min-height: 44px;
-  height: auto;
-  margin: 0;
   padding: 8px 10px;
+  margin: 0;
   border-style: solid;
   border-width: 2px;
   border-radius: 14px;
@@ -205,6 +232,10 @@ tw-sidebar {
   overflow-wrap: anywhere;
 }
 
+/* =========================================
+   SPEECH BUBBLES
+   ========================================= */
+
 .speechbad,
 .speechgood,
 .speechnormal,
@@ -229,6 +260,8 @@ tw-sidebar {
   overflow-wrap: anywhere;
 }
 
+/* Speech bubble headings. */
+
 .speechbad > :first-child,
 .speechgood > :first-child,
 .speechnormal > :first-child,
@@ -246,6 +279,8 @@ tw-sidebar {
   opacity: 0.9;
 }
 
+/* Speech bubble content. */
+
 .speechbad > :last-child,
 .speechgood > :last-child,
 .speechnormal > :last-child,
@@ -257,6 +292,10 @@ tw-sidebar {
 .speechplayer > :last-child {
   padding: 10px;
 }
+
+/* =========================================
+   SPEECH COLOURS
+   ========================================= */
 
 .speechbad,
 .speechproft {
@@ -299,7 +338,12 @@ tw-sidebar {
   margin-right: 3px;
 }
 
+/* =========================================
+   TABLET AND SMALL DESKTOP
+   ========================================= */
+
 @media (min-width: 768px) and (max-width: 1400px) {
+
   .maintext-container {
     font-size: clamp(16px, 1.15vw + 4px, 21px);
     line-height: 1.45;
@@ -320,6 +364,7 @@ tw-sidebar {
 }
 
 @media (max-width: 1024px) {
+
   tw-story {
     padding: 1rem;
   }
@@ -341,7 +386,12 @@ tw-sidebar {
   }
 }
 
+/* =========================================
+   MOBILE LAYOUT
+   ========================================= */
+
 @media (max-width: 767px) {
+
   tw-story {
     padding: 0.75rem;
     font-size: 16px;
@@ -360,8 +410,12 @@ tw-sidebar {
     gap: 0.75rem;
   }
 
+  /* Remove empty statistics row. */
+
   .all-container:has(.stats-container:empty),
-  .all-container:has(.stats-container:not(:has(tw-hook:not(:empty)))) {
+  .all-container:has(
+    .stats-container:not(:has(tw-hook:not(:empty)))
+  ) {
     grid-template-areas:
       "image"
       "narrative"
@@ -373,6 +427,8 @@ tw-sidebar {
     font-size: 75%;
     gap: 0.35rem 0.75rem;
   }
+
+  /* Overlay title on background image. */
 
   .background-container,
   .titletext-container {
@@ -386,7 +442,6 @@ tw-sidebar {
   .background-image {
     width: 100%;
     height: auto;
-    max-height: none;
   }
 
   .titletext-container {
@@ -405,8 +460,6 @@ tw-sidebar {
   }
 
   .maintext-container {
-    height: auto;
-    overflow: visible;
     font-size: 1em;
     line-height: 1.55;
   }
@@ -414,7 +467,6 @@ tw-sidebar {
   .maintext-container .title-image {
     width: 65px;
     max-width: 25%;
-    height: auto;
     margin: 0 12px 8px 0;
   }
 
@@ -428,7 +480,6 @@ tw-sidebar {
   .speechproft,
   .speechplayer {
     width: 88%;
-    max-width: 100%;
     font-size: 0.9em;
     line-height: 1.4;
   }
@@ -437,6 +488,8 @@ tw-sidebar {
     margin-left: auto;
     margin-right: 2px;
   }
+
+  /* Mobile choices outside portrait mode. */
 
   .questions {
     flex-direction: column;
@@ -447,13 +500,17 @@ tw-sidebar {
     width: 100%;
     flex: none;
     min-height: 44px;
-    margin: 0;
     padding: 10px 12px;
     font-size: 90%;
   }
 }
 
+/* =========================================
+   LANDSCAPE ADJUSTMENTS
+   ========================================= */
+
 @media (orientation: landscape) and (max-height: 500px) {
+
   tw-story {
     padding: 0.5rem;
   }
@@ -470,7 +527,12 @@ tw-sidebar {
   }
 }
 
+/* =========================================
+   SMALL IPHONE ADJUSTMENTS
+   ========================================= */
+
 @media (max-width: 380px) {
+
   tw-story {
     padding: 0.5rem;
   }
@@ -494,7 +556,12 @@ tw-sidebar {
   }
 }
 
+/* =========================================
+   IPHONE PORTRAIT: FIXED LAYOUT
+   ========================================= */
+
 @media (max-width: 767px) and (orientation: portrait) {
+
   tw-story {
     height: 100dvh;
     min-height: 0;
@@ -506,23 +573,33 @@ tw-sidebar {
     min-height: 0;
   }
 
+  /*
+   * Reserve 120px for prompts.
+   * Prompts are positioned independently
+   * of the grid's content height.
+   */
+
   .all-container {
     height: 100%;
     min-height: 0;
+    padding-bottom: calc(120px + 0.75rem);
+    box-sizing: border-box;
     grid-template-rows:
       auto
       auto
-      minmax(0, 1fr)
-      6.5rem;
+      minmax(0, 1fr);
     overflow: hidden;
   }
 
+  /* Grid when statistics are empty. */
+
   .all-container:has(.stats-container:empty),
-  .all-container:has(.stats-container:not(:has(tw-hook:not(:empty)))) {
+  .all-container:has(
+    .stats-container:not(:has(tw-hook:not(:empty)))
+  ) {
     grid-template-rows:
       auto
-      minmax(0, 1fr)
-      6.5rem;
+      minmax(0, 1fr);
   }
 
   .background-image {
@@ -530,8 +607,9 @@ tw-sidebar {
     object-fit: contain;
   }
 
+  /* Independently scrollable narrative. */
+
   .maintext-container {
-    position: relative;
     min-height: 0;
     height: 100%;
     overflow-y: scroll;
@@ -544,6 +622,8 @@ tw-sidebar {
     border-bottom: 1px solid #555;
     box-shadow: inset 0 -12px 12px -14px rgba(255, 255, 255, 0.7);
   }
+
+  /* Scrollbar styling where supported. */
 
   .maintext-container::-webkit-scrollbar {
     width: 5px;
@@ -559,13 +639,49 @@ tw-sidebar {
     border-radius: 5px;
   }
 
+  /*
+   * Fixed prompts pane:
+   * 120px high, no scrolling.
+   */
+
   .prompts-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  /*
+   * Maximum four choices:
+   * two columns, two rows.
+   */
+
+  .prompts-container .questions {
+    display: grid;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+    grid-template-rows:
+      repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
     height: 100%;
+    align-content: stretch;
+  }
+
+  .prompts-container .questions .question {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
     min-height: 0;
-    max-height: none;
-    overflow-y: auto;
-    align-self: stretch;
-    -webkit-overflow-scrolling: touch;
+    margin: 0;
+    padding: 6px 8px;
+    box-sizing: border-box;
+    font-size: 80%;
+    line-height: 1.2;
+    overflow: hidden;
   }
 }
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).ready(function () {
