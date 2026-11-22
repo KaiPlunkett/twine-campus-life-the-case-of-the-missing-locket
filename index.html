@@ -433,6 +433,66 @@ tw-sidebar {
     width: 95%;
   }
 }
+
+
+@media (max-width: 767px) and (orientation: portrait) {
+
+  tw-story {
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  tw-passage {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .all-container {
+    height: 100%;
+    min-height: 0;
+    grid-template-rows:
+      auto
+      auto
+      auto
+      minmax(0, 1fr)
+      auto;
+    overflow: hidden;
+  }
+
+  .all-container:has(.stats-container:empty),
+  .all-container:has(.stats-container:not(:has(tw-hook:not(:empty)))) {
+    grid-template-rows:
+      auto
+      auto
+      minmax(0, 1fr)
+      auto;
+  }
+
+  .background-image {
+    max-height: 28dvh;
+    object-fit: contain;
+  }
+
+  .maintext-container {
+    min-height: 0;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding-right: 0.35rem;
+  }
+
+  .prompts-container {
+    min-height: 0;
+    max-height: 28dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+}
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).ready(function() {  
   setInterval(function() {
     if ($('.maintext-container')) {
