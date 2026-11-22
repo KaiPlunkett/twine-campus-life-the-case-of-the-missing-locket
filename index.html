@@ -9,8 +9,7 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Campus Life - The Case of the Missing Locket.</tw-noscript></noscript></tw-story>
-<tw-storydata name="Campus Life - The Case of the Missing Locket" startnode="1" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="a73a0585-f677-44e1-a123-40ab0aa008a3" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
-/* =========================================
+<tw-storydata name="Campus Life - The Case of the Missing Locket" startnode="1" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="a73a0585-f677-44e1-a123-40ab0aa008a3" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* =========================================
    BASE PAGE AND HARLOWE
    ========================================= */
 
@@ -37,8 +36,6 @@ tw-passage {
   padding: 0;
   margin: 0;
 }
-
-/* Hide Harlowe's sidebar. */
 
 tw-sidebar {
   display: none !important;
@@ -84,14 +81,10 @@ tw-sidebar {
   display: inline-block;
 }
 
-/* Hide empty statistics. */
-
 .stats-container:empty,
 .stats-container:not(:has(tw-hook:not(:empty))) {
   display: none;
 }
-
-/* Remove statistics row when empty. */
 
 .all-container:has(.stats-container:empty),
 .all-container:has(
@@ -150,8 +143,6 @@ tw-sidebar {
   line-height: 1.45;
 }
 
-/* Clear floated images inside narrative. */
-
 .maintext-container::after {
   content: "";
   display: table;
@@ -203,26 +194,26 @@ tw-sidebar {
   overflow-wrap: anywhere;
 }
 
-/* Choice button colours. */
+/* Choice button colours */
 
 .questions .question:nth-of-type(1) {
-  background-color: #367c2b; /* John Deere Green. */
-  border-color: #004526; /* Lacoste Green. */
+  background-color: #367c2b;
+  border-color: #004526;
 }
 
 .questions .question:nth-of-type(2) {
-  background-color: #E2725B; /* Terra Cotta. */
-  border-color: #7C3030; /* Tuscan Red. */
+  background-color: #E2725B;
+  border-color: #7C3030;
 }
 
 .questions .question:nth-of-type(3) {
-  background-color: #D27D2D; /* Cinnamon. */
-  border-color: #8B4000; /* Dark Orange. */
+  background-color: #D27D2D;
+  border-color: #8B4000;
 }
 
 .questions .question:nth-of-type(4) {
-  background-color: #2a52be; /* Cerulean. */
-  border-color: #082567; /* Sapphire. */
+  background-color: #2a52be;
+  border-color: #082567;
 }
 
 .questions span tw-link {
@@ -262,7 +253,7 @@ tw-sidebar {
   overflow-wrap: anywhere;
 }
 
-/* Speech bubble headings. */
+/* Speech bubble headings */
 
 .speechbad > :first-child,
 .speechgood > :first-child,
@@ -281,7 +272,7 @@ tw-sidebar {
   opacity: 0.9;
 }
 
-/* Speech bubble content. */
+/* Speech bubble content */
 
 .speechbad > :last-child,
 .speechgood > :last-child,
@@ -301,39 +292,39 @@ tw-sidebar {
 
 .speechbad,
 .speechproft {
-  background-color: #E2725B; /* Terra Cotta. */
-  box-shadow: 2px 2px #7C3030; /* Tuscan Red. */
+  background-color: #E2725B;
+  box-shadow: 2px 2px #7C3030;
 }
 
 .speechgood {
-  background-color: #367c2b; /* John Deere Green. */
-  box-shadow: 2px 2px #004526; /* Lacoste Green. */
+  background-color: #367c2b;
+  box-shadow: 2px 2px #004526;
 }
 
 .speechnormal,
 .speechnarrator {
-  background-color: #2a52be; /* Cerulean. */
-  box-shadow: 2px 2px #082567; /* Sapphire. */
+  background-color: #2a52be;
+  box-shadow: 2px 2px #082567;
 }
 
 .speechjess {
-  background-color: #D27D2D; /* Cinnamon. */
-  box-shadow: 2px 2px #8B4000; /* Dark Orange. */
+  background-color: #D27D2D;
+  box-shadow: 2px 2px #8B4000;
 }
 
 .speechrafa {
-  background-color: #662d91; /* Roku Purple. */
-  box-shadow: 2px 2px #1d1160; /* Suns Purple. */
+  background-color: #662d91;
+  box-shadow: 2px 2px #1d1160;
 }
 
 .speechbarc {
-  background-color: #954535; /* Chestnut. */
-  box-shadow: 2px 2px #7B3F00; /* Chocolate. */
+  background-color: #954535;
+  box-shadow: 2px 2px #7B3F00;
 }
 
 .speechplayer {
-  background-color: #808080; /* Grey 80 80 80. */
-  box-shadow: 2px 2px #404040; /* Grey 40 40 40. */
+  background-color: #808080;
+  box-shadow: 2px 2px #404040;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 0;
   margin-left: auto;
@@ -412,8 +403,6 @@ tw-sidebar {
     gap: 0.75rem;
   }
 
-  /* Remove empty statistics row. */
-
   .all-container:has(.stats-container:empty),
   .all-container:has(
     .stats-container:not(:has(tw-hook:not(:empty)))
@@ -430,7 +419,7 @@ tw-sidebar {
     gap: 0.35rem 0.75rem;
   }
 
-  /* Overlay title on background image. */
+  /* Title overlay */
 
   .background-container,
   .titletext-container {
@@ -491,7 +480,7 @@ tw-sidebar {
     margin-right: 2px;
   }
 
-  /* Mobile choices outside portrait mode. */
+  /* Mobile choices outside portrait mode */
 
   .questions {
     flex-direction: column;
@@ -565,8 +554,7 @@ tw-sidebar {
 @media (max-width: 767px) and (orientation: portrait) {
 
   /*
-   * Keep the game within the iPhone
-   * viewport, including story padding.
+   * Keep the game inside the viewport.
    */
 
   tw-story {
@@ -582,56 +570,97 @@ tw-sidebar {
   }
 
   /*
-   * Four rows:
-   * 1. Statistics
-   * 2. Background and title
-   * 3. Scrollable narrative
-   * 4. Fixed 120px prompts
+   * Fixed layout:
+   *
+   * Statistics: automatic height
+   * Image: 28dvh
+   * Narrative: remaining space
+   * Prompts: 120px
    */
 
   .all-container {
+    display: grid;
     position: relative;
+
     height: 100%;
     min-height: 0;
     padding-bottom: 0;
     box-sizing: border-box;
 
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows:
       auto
-      auto
+      28dvh
       minmax(0, 1fr)
       120px;
 
+    align-items: stretch;
     overflow: hidden;
   }
 
-  /* Three rows when statistics are empty. */
+  /*
+   * Remove the statistics row
+   * when statistics are empty.
+   */
 
   .all-container:has(.stats-container:empty),
   .all-container:has(
     .stats-container:not(:has(tw-hook:not(:empty)))
   ) {
     grid-template-rows:
-      auto
+      28dvh
       minmax(0, 1fr)
       120px;
   }
 
-  /* Limit image height. */
+  /* =====================================
+     FIXED IMAGE AREA
+     ===================================== */
 
-  .background-image {
-    max-height: 28dvh;
-    object-fit: contain;
+  .background-container {
+    grid-area: image;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 0;
+    overflow: hidden;
   }
 
   /*
-   * Narrative occupies remaining space
-   * and scrolls independently.
+   * Preserve original image proportions.
    */
 
-  .maintext-container {
-    min-height: 0;
+  .background-image {
+    display: block;
+    width: 100%;
     height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+
+    object-fit: contain;
+  }
+
+  /* Title overlay */
+
+  .titletext-container {
+    grid-area: image;
+    z-index: 1;
+    justify-self: center;
+    align-self: start;
+  }
+
+  /* =====================================
+     FIXED NARRATIVE AREA
+     ===================================== */
+
+  .maintext-container {
+    grid-area: narrative;
+
+    min-height: 0;
+    height: auto;
+    align-self: stretch;
     box-sizing: border-box;
 
     overflow-y: auto;
@@ -652,7 +681,7 @@ tw-sidebar {
       rgba(255, 255, 255, 0.7);
   }
 
-  /* Scrollbar styling where supported. */
+  /* Scrollbar styling */
 
   .maintext-container::-webkit-scrollbar {
     width: 5px;
@@ -668,34 +697,45 @@ tw-sidebar {
     border-radius: 5px;
   }
 
-  /*
-   * Fixed prompts pane.
-   * Remains in the CSS grid.
-   */
+  /* =====================================
+     FIXED PROMPTS AREA
+     ===================================== */
 
   .prompts-container {
     position: static;
     grid-area: choices;
+
+    display: flex;
+    flex-direction: column;
 
     width: 100%;
     height: 120px;
     min-height: 0;
     max-height: 120px;
 
-    overflow: hidden;
     box-sizing: border-box;
     align-self: stretch;
+    overflow: hidden;
   }
 
   /*
-   * Standalone Harlowe links in prompts.
-   *
-   * Example:
-   * (replace: ?prompts)[ [[Start...->maingate]] ]
-   *
-   * The link is styled separately because
-   * it is not inside .questions .question.
+   * Harlowe's prompts hook may contain
+   * a heading such as "Answer..."
+   * followed by the choice buttons.
    */
+
+  .prompts-container > tw-hook {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+  }
+
+  /* =====================================
+     STANDALONE LINKS (START...)
+     ===================================== */
 
   .prompts-container > tw-hook > tw-link {
     display: flex;
@@ -704,9 +744,9 @@ tw-sidebar {
 
     width: 100%;
     min-height: 48px;
-    box-sizing: border-box;
 
     padding: 10px 12px;
+    box-sizing: border-box;
 
     border: 2px solid #004526;
     border-radius: 14px;
@@ -719,13 +759,12 @@ tw-sidebar {
     overflow-wrap: anywhere;
   }
 
-  /*
-   * Maximum four choices:
-   * two columns and two rows.
-   */
+  /* =====================================
+     2 x 2 CHOICE BUTTON GRID
+     ===================================== */
 
   .prompts-container .questions {
-    display: grid;
+    display: grid !important;
 
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
@@ -733,30 +772,72 @@ tw-sidebar {
     grid-template-rows:
       repeat(2, minmax(0, 1fr));
 
-    gap: 0.5rem;
-    height: 100%;
+    gap: 0.35rem;
+
+    width: 100%;
+    height: auto;
+    min-height: 0;
+
+    flex: 1 1 auto;
+    box-sizing: border-box;
+
     align-content: stretch;
   }
 
   /*
-   * Choice buttons fill their cells.
+   * Harlowe's (for:) and (link:)
+   * macros generate tw-hook wrappers.
+   *
+   * Make wrappers transparent so
+   * .question elements can occupy
+   * individual CSS Grid cells.
+   */
+
+  .prompts-container .questions tw-hook {
+    display: contents;
+  }
+
+  /*
+   * Each button occupies one grid cell.
    */
 
   .prompts-container .questions .question {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     width: 100%;
     height: 100%;
+
     min-width: 0;
     min-height: 0;
 
     margin: 0;
-    padding: 6px 8px;
+    padding: 4px 6px;
 
+    flex: none;
     box-sizing: border-box;
 
-    font-size: 80%;
-    line-height: 1.2;
+    font-size: 75%;
+    line-height: 1.15;
+    text-align: center;
 
     overflow: hidden;
+  }
+
+  /*
+   * Keep link text centred
+   * inside each button.
+   */
+
+  .prompts-container .questions .question tw-link {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+
+    overflow-wrap: anywhere;
+    text-align: center;
   }
 }
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).ready(function () {
@@ -3090,14 +3171,28 @@ Double thank heavens. The SD card is still in there.
     (go-to: &quot;start&quot;)
 ]</tw-passagedata><tw-passagedata pid="112" name="password-template" tags="" position="400,1400" size="100,100">{
     (if: $password is &quot;&quot;) [
-        (set: $password_list to (shuffled: &quot;lock-it-out&quot;, &quot;rock-it-out&quot;, &quot;lock-it-up&quot;, &quot;check-it-in&quot; ))
-        (set: $password to $password_list&#39;s ((random: 1, $password_list&#39;s length)))
-    ] (else:) [
+        (set: $password_list to (shuffled:
+            &quot;lock-it-out&quot;,
+            &quot;rock-it-out&quot;,
+            &quot;lock-it-up&quot;,
+            &quot;check-it-in&quot;
+        ))
+        (set: $password to $password_list&#39;s 1)
+    ]
+    (else:) [
         &lt;span class=&quot;questions&quot;&gt;
             (for: each _curr_pass, ...$password_list) [
                 (set: _link_text to &#39;&quot;&#39; + _curr_pass + &#39;&quot;&#39;)
-                (set: _link_path to (cond: _curr_pass is $password, &quot;right-password&quot;, &quot;wrong-password&quot;))
-                &lt;span class=&quot;question&quot;&gt;(link: _link_text) [ (goto: _link_path) ]&lt;/span&gt;
+                (set: _link_path to (cond:
+                    _curr_pass is $password,
+                    &quot;right-password&quot;,
+                    &quot;wrong-password&quot;
+                ))
+                &lt;span class=&quot;question&quot;&gt;
+                    (link: _link_text)[
+                        (goto: _link_path)
+                    ]
+                &lt;/span&gt;
             ]
         &lt;/span&gt;
     ]
