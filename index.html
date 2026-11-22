@@ -31,6 +31,8 @@ tw-passage {
   display: block;
   width: 100%;
   min-width: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .all-container {
@@ -64,6 +66,20 @@ tw-passage {
 
 .stats-container span {
   display: inline-block;
+}
+
+.stats-container:empty,
+.stats-container:not(:has(tw-hook:not(:empty))) {
+  display: none;
+}
+
+.all-container:has(.stats-container:empty),
+.all-container:has(.stats-container:not(:has(tw-hook:not(:empty)))) {
+  grid-template-areas:
+    "image title"
+    "image narrative"
+    "choices narrative";
+  grid-template-rows: auto auto 1fr;
 }
 
 .background-container {
@@ -310,6 +326,16 @@ tw-passage {
     gap: 0.75rem;
   }
 
+  .all-container:has(.stats-container:empty),
+  .all-container:has(.stats-container:not(:has(tw-hook:not(:empty)))) {
+    grid-template-areas:
+      "image"
+      "title"
+      "narrative"
+      "choices";
+    grid-template-rows: auto;
+  }
+
   .stats-container {
     font-size: 75%;
     gap: 0.35rem 0.75rem;
@@ -405,7 +431,7 @@ tw-passage {
       $('.maintext-container').scrollTop($('.maintext-container').get(0).scrollHeight);
     }
   }, 100);
-});</script><tw-passagedata pid="1" name="start" tags="" position="1100,100" size="100,100">(display: &quot;title-layout-template&quot;) &lt;!-- Display &quot;title-layout-template&quot; passage . --&gt;
+});</script><tw-passagedata pid="1" name="start" tags="" position="1100,100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
 
 &lt;!-- Set variables upon game start. --&gt;
 (set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;)
@@ -2937,26 +2963,7 @@ Nobody is supposed to be in here this late.
     (replace: ?prompts) [ (display: &quot;plant-choices-template&quot;) ]
 ]</tw-passagedata><tw-passagedata pid="122" name="to-be-continued-template" tags="" position="600,1400" size="100,100">&lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;to-be-continued-1024x768.webp&quot;)
-(replace: ?background) [  (transition: &quot;fade&quot;) + (transition-delay: 1s) + (transition-time:  6s) [  (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;) ] ]&lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="123" name="bg-fade-out-template" tags="" position="600,1500" size="100,100">(replace: ?background) [  (transition-depart: &quot;fade&quot;) + (transition-delay: 1s) + (transition-time:  6s) [ ] ]&lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="124" name="title-layout-template" tags="" position="100,1400" size="100,100">&lt;!--
-    Responsive Layout Template
-
-    Desktop:
-        Image     | Title
-        Choices  | Narrative
-
-    Mobile:
-        Image
-        Title
-        Narrative
-        Choices
---&gt; \
-&lt;div class=&quot;all-container&quot;&gt; \
-    &lt;div class=&quot;background-container&quot;&gt;|background&gt;[]&lt;/div&gt; \
-    &lt;div class=&quot;titletext-container&quot;&gt;|titletext&gt;[]&lt;/div&gt; \
-    &lt;div class=&quot;maintext-container&quot;&gt;|maintext&gt;[]&lt;/div&gt; \
-    &lt;div class=&quot;prompts-container&quot;&gt;|prompts&gt;[]&lt;/div&gt; \
-&lt;/div&gt;
-</tw-passagedata></tw-storydata>
+(replace: ?background) [  (transition: &quot;fade&quot;) + (transition-delay: 1s) + (transition-time:  6s) [  (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;) ] ]&lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="123" name="bg-fade-out-template" tags="" position="600,1500" size="100,100">(replace: ?background) [  (transition-depart: &quot;fade&quot;) + (transition-delay: 1s) + (transition-time:  6s) [ ] ]&lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
