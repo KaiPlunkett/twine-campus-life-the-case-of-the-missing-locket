@@ -545,10 +545,11 @@ tw-sidebar {
 
   watchMainText();
 });
-</script><tw-passagedata pid="1" name="start" tags="" position="1100,100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon game start. --&gt;
-(set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;)
+</script><tw-passagedata pid="1" name="start" tags="" position="1100,100" size="100,100">&lt;!-- Set variables upon game start. --&gt; \
+(set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;) 
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon game start. --&gt; \
 (set: $rating to 0)
 (set: $timesdetected to 0)
 (set: $timer to 600)
@@ -564,14 +565,9 @@ tw-sidebar {
 (set: $bindesc to &quot;large wheely bin&quot;)
 (set: $password to &quot;&quot;)
 (display: &quot;password-template&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Case of the Missing Locket ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ &lt;img class=&quot;title-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/images/silver-locket-new.png&quot;/&gt;Earlier in the day, Tabitha Leaf stole your locket and sneaked it into Professsor Tankerton&#39;s desk in the lab.
 
 If Prof. T opens it up and sees whats inside, it could give away your suspicions that she is not all that it would appear.
@@ -582,55 +578,41 @@ Your friend, Tobias Jamerson (TJ),  said a couple of his friends can help get it
 
 You&#39;re going to need to identify yourself as a friend by quoting the password (text-colour:blue)[&quot;$password&quot;]. 
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
-(replace: ?prompts) [ [[Start...-&gt;maingate]] ]</tw-passagedata><tw-passagedata pid="2" name="bush-path" tags="" position="300,500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon progress. --&gt;
-(if: $bushmoved is true) [ (go-to: &quot;bush-path-moved&quot;) ]
-
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
+(replace: ?prompts) [ [[Start...-&gt;maingate]] ]</tw-passagedata><tw-passagedata pid="2" name="bush-path" tags="" position="300,500" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;bush-passage-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon progress. --&gt; \
+(if: $bushmoved is true) [ (go-to: &quot;bush-path-moved&quot;) ]
+&lt;!-- Update &quot;background&quot; content. --&gt; \
 (display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update main text content. --&gt;
+&lt;!-- Update main text content. --&gt; \
 (replace: ?maintext) [ A prickly //bush// sits in front of the wall, behind which you can see a //darkness//.
 
 Maybe it would be worth a closer look!? 
 
 There&#39;s also a //trough// sitting to the left.]
-
-&lt;!-- Update prompts content. --&gt;
+&lt;!-- Update prompts content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Look closer at the bush.-&gt;bush-path-look]]
     2. (if: $troughmistake  is false) [ [[Look in the trough.-&gt;bush-path-trough-fail]] ] (else:) [ (text-colour:grey)[Look in the trough.] ]
     3. [[Return to main gate.-&gt;maingate]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage. --&gt; \
 (display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="3" name="bin-path" tags="" position="1900,500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
-(if: $binmistake is true) [
-    (set: $backgroundurl to &quot;bin-passage-bin-broken-1024x768.webp&quot;)
-] (else:) [
-    (set: $backgroundurl to &quot;bin-passage-1024x768.webp&quot;)
-]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update stats content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="3" name="bin-path" tags="" position="1900,500" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to (cond: $binmistake is true, &quot;bin-passage-bin-broken-1024x768.webp&quot;, &quot;bin-passage-1024x768.webp&quot;))
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ A $bindesc stands next to a high fence in a dark and gloomy alleyway.
 
 It&#39;s difficult to see what&#39;s in the shadows and your view only extends a few feet.
@@ -646,8 +628,7 @@ It&#39;s difficult to see what&#39;s in the shadows and your view only extends a
             There&#39;s no way in that way!
         ]
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [What do you want to do?
     (if: $binmistake is false) [ 1. [[Try climbing up on bin.-&gt;bin-path-fail-1]] ] (else:) [ (text-colour:grey) [ 1. Try climbing up on bin again?] ]
     (if: $chockfound is false) [ \
@@ -659,25 +640,20 @@ It&#39;s difficult to see what&#39;s in the shadows and your view only extends a
     ]
     3. [[Return to main gate.-&gt;maingate]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="4" name="gate-path" tags="" position="900,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="4" name="gate-path" tags="" position="900,700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $gatemistake to true)
 ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You walk up to the gate which looms ever more largely as you approach.
 
 Reaching out...
@@ -688,115 +664,88 @@ Reaching out...
 Unsurprisingly, at this hour, the gate is locked!
 
 &lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;Narrator&lt;/span&gt;&lt;span&gt;Did you really think it would be that easy?&lt;/span&gt;&lt;/span&gt;]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Look around.-&gt;key-code-path]]
     2. [[Step back for a a rethink...-&gt;maingate]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="5" name="stats-timer-update" tags="" position="300,1500" size="100,100">&lt;!-- This path is called from main paths. --&gt; \
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="5" name="stats-timer-update" tags="" position="300,1500" size="100,100">&lt;!-- This path is called from main paths. --&gt; \
 &lt;span&gt;Name: (text-colour:blue)[$givenname]&lt;/span&gt; \
 &lt;span&gt;Achievement: (text-colour:blue)[(round: $rating)]%&lt;/span&gt; \
 &lt;span&gt;Times Detected: (text-colour:blue) [$timesdetected]&lt;/span&gt; \
-&lt;span&gt;Time Left: (text-colour:blue) [$timer] sec(s)&lt;/span&gt;</tw-passagedata><tw-passagedata pid="6" name="look-around-bin-path" tags="" position="1700,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;span&gt;Time Left: (text-colour:blue) [$timer] sec(s)&lt;/span&gt;</tw-passagedata><tw-passagedata pid="6" name="look-around-bin-path" tags="" position="1700,700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;bin-passage-chock-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You look around the bin and find a wooden chock.
 
 Perhaps that can stabilise the wheels? ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Pick up the chock.-&gt;pick-up-chock]]
     2. [[Return to main gate.-&gt;maingate]] ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="7" name="bin-path-fail-1" tags="" position="1700,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="7" name="bin-path-fail-1" tags="" position="1700,300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(if: $binmistake is true) [
+    (set: $backgroundurl to &quot;bin-passage-bin-broken-1024x768.webp&quot;)
+] (else:) [
+    (set: $backgroundurl to &quot;bin-passage-1024x768.webp&quot;)
+]
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You attempt to climb on the bin, but it&#39;s just  too wobbly.
 
 Perhaps something can stabilise it? ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. (if: $chockfound is false)[ [[Look around.-&gt;look-around-bin-path]] ] (else:) [ (text-colour:grey)[Look around.] ]
     2. [[Return to main gate.-&gt;maingate]] ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="8" name="pick-up-chock" tags="" position="2300,500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="8" name="pick-up-chock" tags="" position="2300,500" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;bin-passage-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $chockfound to true)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;bin-passage-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You pick up the chock. ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Stabilise the bin wheels and try climbing up?-&gt;bin-path-fail-2]]
     2. [[Look around some more?-&gt;bin-path-found-gate]]
     3. [[Return to main gate.-&gt;maingate]] ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="9" name="bin-path-fail-2" tags="" position="2100,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="9" name="bin-path-fail-2" tags="" position="2100,300" size="100,100">&lt;!-- Set variables upon progress. --&gt; \
+(set: $backgroundurl to &quot;bin-passage-bin-broken-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $binmistake to true)
     (set: $bindesc to &quot;large broken wheely bin&quot;)
 ]
-
-&lt;!-- Set variables upon progress. --&gt;
-(set: $backgroundurl to &quot;bin-passage-bin-broken-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You stabilise the bin&#39;s wheels with the chock and start climbing.
 
     Wait... What&#39;s that noise???
@@ -812,90 +761,65 @@ Perhaps something can stabilise it? ]
 
     (display: &quot;times-detected-inc&quot;)
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [
     1. [[Better scarper...-&gt;maingate]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="10" name="bush-path-look" tags="" position="500,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon progress. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="10" name="bush-path-look" tags="" position="500,700" size="100,100">&lt;!-- Set variables upon progress. --&gt; \
 (if: $bushmoved is true) [ (go-to: &quot;bush-path-moved&quot;) ]
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;bush-passage-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;) 
+&lt;!-- Update stats content. --&gt;
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update main text content. --&gt;
+&lt;!-- Update main text content. --&gt; \
 (replace: ?maintext) [ On closer inspection, there appears to be a hole in the wall...
 
 A roughly your size human sized hole.
 
 Hmmm...]
-
-&lt;!-- Update prompts content. --&gt;
+&lt;!-- Update prompts content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. (if: $glovesfound is false)[ [[Try to squeeze through the hole.-&gt;bush-path-fail-1]] ] (else:) [ [[Try to squeeze through the hole.-&gt;bush-path-clear]] ]
     2. (if: $glovesfound is false)[ [[Take an even closer look.-&gt;bush-path-look-closer]] ] (else:) [ (text-colour:grey)[Take an even closer look] ]
     3. [[Return to main gate.-&gt;maingate]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="11" name="bush-path-fail-1" tags="" position="100,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="11" name="bush-path-fail-1" tags="" position="100,300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;bush-passage-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;background&quot; content. --&gt; \
 (display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update stats content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update main text content. --&gt;
+&lt;!-- Update main text content. --&gt; \
 (replace: ?maintext) [ Wow, that bush is just too prickly to move.
 
 Better try something else.]
-
-&lt;!-- Update prompts content. --&gt;
+&lt;!-- Update prompts content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Take an even closer look.-&gt;bush-path-look-closer]]
     2. [[Return to main gate.-&gt;maingate]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="12" name="bush-path-look-closer" tags="" position="100,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon progress. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="12" name="bush-path-look-closer" tags="" position="100,700" size="100,100">&lt;!-- Set variables upon progress. --&gt; \
+(set: $backgroundurl to (cond: visits is 1, &quot;bush-passage-gloves-1024x768.webp&quot;, &quot;bush-passage-1024x768.webp&quot;))
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon progress. --&gt; \
 (if: $bushmoved is true) [ (go-to: &quot;bush-path-moved&quot;) ]
-
-&lt;!-- Set variables upon progress. --&gt;
-(if:visits is 1) [
-    (set: $backgroundurl to &quot;bush-passage-gloves-1024x768.webp&quot;)
-] (else-if: $bushmoved is false) [
-    (set: $backgroundurl to &quot;bush-passage-1024x768.webp&quot;)
-]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update stats content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update main text content. --&gt;
+&lt;!-- Update main text content. --&gt; \
 (replace: ?maintext) [ On closer inspection, you notice something tucked under the bush.
 
 What is that?
@@ -906,93 +830,63 @@ That&#39;s... //handy//!
 
 &lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;Narrator&lt;/span&gt;&lt;span&gt;Alright, alright... Don&#39;t judge me... You try this job!&lt;/span&gt;&lt;/span&gt;
 ]
-
-&lt;!-- Update prompts content. --&gt;
+&lt;!-- Update prompts content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Pick up gloves.-&gt;pick-up-gloves]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="13" name="pick-up-gloves" tags="" position="100,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon progress. --&gt;
-(if: $bushmoved is false) [
-    (set: $backgroundurl to &quot;bush-passage-1024x768.webp&quot;)
-] (else:) [
-    (set: $backgroundurl to &quot;bush-passage-hole-1024-768.webp&quot;)
-]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="13" name="pick-up-gloves" tags="" position="100,1100" size="100,100">&lt;!-- Set variables upon progress. --&gt; \
+(set: $backgroundurl to (cond: $bushmoved is false, &quot;bush-passage-1024x768.webp&quot;, &quot;bush-passage-hole-1024-768.webp&quot;))
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update stats content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Meet ]
-
-&lt;!-- Update main text content. --&gt;
+&lt;!-- Update main text content. --&gt; \
 (replace: ?maintext) [ You pick up the gloves. ]
-
-&lt;!-- Update prompts content. --&gt;
+&lt;!-- Update prompts content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Put on the gloves and move bush.-&gt;bush-path-moved]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="14" name="bush-path-clear" tags="" position="500,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="14" name="bush-path-clear" tags="" position="500,1100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-ahead-passage-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if: visits is 1) [
     (set: _adjustment to 30 / ($timesdetected + 1))
     (set: $rating to it +_adjustment )
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;lab-ahead-passage-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update stats content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Meet ]
-
-&lt;!-- Update main text content. --&gt;
+&lt;!-- Update main text content. --&gt; \
 (replace: ?maintext) [ You slide through the hole.
 
 You&#39;re in and about time too, otherwise TJ&#39;s friends will have left.
 
 Up ahead, you see the //lab block// entrance and a couple of //figures// hiding in the shadows. ]
-
-&lt;!-- Update prompts content. --&gt;
+&lt;!-- Update prompts content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Continue towards the lab block.-&gt;lab-path]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="15" name="bush-path-trough-fail" tags="" position="500,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="15" name="bush-path-trough-fail" tags="" position="500,300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;bush-passage-trough-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $troughmistake to true)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;bush-passage-trough-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update stats content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update main text content. --&gt;
+&lt;!-- Update main text content. --&gt; \
 (replace: ?maintext) [ You rummage around in the trough and...
 
     (text-style:&quot;rumble&quot;) [ (text-colour:#e03131)[&quot;&#39;&#39;Arghhhh!!!&#39;&#39;&quot;]]
@@ -1007,20 +901,17 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
         (display: &quot;times-detected-inc&quot;)
     ]
 ]
-
-&lt;!-- Update prompts content. --&gt;
+&lt;!-- Update prompts content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Return to bush.-&gt;bush-path]]
     2. [[Return to main gate.-&gt;maingate]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="16" name="lab-path" tags="" position="1100,900" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="16" name="lab-path" tags="" position="1100,900" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-entrance-passage-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $timer to 600)
     (set: $maxpasswrongchoicecount to 2)
@@ -1030,45 +921,31 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
 ] (else:) [
     (set: _maintext to &quot;You arrive back at the lab block.&quot;)
 ]
-
-&lt;!-- Go to ask password on first visit. --&gt;
+&lt;!-- Go to ask password on first visit. --&gt; \
 (if: $passwrongchoicecount is 0) [
     (go-to: &quot;ask-for-password&quot;)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;lab-entrance-passage-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update stats content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Meet ]
-
-&lt;!-- Update main text content. --&gt;
+&lt;!-- Update main text content. --&gt; \
 (replace: ?maintext) [ _maintext ]
-
-&lt;!-- Update prompts content. --&gt;
+&lt;!-- Update prompts content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Go back to the wall.-&gt;bush-path-clear]]
-]
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]</tw-passagedata><tw-passagedata pid="17" name="stats-notimer-update" tags="" position="400,1500" size="100,100">&lt;!-- This path is called from main paths. --&gt; \
+]</tw-passagedata><tw-passagedata pid="17" name="stats-notimer-update" tags="" position="400,1500" size="100,100">&lt;!-- This path is called from main paths. --&gt; \
 &lt;span&gt;Name: (text-colour:blue)[$givenname]&lt;/span&gt; \
 &lt;span&gt;Achievement: (text-colour:blue)[(round: $rating)]%&lt;/span&gt; \
-&lt;span&gt;Times Detected: (text-colour:blue) [$timesdetected]&lt;span&gt;</tw-passagedata><tw-passagedata pid="18" name="ask-for-password" tags="" position="1100,1000" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;span&gt;Times Detected: (text-colour:blue) [$timesdetected]&lt;span&gt;</tw-passagedata><tw-passagedata pid="18" name="ask-for-password" tags="" position="1100,1000" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-entrance-passage-jess-silhouette-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Meet ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ (if: $passwrongchoicecount is 0) [ Phew, you made it...
 
 Watching the clock tick down was making you nervous.
@@ -1078,60 +955,45 @@ You hear a whispered voice from the shadows...
     &lt;span class=&quot;speechbad&quot;&gt;&lt;span&gt;Unknown&lt;/span&gt;&lt;span&gt;Wrong! I&#39;ll give you one more try.&lt;/span&gt;&lt;/span&gt;  ] (else:) [  (go-to: &quot;tj-friends-leave&quot;)  ]
   &lt;span class=&quot;speechnormal&quot;&gt;&lt;span&gt;Unknown&lt;/span&gt;&lt;span&gt;What&#39;s the password?&lt;/span&gt;&lt;/span&gt;
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ Answer...
     (display: &quot;password-template&quot;)
 ]
 
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]</tw-passagedata><tw-passagedata pid="19" name="wrong-password" tags="" position="1050,1100" size="100,100">&lt;!-- This path is called from &quot;ask-for-password&quot; path. --&gt;
+</tw-passagedata><tw-passagedata pid="19" name="wrong-password" tags="" position="1050,1100" size="100,100">&lt;!-- This path is called from &quot;ask-for-password&quot; path. --&gt;
 (set: $passwrongchoicecount to it + 1)
-(go-to: &quot;ask-for-password&quot;)</tw-passagedata><tw-passagedata pid="20" name="right-password" tags="" position="1150,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+(go-to: &quot;ask-for-password&quot;)</tw-passagedata><tw-passagedata pid="20" name="right-password" tags="" position="1150,1100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-entrance-passage-jess-silhouette-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Meet ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ The voice whispers again...
     &lt;span class=&quot;speechgood&quot;&gt;&lt;span&gt;Unknown&lt;/span&gt;&lt;span&gt;Password accepted!&lt;/span&gt;&lt;/span&gt;
 ]
-
-&lt;!-- Update prompts content. --&gt;
-(replace: ?prompts) [ [[Continue...-&gt;tj-friends-meet]] ]
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]</tw-passagedata><tw-passagedata pid="21" name="tj-friends-meet" tags="" position="1300,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Initialise meet diag number upon every visit. --&gt;
-(set: $meet_diag_num to 1)
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Update prompts content. --&gt; \
+(replace: ?prompts) [ [[Continue...-&gt;tj-friends-meet]] ]</tw-passagedata><tw-passagedata pid="21" name="tj-friends-meet" tags="" position="1300,1100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-entrance-passage-jess-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Initialise meet diag number upon every visit. --&gt; \
+(set: $meet_diag_num to 1)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Meet ]
-
 &lt;!-- Update &quot;maintext&quot; content. --&gt;
 (replace: ?maintext) [ The figures move out of the shadows and a girl introduces herself. ]
-
-&lt;!-- Append &quot;maintext&quot; content. --&gt;
+&lt;!-- Append &quot;maintext&quot; content. --&gt; \
 (append: ?maintext) [ (display: &quot;meet-diag-1&quot;) ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ (link-rerun: &quot;Continue...&quot;) [
-    &lt;!-- Repeat link to cycle through all dialogue --&gt;
+    &lt;!-- Repeat link to cycle through all dialogue --&gt; \
     (set: $meet_diag_num to it + 1)
-  
+    &lt;!-- Change background image based upon dialogue --&gt; \
     (if: $meet_diag_num &lt;= 12) [
         (if: $meet_diag_num is 4) [
             (set: $backgroundurl to &quot;lab-entrance-passage-jess-rafa-1024x768.webp&quot;)
@@ -1144,61 +1006,50 @@ You hear a whispered voice from the shadows...
     ] (else:) [
         (go-to: &quot;the-plan-start&quot;)
     ]
-] ]
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]</tw-passagedata><tw-passagedata pid="22" name="tj-friends-leave" tags="" position="900,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+]]</tw-passagedata><tw-passagedata pid="22" name="tj-friends-leave" tags="" position="900,1100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-entrance-passage-jess-silhouette-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Meet ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ The voice says...
     &lt;span class=&quot;speechbad&quot;&gt;&lt;span&gt;Unknown&lt;/span&gt;&lt;span&gt;Wrong again. We&#39;re off!!!&lt;/span&gt;&lt;/span&gt;
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) []
-
-(display: &quot;the-end-template&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]</tw-passagedata><tw-passagedata pid="23" name="meet-diag-1" tags="" position="850,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
+&lt;!-- Display &quot;lthe-end-template&quot; passage . --&gt; \
+(display: &quot;the-end-template&quot;)</tw-passagedata><tw-passagedata pid="23" name="meet-diag-1" tags="" position="850,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt; \
 &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Hi, my name&#39;s Jessica Belcher...
 
 And before you say anything, I&#39;ve heard all the jokes, thankyou!
 
-What&#39;s your name?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="24" name="meet-diag-2" tags="" position="950,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
-&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Hey Jessica, I&#39;m $surname, $name.&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="25" name="meet-diag-3" tags="" position="1050,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
-&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Are you a spy or something? Hey $initials!&lt;/span&gt;&lt;/span&gt;
-</tw-passagedata><tw-passagedata pid="26" name="meet-diag-4" tags="" position="1150,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
-&lt;span class=&quot;speechbad&quot;&gt;&lt;span&gt;Unknown&lt;/span&gt;&lt;span&gt;$name!? If I&#39;d known it was you, I&#39;d have told TJ to shove it!!!&lt;/span&gt;&lt;/span&gt;
-
-</tw-passagedata><tw-passagedata pid="27" name="meet-diag-5" tags="" position="1250,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
-&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Hey, Rafa, knock it off will you!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="28" name="meet-diag-6" tags="" position="1350,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
-&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Mmmmmph...&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="29" name="meet-diag-7" tags="" position="850,1350" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
+What&#39;s your name?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="24" name="meet-diag-2" tags="" position="950,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt; \
+&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Hey Jessica, I&#39;m $surname, $name.&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="25" name="meet-diag-3" tags="" position="1050,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt; \
+&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Are you a spy or something? Hey $initials!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="26" name="meet-diag-4" tags="" position="1150,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt; \
+&lt;span class=&quot;speechbad&quot;&gt;&lt;span&gt;Unknown&lt;/span&gt;&lt;span&gt;$name!? If I&#39;d known it was you, I&#39;d have told TJ to shove it!!!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="27" name="meet-diag-5" tags="" position="1250,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt; \
+&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Hey, Rafa, knock it off will you!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="28" name="meet-diag-6" tags="" position="1350,1250" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt; \
+&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Mmmmmph...&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="29" name="meet-diag-7" tags="" position="850,1350" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt; \
 &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;That&#39;s Rafael Moreno, the campus grouch seemingly, and this little cutie down here is BARC, Rafa&#39;s seeing eye robotic dog.
 
-Anyway, TJ said you needed our help!?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="30" name="meet-diag-8" tags="" position="950,1350" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
-&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;They&#39;re probably all upset about a bad grade and wanted to cheat the system... Can&#39;t do anything on their own!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="31" name="meet-diag-9" tags="" position="1050,1350" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
-&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Yeah, yeah, Rafa. Now you were saying?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="32" name="meet-diag-10" tags="" position="1150,1350" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
+Anyway, TJ said you needed our help!?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="30" name="meet-diag-8" tags="" position="950,1350" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt; \
+&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;They&#39;re probably all upset about a bad grade and wanted to cheat the system... Can&#39;t do anything on their own!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="31" name="meet-diag-9" tags="" position="1050,1350" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt; \
+&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Yeah, yeah, Rafa. Now you were saying?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="32" name="meet-diag-10" tags="" position="1150,1350" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt; \
 &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Well... Old T-Leaf stole my locket during biology practical and hid it in Prof. T&#39;s desk.
 
 The Prof. has been acting very suspiciously lately and keeps dissappearing into the secure lab at strange times of day.
 
 I caught her on camera and what I saw scared the hell out of me.
 
-The SD card is in that locket, so I must get it back!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="33" name="meet-diag-11" tags="" position="1250,1350" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
-&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Wow... Tell you what, let me take a look at the vid and we have a deal, yes?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="34" name="meet-diag-12" tags="" position="1350,1350" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt;
-&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Deal!!!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="35" name="maingate" tags="" position="1100,500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+The SD card is in that locket, so I must get it back!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="33" name="meet-diag-11" tags="" position="1250,1350" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt; \
+&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Wow... Tell you what, let me take a look at the vid and we have a deal, yes?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="34" name="meet-diag-12" tags="" position="1350,1350" size="100,100">&lt;!-- This path is called from &quot;tj-friends-meet&quot; path. --&gt; \
+&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Deal!!!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="35" name="maingate" tags="" position="1100,500" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if: visits is 1) [
     (set: $name to (prompt: &quot;Enter your name: &quot;, &quot;Cheesy Peas&quot;))
     
@@ -1211,17 +1062,11 @@ The SD card is in that locket, so I must get it back!&lt;/span&gt;&lt;/span&gt;<
         (set: $initials to ($givenname&#39;s 1st + $surname&#39;s 1st))
     ]
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You are standing in front of a massive ornate gate, at the front of the mdeical college campus. The detail on this thing is amazing. It looks like the Illuminati could have built it...
 
 You recall you were so glad being accepted in here, as it is a prestigous medical college.
@@ -1233,21 +1078,18 @@ Being in your first few weeks, you are still familiarising yourself with the vas
 With exception of the massive //gate// directly in front of you, you look around and notice a //bush// to the left and a //$bindesc// to the right.
 
 It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so you better hurry up so as to not miss TJ&#39;s friends.]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [What do you want to do? 
     1. (if: $pinnumberfound is false)[ [[Try the gate.-&gt;gate-path]] ] (else:) [ (text-colour:grey)[Try the gate.] ]
     2. [[Walk to the bush.-&gt;bush-path]]
     3. [[Walk to the $bindesc.-&gt;bin-path]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="36" name="the-mission-start" tags="" position="1100,1700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="36" name="the-mission-start" tags="" position="1100,1700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-entrance-passage-jess-rafa-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $timer to (60 * 30))
     (set: $steppedonbrush to false)
@@ -1256,66 +1098,49 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
     (set: $windowspeekcount to 0)
     (set: $terrypassword to &quot;TerryISaC00Lguy!&quot;)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;lab-entrance-passage-jess-rafa-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;)
     &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;So... We all ready!?    &lt;/span&gt;&lt;/span&gt;
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Start the mission...-&gt;outside-lab-block]]
     2. [[Try to learn more about the plan?-&gt;the-plan-start]]
     3. (link-reveal: &quot;No, I&#39;m scared. Run away!&quot;) [ (go-to: &quot;start&quot;) ]
-]</tw-passagedata><tw-passagedata pid="37" name="outside-lab-block" tags="" position="1100,1900" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon game start. --&gt;
+]</tw-passagedata><tw-passagedata pid="37" name="outside-lab-block" tags="" position="1100,1900" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-entrance-passage-door-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon game start. --&gt; \
 (if: visits is 1) [
     (set: $havebox to false)
     (set: $windowpeekcount to 0)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;lab-entrance-passage-door-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You are are standing in front of the //Lab Block// entrance.
 
     The main door is in front of you. To the left and right is a pathway leading past the building&#39;s windows.
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Check the left pathway.-&gt;lab-block-left-1st-passage]]
     2. [[Check the right pathway.-&gt;lab-block-right-1st-passage]]
     3. [[Continue through the main door...-&gt;lab-block-hallway-1]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="38" name="the-plan-start" tags="" position="1700,1500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="38" name="the-plan-start" tags="" position="1700,1500" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-entrance-passage-jess-rafa-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $guardroundstime to 0)
     (set: $guardroundrequency to 0)
@@ -1323,23 +1148,13 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
     (set: $makeupwithrafa to false)
     (set: $keycardknowledge to false)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;lab-entrance-passage-jess-rafa-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-notimer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Plan ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (append: ?maintext) [ (display: &quot;the-plan-maintext-1&quot;) ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ (display: &quot;the-plan-prompts-1&quot;) ]</tw-passagedata><tw-passagedata pid="39" name="layout-template" tags="" position="200,1400" size="100,100">&lt;!--
     Responsive Layout Template
 
@@ -1357,12 +1172,11 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
 --&gt; \
 &lt;div class=&quot;all-container&quot;&gt; \
     &lt;div class=&quot;stats-container&quot;&gt;|stats&gt;[]&lt;/div&gt; \
-    &lt;div class=&quot;background-container&quot;&gt;|background&gt;[]&lt;/div&gt; \
+    &lt;div class=&quot;background-container&quot;&gt;|background&gt;[(print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;)]&lt;/div&gt; \
     &lt;div class=&quot;titletext-container&quot;&gt;|titletext&gt;[]&lt;/div&gt; \
     &lt;div class=&quot;maintext-container&quot;&gt;|maintext&gt;[]&lt;/div&gt; \
     &lt;div class=&quot;prompts-container&quot;&gt;|prompts&gt;[]&lt;/div&gt; \
-&lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="40" name="the-meet-live-template" tags="" position="200,1600" size="100,100">&lt;!-- Dynamically refreshed content. --&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="40" name="the-meet-live-template" tags="" position="200,1600" size="100,100">&lt;!-- Dynamically refreshed content. --&gt;
 (live: 1s) [
     (if: $timer &gt; 0) [ (set: $timer to it -1) ]
     (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
@@ -1375,24 +1189,31 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
         (stop:)
     ]
 ]</tw-passagedata><tw-passagedata pid="41" name="the-plan-prompts-1" tags="" position="1850,1400" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    Say...
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Cloak of invisibility?&quot;) [
-        (set: $response to &quot;Cloak of invisibility?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-2&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-2&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Oh! Errr... Nope, gone... Anyone?&quot;) [
-        (set: $response to &quot;Oh! Errr... Nope, gone... Anyone?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-4&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-4&quot;) ]
-    ] &lt;/span&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Can we recap what we know?&quot;) [
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-1&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
-        (go-to: &quot;the-mission-start&quot;)
-    ]&lt;/span&gt;
+    &lt;span class=&quot;question&quot;&gt;
+        (link-reveal: &quot;Cloak of invisibility?&quot;) [
+            (set: $response to &quot;Cloak of invisibility?&quot;)
+            (append: ?maintext) [ (display: &quot;the-plan-maintext-2&quot;) ]
+            (replace: ?prompts) [ (display: &quot;the-plan-prompts-2&quot;) ]
+        ]
+    &lt;/span&gt; \
+    &lt;span class=&quot;question&quot;&gt;
+        (link-reveal: &quot;Oh! Errr... Nope, gone... Anyone?&quot;) [
+            (set: $response to &quot;Oh! Errr... Nope, gone... Anyone?&quot;)
+            (append: ?maintext) [ (display: &quot;the-plan-maintext-4&quot;) ]
+            (replace: ?prompts) [ (display: &quot;the-plan-prompts-4&quot;) ]
+        ]
+    &lt;/span&gt;
+    &lt;span class=&quot;question&quot;&gt;
+        (link-reveal: &quot;Can we recap what we know?&quot;) [
+            (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
+            (replace: ?prompts) [ (display: &quot;the-plan-prompts-1&quot;) ]
+        ]
+    &lt;/span&gt; \
+    &lt;span class=&quot;question&quot;&gt;
+        (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
+             (go-to: &quot;the-mission-start&quot;)
+        ]
+    &lt;/span&gt;
 &lt;/span&gt;</tw-passagedata><tw-passagedata pid="42" name="the-plan-maintext-1" tags="" position="1950,1400" size="100,100">&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;So how we going to tackle this?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="43" name="the-plan-maintext-2" tags="" position="1950,1500" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Sorry, Potter, I think that would be difficult...&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Shall we figure a way in by playing Wizard Chess, eh BARC!?&lt;/span&gt;&lt;/span&gt;
@@ -1400,7 +1221,6 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
 &lt;span class=&quot;speechraphael&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Do you want this locket back or what?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="45" name="the-plan-maintext-4" tags="" position="1950,1700" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;The security guard takes 15 minutes to do his rounds. Unfortunately, I don&#39;t know how often he does it though.&lt;/span&gt;&lt;/span&gt;
 { (set: $guardroundstime to (60 * 15)) }</tw-passagedata><tw-passagedata pid="46" name="the-plan-prompts-2" tags="" position="1850,1500" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    Say...
     &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Sorry...&quot;) [
         (set: $response to &quot;Sorry...&quot;)
         (append: ?maintext) [ (display: &quot;the-plan-maintext-5&quot;) ]
@@ -1419,7 +1239,6 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
         (goto: &quot;the-mission-start&quot;)
     ] &lt;/span&gt;
 &lt;/span&gt;</tw-passagedata><tw-passagedata pid="47" name="the-plan-prompts-3" tags="" position="1850,1600" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    Say...
     &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Got any ideas then?&quot;) [
         (set: $response to &quot;Got any ideas?&quot;)
         (append: ?maintext) [ (display: &quot;the-plan-maintext-4&quot;) ]
@@ -1438,7 +1257,6 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
         (goto: &quot;the-mission-start&quot;)
     ] &lt;/span&gt;
 &lt;/span&gt;</tw-passagedata><tw-passagedata pid="48" name="the-plan-prompts-4" tags="" position="1850,1700" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    Say...
     &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;You know, Jess?&quot;) [
         (set: $response to &quot;You know, Jess?&quot;)
         (append: ?maintext) [ (display: &quot;the-plan-maintext-6&quot;) ]
@@ -1459,7 +1277,6 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
 &lt;/span&gt;</tw-passagedata><tw-passagedata pid="49" name="the-plan-maintext-5" tags="" position="1950,1800" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Alright, maybe we were a bit harsh.&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Oh, it was a joke... Hah-hah... I think!?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="50" name="the-plan-prompts-5" tags="" position="1850,1800" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    Say...
     &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Any ideas, Rafa?&quot;) [
         (set: $response to &quot;Any ideas, Rafa?&quot;)
         (append: ?maintext) [ (display: &quot;the-plan-maintext-4&quot;) ]
@@ -1489,7 +1306,6 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
 ])) \
 &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;($recap:)&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="52" name="the-plan-maintext-6" tags="" position="2200,1400" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Hmmm. I know there&#39;s a security guards office just to the right of the lab block entrace.&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="53" name="the-plan-prompts-6" tags="" position="2100,1400" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    Say...
     &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;How will we get in?&quot;) [
         (set: $response to &quot;How will we get in?&quot;)
         (append: ?maintext) [ (display: &quot;the-plan-maintext-8&quot;) ]
@@ -1509,7 +1325,6 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
     ] &lt;/span&gt;
 &lt;/span&gt;</tw-passagedata><tw-passagedata pid="54" name="the-plan-maintext-7" tags="" position="2200,1500" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Think maybe we can sneak into the room and somebody keep watch of the monitors?&lt;/span&gt;&lt;/span&gt;{ (set: $guardsecuritymonitors to true) }</tw-passagedata><tw-passagedata pid="55" name="the-plan-prompts-7" tags="" position="2100,1500" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    Say...
     &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;How will we get in?&quot;) [
         (set: $response to &quot;How will we get in?&quot;)
         (append: ?maintext) [ (display: &quot;the-plan-maintext-8&quot;) ]
@@ -1529,7 +1344,6 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
     ] &lt;/span&gt;
 &lt;/span&gt;</tw-passagedata><tw-passagedata pid="56" name="the-plan-maintext-8" tags="" position="2200,1600" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;I&#39;m sure BARC can get us into the office. Then one of us can keep an eye on the monitors. We&#39;ll need to know when to begin, though!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="57" name="the-plan-prompts-8" tags="" position="2100,1600" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    Say...
     &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Great. Yeah, how do we find out?&quot;) [
         (set: $response to &quot;Great. Yeah, how do we find out?&quot;)
         (append: ?maintext) [ (display: &quot;the-plan-maintext-9&quot;) ]
@@ -1549,9 +1363,7 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
     ] &lt;/span&gt;
 &lt;/span&gt;</tw-passagedata><tw-passagedata pid="58" name="the-plan-maintext-9" tags="" position="2200,1700" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Give me a min. Steph has been working on experiments over night. I&#39;ll message her...&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;float-left&quot;&gt;Jess steps a way for a moment...&lt;/span&gt;
-</tw-passagedata><tw-passagedata pid="59" name="the-plan-prompts-9" tags="" position="2100,1700" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    Say...
+&lt;span class=&quot;float-left&quot;&gt;Jess steps a way for a moment...&lt;/span&gt;</tw-passagedata><tw-passagedata pid="59" name="the-plan-prompts-9" tags="" position="2100,1700" size="100,100">&lt;span class=&quot;questions&quot;&gt;
     &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Have I upset you, Rafa?&quot;) [
         (set: $response to &quot;Have I upset you, Rafa?&quot;)
         (append: ?maintext) [ (display: &quot;the-plan-maintext-10&quot;) ]
@@ -1571,7 +1383,6 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
     ] &lt;/span&gt;
 &lt;/span&gt;</tw-passagedata><tw-passagedata pid="60" name="the-plan-maintext-10" tags="" position="2200,1800" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;What!? Noooo... What makes you say that?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="61" name="the-plan-prompts-10" tags="" position="2100,1800" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    Say...
     &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Hmmm. Perhaps telling TJ to shove it!&quot;) [
         (set: $response to &quot;Hmmm. Perhaps telling TJ to shove it!&quot;)
         (append: ?maintext) [ (display: &quot;the-plan-maintext-11&quot;) ]
@@ -1594,7 +1405,6 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Oh, you heard that did you??? Thanks for letting me know when I&#39;m speaking too loud, BARC! Just can&#39;t build the friends nowadays!&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechbarc&quot;&gt;&lt;span&gt;BARC&lt;/span&gt;&lt;span&gt;(text-style:&quot;shudder&quot;)[Whimper...]&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Great... Now he&#39;ll sulk for days!!!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="63" name="the-plan-prompts-11" tags="" position="2350,1400" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    Say...
     &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;How about we start afresh?&quot;) [
         (set: $response to &quot;How about we start afresh?&quot;)
         (append: ?maintext) [ (display: &quot;the-plan-maintext-12&quot;) ]
@@ -1619,7 +1429,6 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Yeah, perhaps you&#39;re right. Jess is always telling me I&#39;m difficult to like at first. I don&#39;t mean to be, but with my accident and all...&lt;/span&gt;&lt;/span&gt;
 (text-style:&quot;fidget&quot;)[Rafa seems to be reluctant to talk about it...]
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Enough about that. Perhaps you&#39;re right. We&#39;re cool...&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="65" name="the-plan-prompts-12" tags="" position="2350,1500" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    Say...
     &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Glad that&#39;s sorted.&quot;) [
         (set: $response to &quot;Glad that&#39;s sorted.&quot;)
         (set: $makeupwithrafa to true)
@@ -1641,7 +1450,6 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
         (replace: ?prompts) [ (display: &quot;the-plan-prompts-13&quot;) ]
     ] &lt;/span&gt;
 &lt;/span&gt;</tw-passagedata><tw-passagedata pid="66" name="the-plan-prompts-13" tags="" position="2350,1600" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    Say...
     &lt;span class=&quot;question&quot;&gt; (if: $makeupwithrafa is true) [ \
         (link-reveal: &quot;Anything we&#39;ve forgotten?&quot;) [
             (set: $response to &quot;Anything we&#39;ve forgotten?&quot;)
@@ -1668,25 +1476,20 @@ Prof. Duh, more like!!!&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;You&#39;re so bad!&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechbarc&quot;&gt;&lt;span&gt;BARC&lt;/span&gt;&lt;span&gt;Ruff! Pant...&lt;/span&gt;&lt;/span&gt;
 { (set: $keycardknowledge to true) }</tw-passagedata><tw-passagedata pid="71" name="the-plan-prompts-15" tags="" position="2350,1800" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    Say...
     &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Nice... Let&#39;s go!&quot;) [ (goto: &quot;the-mission-start&quot;) ] &lt;/span&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="72" name="key-code-path" tags="" position="1300,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="72" name="key-code-path" tags="" position="1300,700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;maingate-found-note-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $gatemistake to true)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;maingate-found-note-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You look around, high and low, and just when you&#39;re about to give up...
 
 Something blows in front of you on the floor!
@@ -1698,35 +1501,26 @@ On closer inspection, it looks to have something written on it.
 Numbers!?
 
 A code, perhaps?]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Pick up the paper.-&gt;pick-up-the-paper]]
     2. [[Return to main gate...-&gt;maingate]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="73" name="pick-up-the-paper" tags="" position="1300,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="73" name="pick-up-the-paper" tags="" position="1300,300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $gatemistake to true)
     (set: $pinnumberfound to true)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ Bending down, you pick up the piece of paper and read it.
 
 It //is// a code number...
@@ -1737,97 +1531,69 @@ Better remember that. It could come in handy!
 
 &lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;Narrator&lt;/span&gt;&lt;span&gt;Way to look after the environment. I&#39;m warming to you already.&lt;/span&gt;&lt;/span&gt;]
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Try the number on the gate.-&gt;try-pin-number-on-gate]]
     2. [[Return to main gate...-&gt;maingate]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="74" name="try-pin-number-on-gate" tags="" position="900,300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="74" name="try-pin-number-on-gate" tags="" position="900,300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $gatemistake to true)
 ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You stroll over to the gate again, the size of which is just as foreboding...
 
 You extend your finger towards the... Hmmm... There&#39;s no key pad on this gate, only an intercomm and I don&#39;t think it&#39;s wize to use that!
 
 Maybe the pin can be used somewhere else?]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Return to main gate...-&gt;maingate]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="75" name="bin-path-found-gate" tags="" position="2100,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="75" name="bin-path-found-gate" tags="" position="2100,1100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;bin-passage-gate-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $bingatefound to false)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;bin-passage-gate-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You notice in the shadows what looks like a gate. ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Try opening the gate?-&gt;bin-path-enter-pin]]
     2. [[Return to $bindesc.-&gt;bin-path]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="76" name="bin-path-enter-pin" tags="" position="2100,700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="76" name="bin-path-enter-pin" tags="" position="2100,700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;bin-passage-gate-keypad-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ Hmmm. You notice that the gate has a pin pad.
 
-    (if: $pinnumberfound is true) [ \
-        I wonder if the pin code will work here?
-    ] (else:) [ \
-        I don&#39;t know what the code is.
-    ]
+    (print: (cond: $pinnumberfound is true, &quot;I wonder if the pin code will work here?&quot;, &quot;I don&#39;t know what the code is.&quot;))
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     (if: $pinnumberfound is true) [ \
         1. [[Try the pin?-&gt;bin-path-open-gate]]
@@ -1836,130 +1602,93 @@ Maybe the pin can be used somewhere else?]
         1. [[Return to $bindesc.-&gt;bin-path]]
     ]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="77" name="bin-path-clear" tags="" position="1700,1100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="77" name="bin-path-clear" tags="" position="1700,1100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-ahead-passage-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if: visits is 1) [
     (set: _adjustment to 30 / ($timesdetected + 1))
     (set: $rating to it +_adjustment )
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;lab-ahead-passage-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update stats content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Meet ]
-
-&lt;!-- Update main text content. --&gt;
+&lt;!-- Update main text content. --&gt; \
 (replace: ?maintext) [ You enter the pin code and are surprised to find it worked.
 
     You&#39;re in and about time too, otherwise TJ&#39;s friends will have left.
 
     Up ahead, you see the //lab block// entrance and a couple of //figures// hiding in the shadows.
 ]
-
-&lt;!-- Update prompts content. --&gt;
+&lt;!-- Update prompts content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Continue towards the lab block.-&gt;lab-path]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="78" name="bg-template" tags="" position="300,1400" size="100,100">(replace: ?background) [ (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;) ] &lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="79" name="lab-block-left-1st-passage" tags="" position="1900,2100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="78" name="bg-template" tags="" position="300,1400" size="100,100">(replace: ?background) [ (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;) ] &lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="79" name="lab-block-left-1st-passage" tags="" position="1900,2100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-entrance-passage-left-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You walk down the path to the left of the main entrance.
 
 There&#39;s a high window to your right and and a bin to the left.
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. (if: $havebox) [ [[Look in the window-&gt;lab-block-left-1st-passage-windows]] ] (else:) [ [[Look in the window-&gt;lab-block-left-1st-passage-windows-fail]] ]
     2. (if: $havebox) [ Go bin dipping. ] (else:) [ [[Go bin dipping.-&gt;lab-block-left-bin]] ]
     3. [[Return to main door...-&gt;outside-lab-block]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="80" name="lab-block-right-1st-passage" tags="" position="300,2100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="80" name="lab-block-right-1st-passage" tags="" position="300,2100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-entrance-passage-right-part1-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt;\
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt;\
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt;\
 (replace: ?maintext) [ You walk down the path to the right of the main entrance.
 
 There&#39;s a high window to your left and the path continues in front of you.
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt;\
 (replace: ?prompts) [ What do you want to do?
     1. [[Continue down pathway.-&gt;lab-block-right-2nd-passage]]
    2. (if: $havebox) [ [[Look in the window-&gt;lab-block-right-1st-passage-window]] ] (else:) [ [[Look in the window-&gt;lab-block-right-1st-passage-window-fail]] ]
     3. [[Return to main door...-&gt;outside-lab-block]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="81" name="lab-block-hallway-1" tags="" position="1100,2100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="81" name="lab-block-hallway-1" tags="" position="1100,2100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-hallway-part1-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You stand just inside the main doorway in the main hallway.
 
      The hallway extends ahead of you. 
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Walk down hallway...-&gt;lab-block-hallway-2]]
     2. [[Ask someone if its possible to enter the security office.-&gt;lab-block-hallway-guard-room]]
     3. [[Enter the storeroom.-&gt;lab-block-hallway-storeroom]]
     4. [[Exit the building.-&gt;outside-lab-block]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
 (display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="82" name="the-mission-live-template" tags="" position="200,1500" size="100,100">&lt;!-- Dynamically refreshed content. --&gt;
 (live: 1s) [
     (if: $timer &gt; 0) [ (set: $timer to it -1) ]
@@ -1974,49 +1703,35 @@ There&#39;s a high window to your left and the path continues in front of you.
         ]
         (stop:)
     ]
-]</tw-passagedata><tw-passagedata pid="83" name="lab-block-right-2nd-passage" tags="" position="300,2300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+]</tw-passagedata><tw-passagedata pid="83" name="lab-block-right-2nd-passage" tags="" position="300,2300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-entrance-passage-right-part2-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You walk further down the path.
 
 There&#39;s a second window to your left and the path continues in front of you.
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Continue down pathway.-&gt;lab-block-right-3rd-passage]]
     2. (if: $havebox) [ [[Look in the window-&gt;lab-block-right-2nd-passage-window]] ] (else:) [ [[Look in the window-&gt;lab-block-right-2nd-passage-window-fail]] ]
     3. [[Go back up pathway...-&gt;lab-block-right-1st-passage]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="84" name="lab-block-right-3rd-passage" tags="" position="300,2500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="84" name="lab-block-right-3rd-passage" tags="" position="300,2500" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-entrance-passage-right-part3-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You walk further down the path.
 
     There&#39;s a final window to your left and a fence blocks you from going any further.
@@ -2025,99 +1740,75 @@ There&#39;s a second window to your left and the path continues in front of you.
         &lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;Narrator&lt;/span&gt;&lt;span&gt;Having a lovely little wander are we?&lt;/span&gt;&lt;/span&gt;
     ]
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. (if: $havebox) [ [[Look in the window-&gt;lab-block-right-3rd-passage-window]] ] (else:) [ [[Look in the window-&gt;lab-block-right-3rd-passage-window-fail]] ]
     2. [[Go back up pathway...-&gt;lab-block-right-2nd-passage]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="85" name="lab-block-right-2nd-passage-window" tags="" position="500,2300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="85" name="lab-block-right-2nd-passage-window" tags="" position="500,2300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-entrance-passage-right-part2-window-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $windowspeekcount to it +1)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;lab-entrance-passage-right-part2-window-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ The stool creaks as you step onto it. You peer through the window...
 
 Hmmm... You see something scuttle into a darkened corner. What on earth was that?
 (display: &quot;window-peek-count-inc&quot;)
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Continue.-&gt;lab-block-right-2nd-passage]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="86" name="lab-block-right-2nd-passage-window-fail" tags="" position="100,2300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="86" name="lab-block-right-2nd-passage-window-fail" tags="" position="100,2300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-entrance-passage-right-part2-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
+&lt;!-- Update &quot;background&quot; content. --&gt; \
 (display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You just can&#39;t stretch high enough to see in properly. Unless you like looking at the ceiling that is!
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Continue...-&gt;lab-block-right-2nd-passage]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="87" name="lab-block-right-3rd-passage-window" tags="" position="500,2500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="87" name="lab-block-right-3rd-passage-window" tags="" position="500,2500" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-entrance-passage-right-part3-window-lightoff-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $windowspeekcount to it +1)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;lab-entrance-passage-right-part3-window-lightoff-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ After stepping onto stool you peer through the window from a angle, worried what you might see now.
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Continue.-&gt;lab-block-right-3rd-passage]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
 (display: &quot;the-mission-live-template&quot;)
-
-&lt;!-- Display &quot;bg-fade-template&quot; --&gt;
+&lt;!-- Display &quot;bg-fade-template&quot; --&gt; \
 (live: 3s) [
     (set: $backgroundurl to &quot;lab-entrance-passage-right-part3-window-lighton-1024x768.webp&quot;)
     (display: &quot;bg-fade-template&quot;)
@@ -2153,75 +1844,58 @@ What can we do about that?
     $windowpeekcount is 3, &quot;How would you like it if someone was peering through your window?!&quot;,
     $windowpeekcount is 4, &quot;Your spying is becoming a serial habit now. Do I need to call the police?&quot;,
     &quot;Having a little look-see are we? Okay!?&quot;)
-)}(if: _comment is not &quot;&quot;) [&lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;Narrator&lt;/span&gt;&lt;span&gt;_comment&lt;/span&gt;&lt;/span&gt; ]</tw-passagedata><tw-passagedata pid="90" name="lab-block-right-1st-passage-window" tags="" position="500,2100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+)}(if: _comment is not &quot;&quot;) [&lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;Narrator&lt;/span&gt;&lt;span&gt;_comment&lt;/span&gt;&lt;/span&gt; ]</tw-passagedata><tw-passagedata pid="90" name="lab-block-right-1st-passage-window" tags="" position="500,2100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-entrance-passage-right-part1-window-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $windowspeekcount to it +1)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;lab-entrance-passage-right-part1-window-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You step up onto the stool and peer through the window.
 
 OK... This appears to be the guard room.
 
 (display: &quot;window-peek-count-inc&quot;)
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Look around the room.-&gt;guard-room-window-look]]
     2. [[Continue.-&gt;lab-block-right-1st-passage]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="91" name="lab-block-right-1st-passage-window-fail" tags="" position="100,2100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="91" name="lab-block-right-1st-passage-window-fail" tags="" position="100,2100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-entrance-passage-right-part1-window-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You stretch up, but can&#39;t reach the window.
 
 Hmmm. You need something to help you reach.
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Continue...-&gt;lab-block-right-1st-passage]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="92" name="guard-room-window-look" tags="" position="300,1900" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="92" name="guard-room-window-look" tags="" position="300,1900" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-entrance-passage-right-part1-window-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [
     You see Scott, the security guard, sitting inside.
     
@@ -2252,55 +1926,39 @@ Hmmm. You need something to help you reach.
     
     &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Best get back to the others so we can all get going.&lt;/span&gt;&lt;/span&gt;
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Continue...-&gt;lab-block-right-1st-passage]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="93" name="lab-block-left-bin" tags="" position="1900,2300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="93" name="lab-block-left-bin" tags="" position="1900,2300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-entrance-passage-left-bin-stool-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You walk down the path to the left of the main entrance.
 
 There&#39;s a high window to your right and the path continues in front of you.
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Pick up wooden stool...-&gt;lab-block-left-pick-up-stool]]
     2. [[Go back up pathway...-&gt;lab-block-left-1st-passage]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="94" name="lab-block-hallway-guard-room" tags="" position="900,2100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="94" name="lab-block-hallway-guard-room" tags="" position="900,2100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-hallway-part1-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Step aside, BARC and I have got this.&lt;/span&gt;&lt;/span&gt;
 
     BARC nose opens and produces a lock-pick from the cavity.
@@ -2313,29 +1971,21 @@ There&#39;s a high window to your right and the path continues in front of you.
 
     &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Right, you two. You get off and grab that locket and we&#39;ll let you know if old Tezza is on his way back.&lt;/span&gt;&lt;/span&gt;
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Walk down hallway...-&gt;lab-block-hallway-2]]
     2. [[Exit the building.-&gt;outside-lab-block]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="95" name="lab-block-hallway-storeroom" tags="" position="1300,2100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="95" name="lab-block-hallway-storeroom" tags="" position="1300,2100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-hallway-storeroom-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You stand inside a small cleaner&#39;s store room.
 
     It&#39;s filled with... Well, cleaner&#39;s stuff. 
@@ -2344,29 +1994,21 @@ There&#39;s a high window to your right and the path continues in front of you.
 
     (if: visits is 1) [ &lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;What do you intend to do, make the cleaner&#39;s life easier?&lt;/span&gt;&lt;/span&gt; ]
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. (if: $steppedonbrush is false) [ [[Look around.-&gt;lab-block-hallway-storeroom-look]] ] (else:) [ I&#39;m not chancing stepping on that brush again ]
     2. [[Exit the storeroom..-&gt;lab-block-hallway-1]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="96" name="lab-block-hallway-2" tags="" position="1100,2300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="96" name="lab-block-hallway-2" tags="" position="1100,2300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-hallway-part2-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You are at the end of the hall.
 
      Before you is an elevator.
@@ -2377,88 +2019,66 @@ There&#39;s a high window to your right and the path continues in front of you.
 
     It looks like the elevator is the way in, anyway.
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Press the elevator button.-&gt;lab-block-hallway-elevator-level-1]]
     2. [[Go back up the hallway.-&gt;lab-block-hallway-1]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="97" name="lab-block-hallway-elevator-level-1" tags="" position="1100,2500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="97" name="lab-block-hallway-elevator-level-1" tags="" position="1100,2500" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-hallway-elevator-level1-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You are standing in an elevator. Not really much more to say about it.
 
     A box that goes up and down... Well, normally anyway. This one only seems to go down to level 0.
 
     Oh. I can feel we&#39;re getting close now. Jess is looking nervous.
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Press the elevator level 0 button.-&gt;lab-block-hallway-elevator-level-0]]
     2. [[Exit the elevator.-&gt;lab-block-hallway-2]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="98" name="lab-entrance" tags="" position="1100,2900" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="98" name="lab-entrance" tags="" position="1100,2900" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-lab-entrance-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You are standing outside the lab entrance.
 
     A secure glass door blocks your path to the goal. You can&#39;t believe how close you are.
 
     (if: $havekeycard is false) [ Just need to find the key card and get past this door!!! ]
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. (if: $havekeycard is false) [ [[Open lab door.-&gt;lab-door-fail]] ] (else:) [ [[Open lab door.-&gt;lab-benches]] ]
     2. (if: $havekeycard is false) [ [[Check plant pot-&gt;check-plant]] ] (else:) [ Check plant pot. ]
     3. [[Press the elevator button.-&gt;lab-block-hallway-elevator-level-0]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="99" name="lab-desk" tags="" position="1100,3300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="99" name="lab-desk" tags="" position="1100,3300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-lab-desk-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
+&lt;!-- Update &quot;background&quot; content. --&gt; \
 (display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You are standing behind the professor&#39;s desk.
 
 There&#39;s a computer sreen and keyboard on top. In front are the lab benches, and the exit.
@@ -2467,31 +2087,23 @@ To the right, there are two drawers. Maybe, just maybe!?
 
 &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Finally! Come oooonnnn, $initials&lt;/span&gt;&lt;/span&gt;
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Open the top draw.-&gt;lab-desk-open-top-draw]]
     2. [[Open the bottom draw.-&gt;lab-desk-open-bottom-draw]]
     3. [[Walk to lab benches.-&gt;lab-benches]]
     4. [[Walk to secure area.-&gt;lab-secure-area]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="100" name="lab-secure-area" tags="" position="1300,3100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="100" name="lab-secure-area" tags="" position="1300,3100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-lab-secure-section-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You stand in front of an opaque door, with the words &quot;Secure Area&quot; on it.
 
 I wonder what Prof T. is getting up to in there.
@@ -2504,30 +2116,22 @@ I wonder what Prof T. is getting up to in there.
 
 &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;OK. I suppose...&lt;/span&gt;&lt;/span&gt;
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Walk over to benches.-&gt;lab-benches]]
     2. [[Walk to the professor&#39;s desk.-&gt;lab-desk]]
     3. [[Use key card on reader.-&gt;lab-secure-area-fail]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="101" name="lab-benches" tags="" position="1100,3100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="101" name="lab-benches" tags="" position="1100,3100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-lab-benches-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You are standing by some benches with lab equipment on them.
 
     Before you is the lab entrance. Behind you is the professor&#39;s desk.
@@ -2554,51 +2158,40 @@ I wonder what Prof T. is getting up to in there.
     
     &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Haha, so true!!!&lt;/span&gt;&lt;/span&gt;
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Walk to the professor&#39;s desk.-&gt;lab-desk]]
     2. [[Walk to the secure area.-&gt;lab-secure-area]]
     (if: $havelocket is false) [ [[3. Exit the lab-&gt;lab-entrance]] ] (else:) [ 3. (link-reveal: &quot;Exit Lab.&quot;) [ (go-to: &quot;end-game&quot;) ]
     ]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="102" name="lab-block-left-1st-passage-windows" tags="" position="1700,2100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="102" name="lab-block-left-1st-passage-windows" tags="" position="1700,2100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-entrance-passage-left-window-empty-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $windowspeekcount to it +1)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;lab-entrance-passage-left-window-empty-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You hop up onto the stool and peek in...
 
 Before you is a restroom, with cubicles and urinals. Pretty standard stuff...
 
 You also notice a cleaner&#39;s trolley near the door.
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Continue.-&gt;lab-block-left-1st-passage]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
 (display: &quot;the-mission-live-template&quot;)
-
+&lt;!-- Fade out. --&gt;
 (live: 4s) [
     (display: &quot;bg-fade-out-template&quot;)
     (set: $backgroundurl to &quot;lab-entrance-passage-left-window-cleaner-1024x768.webp&quot;)
@@ -2617,101 +2210,73 @@ You also notice a cleaner&#39;s trolley near the door.
         (display: &quot;window-peek-count-inc&quot;)
     ]
     (stop:)
-]</tw-passagedata><tw-passagedata pid="103" name="lab-block-left-1st-passage-windows-fail" tags="" position="2100,2100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+]</tw-passagedata><tw-passagedata pid="103" name="lab-block-left-1st-passage-windows-fail" tags="" position="2100,2100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-entrance-passage-left-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You can&#39;t reach the window even if you stand on tip-toes.
 
 You need something to help you reach.
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Continue...-&gt;lab-block-left-1st-passage]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="104" name="lab-block-left-pick-up-stool" tags="" position="1700,2300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="104" name="lab-block-left-pick-up-stool" tags="" position="1700,2300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-entrance-passage-left-bin-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $havebox to true)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;lab-entrance-passage-left-bin-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You walk down the path to the left of the main entrance.
 
 There&#39;s a high window to your right and the path continues in front of you.
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Continue...-&gt;lab-block-left-1st-passage]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="105" name="lab-desk-open-bottom-draw" tags="" position="1300,3500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="105" name="lab-desk-open-bottom-draw" tags="" position="1300,3500" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-lab-desk-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You tug at the bottom draw repeatedly, but it won&#39;t open.
 &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;The locket better not be in there. It won&#39;t budge&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Oh no! Don&#39;t say we did all this for nothing!&lt;/span&gt;&lt;/span&gt;
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Continue...-&gt;lab-desk]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="106" name="lab-desk-open-top-draw" tags="" position="900,3500" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="106" name="lab-desk-open-top-draw" tags="" position="900,3500" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-lab-desk-top-draw-open-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You open the top draw and...
 
 Is it there!?
@@ -2720,73 +2285,54 @@ Yes, you notice the locket sitting there.
 
 Thank the heavens!!!
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Pick up your stolen locket.-&gt;lab-desk-pick-up-locket]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="107" name="bin-path-open-gate" tags="" position="1900,900" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="107" name="bin-path-open-gate" tags="" position="1900,900" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;bin-passage-gate-open-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You enter the pin written on the piece of paper you found.
 
    It worked? I mean, it worked! Great, I&#39;m in.
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
      1. [[Continue...-&gt;bin-path-clear]]
      2. [[Return to $bindesc.-&gt;bin-path]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="108" name="bush-path-moved" tags="" position="300,900" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="108" name="bush-path-moved" tags="" position="300,900" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;bush-passage-hole-1024-768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \ 
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if: visits is 1) [
     (set: $bushmoved to true)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;bush-passage-hole-1024-768.webp&quot;)
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update stats content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Meet ]
-
-&lt;!-- Update main text content. --&gt;
+&lt;!-- Update main text content. --&gt; \
 (replace: ?maintext) [ You put on the gloves, carefully move the bush to the side, and the hole is revealed.
 
 Ooo, it&#39;s very dark in there. Better not be any spiders!? ]
-
-&lt;!-- Update prompts content. --&gt;
+&lt;!-- Update prompts content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Crawl through hole.-&gt;bush-path-clear]]
     2. (if: $troughmistake  is false) [ [[Look in the trough.-&gt;bush-path-trough-fail]] ] (else:) [ (text-colour:grey)[Look in the trough.] ]
     3. [[Return to main gate.-&gt;maingate]]
 ]
-
-&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-meet-live-template&quot;)
-
-&lt;!-- Update stats content. --&gt;
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]</tw-passagedata><tw-passagedata pid="109" name="times-detected-inc" tags="" position="300,1600" size="100,100">{
+&lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="109" name="times-detected-inc" tags="" position="300,1600" size="100,100">{
     (set: $timesdetected to it +1)
     (set: _comment_list to (a:
         &quot;Try to be more careful!&quot;,
@@ -2796,26 +2342,19 @@ Ooo, it&#39;s very dark in there. Better not be any spiders!? ]
         &quot;About as inconspicuous as a big red button!&quot;
     ))
     (set: _comment to _comment_list&#39;s ((random: 1, _comment_list&#39;s length)))
-} &lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;Narrator&lt;/span&gt;&lt;span&gt;Your &#39;&#39;//Times Detected//&#39;&#39; counter has just increased... _comment&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="110" name="lab-desk-pick-up-locket" tags="" position="900,3100" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon first visit. --&gt;
+} &lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;Narrator&lt;/span&gt;&lt;span&gt;Your &#39;&#39;//Times Detected//&#39;&#39; counter has just increased... _comment&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="110" name="lab-desk-pick-up-locket" tags="" position="900,3100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-block-lab-desk-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon first visit. --&gt; \
 (if:visits is 1) [
     (set: $havelocket to true)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;lab-block-lab-desk-1024x768.webp&quot;)
-
 &lt;!-- Update &quot;stats&quot; content. --&gt;
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You pick up the locket and immediately check inside.
 
 Double thank heavens. The SD card is still in there.
@@ -2824,13 +2363,11 @@ Double thank heavens. The SD card is still in there.
 
 &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Yeah, you&#39;re right. I have an eery feeling we&#39;re being watched...&lt;/span&gt;&lt;/span&gt;
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Continue...-&gt;lab-desk]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
 (display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="111" name="restart-game-template" tags="" position="500,1500" size="100,100">(link-reveal: &quot;Restart Game&quot;) [
     (go-to: &quot;start&quot;)
 ]</tw-passagedata><tw-passagedata pid="112" name="password-template" tags="" position="400,1400" size="100,100">{
@@ -2842,15 +2379,14 @@ Double thank heavens. The SD card is still in there.
             &quot;check-it-in&quot;
         ))
         (set: $password to $password_list&#39;s 1)
-    ]
-    (else:) [
+    ] (else:) [
         &lt;span class=&quot;questions&quot;&gt;
             (for: each _curr_pass, ...$password_list) [
                 (set: _link_text to &#39;&quot;&#39; + _curr_pass + &#39;&quot;&#39;)
                 (set: _link_path to (cond:
                     _curr_pass is $password,
-                    &quot;right-password&quot;,
-                    &quot;wrong-password&quot;
+                        &quot;right-password&quot;,
+                        &quot;wrong-password&quot;
                 ))
                 &lt;span class=&quot;question&quot;&gt;
                     (link: _link_text)[
@@ -2860,26 +2396,19 @@ Double thank heavens. The SD card is still in there.
             ]
         &lt;/span&gt;
     ]
-}</tw-passagedata><tw-passagedata pid="113" name="lab-block-hallway-storeroom-look" tags="" position="1300,2300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon game start. --&gt;
+}</tw-passagedata><tw-passagedata pid="113" name="lab-block-hallway-storeroom-look" tags="" position="1300,2300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(set: $backgroundurl to &quot;lab-block-hallway-storeroom-broom-1024x768.webp&quot;)
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Set variables upon game start. --&gt; \
 (if: visits is 1) [
     (set: $steppedonbrush to true)
 ]
-
-&lt;!-- Set variables upon section visit. --&gt;
-(set: $backgroundurl to &quot;lab-block-hallway-storeroom-broom-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You don&#39;t see anything worth grabbing.
 
     (if: visits is 1) [ &lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;You wouldn&#39;t know a broom if one hit you in the face.&lt;/span&gt;&lt;/span&gt;
@@ -2890,86 +2419,62 @@ Double thank heavens. The SD card is still in there.
         &lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;Whoops, clumsy!&lt;/span&gt;&lt;/span&gt;
     ]
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Exit the storeroom..-&gt;lab-block-hallway-1]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="114" name="lab-block-hallway-elevator-level-0" tags="" position="1100,2700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="114" name="lab-block-hallway-elevator-level-0" tags="" position="1100,2700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-hallway-elevator-level0-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You are on level 0.
 
     I don&#39;t feel the need to explain the surroundings. A elevator&#39;s an elevator, no? Or is it a lift?
 
     Getting really nervous now.
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Press the elevator level 1 button.-&gt;lab-block-hallway-elevator-level-1]]
     2. [[Exit the elevator.-&gt;lab-entrance]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="115" name="lab-secure-area-fail" tags="" position="1300,3300" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="115" name="lab-secure-area-fail" tags="" position="1300,3300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-lab-secure-section-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You swipe the card in the reader, but apart from a swishing sound, nothing happens.
 
 You note a key pad on the lock, but you don&#39;t know the pin.
 
 Listening at the door, you key hear muted voices. Better not try your luck and get caught.
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Walk over to benches.-&gt;lab-benches]]
     2. [[Walk to the professor&#39;s desk.-&gt;lab-desk]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="116" name="end-game" tags="" position="1100,3700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="116" name="end-game" tags="" position="1100,3700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-lab-secure-section-caught-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You are startled by a voice behind you...
 
 &lt;span class=&quot;speechbad&quot;&gt;&lt;span&gt;Oi!!! What are you two doing in here!?
@@ -2987,30 +2492,23 @@ Nobody is supposed to be in here this late.
 
 &lt;span class=&quot;speechproft&quot;&gt;&lt;span&gt;Oh no you two... I&#39;m afraid I can&#39;t let you leave yet!!!&lt;/span&gt;&lt;/span&gt;
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) []
-
+&lt;!-- Fade out. --&gt;
 (live: 5s) [
     (display: &quot;to-be-continued-template&quot;)
     (stop:)
 ]</tw-passagedata><tw-passagedata pid="117" name="the-end-template" tags="" position="500,1400" size="100,100">&lt;!-- Set variables upon section visit. --&gt;
 (set: $backgroundurl to &quot;game-over-1024x768.webp&quot;)
-(replace: ?background) [  (transition: &quot;fade&quot;) + (transition-time:  5s) [  (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;) ] ]&lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="118" name="bg-fade-template" tags="" position="600,1600" size="100,100">(replace: ?background) [  (transition: &quot;fade&quot;) + (transition-delay: 1s) + (transition-time:  2s) [  (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;) ] ]&lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="119" name="lab-door-fail" tags="" position="1300,2700" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+(replace: ?background) [  (transition: &quot;fade&quot;) + (transition-time:  5s) [  (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;) ] ]&lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="118" name="bg-fade-template" tags="" position="600,1600" size="100,100">(replace: ?background) [  (transition: &quot;fade&quot;) + (transition-delay: 1s) + (transition-time:  2s) [  (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;) ] ]&lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="119" name="lab-door-fail" tags="" position="1300,2700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-lab-entrance-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ Hmmm. You don&#39;t have any keycard.
 
     You remain standing outside the lab entrace.
@@ -3019,29 +2517,21 @@ Nobody is supposed to be in here this late.
 
     (if: $havekeycard is false) [ Just need to get past this door and you&#39;re there!!! ]
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. (if: $havekeycard is false) [ [[Check plant.-&gt;check-plant]] ] (else:) [ Check plant. ]
     2. [[Press the elevator button.-&gt;lab-block-hallway-elevator-level-0]]
 ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="120" name="check-plant" tags="" position="1300,2900" size="100,100">(display: &quot;layout-template&quot;) &lt;!-- Display &quot;layout-template&quot; passage . --&gt;
-
-&lt;!-- Set variables upon section visit. --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="120" name="check-plant" tags="" position="1300,2900" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-lab-entrance-1024x768.webp&quot;)
-
-&lt;!-- Update &quot;stats&quot; content. --&gt;
+&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
+(display: &quot;layout-template&quot;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-
-&lt;!-- Update &quot;background&quot; content. --&gt;
-(display: &quot;bg-template&quot;)
-
-&lt;!-- Update &quot;titletext&quot; content. --&gt;
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-
-&lt;!-- Update &quot;maintext&quot; content. --&gt;
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ \
     (set: _comment to (either: &quot;You look at the large, odd looking, plant.&quot;, &quot;YAn odd looking plant stands in front of you.&quot;, &quot;What an odd looking plant.&quot;, &quot;That&#39;s a sad looking plant.&quot;))
 
@@ -3049,11 +2539,9 @@ Nobody is supposed to be in here this late.
     
     But where? ]
 ]
-
-&lt;!-- Update &quot;prompts&quot; content. --&gt;
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ (display: &quot;plant-choices-template&quot;) ]
-
-&lt;!-- Display &quot;the-meet-live-template&quot; passage . --&gt;
+&lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
 (display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="121" name="plant-choices-template" tags="" position="500,1600" size="100,100">What do you want to do?
 1. (link-reveal: &quot;Delve in plant pot.&quot;) [ 
     (append: ?maintext) [ Nope. Not there! 
