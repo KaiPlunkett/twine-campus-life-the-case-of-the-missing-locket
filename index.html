@@ -1188,113 +1188,155 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
         ]
         (stop:)
     ]
-]</tw-passagedata><tw-passagedata pid="41" name="the-plan-prompts-1" tags="" position="1850,1400" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    &lt;span class=&quot;question&quot;&gt;
-        (link-reveal: &quot;Cloak of invisibility?&quot;) [
-            (set: $response to &quot;Cloak of invisibility?&quot;)
-            (append: ?maintext) [ (display: &quot;the-plan-maintext-2&quot;) ]
-            (replace: ?prompts) [ (display: &quot;the-plan-prompts-2&quot;) ]
-        ]
-    &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt;
-        (link-reveal: &quot;Oh! Errr... Nope, gone... Anyone?&quot;) [
-            (set: $response to &quot;Oh! Errr... Nope, gone... Anyone?&quot;)
-            (append: ?maintext) [ (display: &quot;the-plan-maintext-4&quot;) ]
-            (replace: ?prompts) [ (display: &quot;the-plan-prompts-4&quot;) ]
-        ]
+]</tw-passagedata><tw-passagedata pid="41" name="the-plan-prompts-1" tags="" position="1850,1400" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Cloak of invisibility?&quot;) [
+                (set: $response to &quot;Cloak of invisibility?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-2&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-2&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Oh! Errr... Nope, gone... Anyone?&quot;) [
+                (set: $response to &quot;Oh! Errr... Nope, gone... Anyone?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-4&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-4&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Can we recap what we know?&quot;) [
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-1&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
+                 (go-to: &quot;the-mission-start&quot;)
+            ]
+        &lt;/span&gt;
     &lt;/span&gt;
-    &lt;span class=&quot;question&quot;&gt;
-        (link-reveal: &quot;Can we recap what we know?&quot;) [
-            (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
-            (replace: ?prompts) [ (display: &quot;the-plan-prompts-1&quot;) ]
-        ]
-    &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt;
-        (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
-             (go-to: &quot;the-mission-start&quot;)
-        ]
-    &lt;/span&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="42" name="the-plan-maintext-1" tags="" position="1950,1400" size="100,100">&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;So how we going to tackle this?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="43" name="the-plan-maintext-2" tags="" position="1950,1500" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="42" name="the-plan-maintext-1" tags="" position="1950,1400" size="100,100">&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;So how we going to tackle this?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="43" name="the-plan-maintext-2" tags="" position="1950,1500" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Sorry, Potter, I think that would be difficult...&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Shall we figure a way in by playing Wizard Chess, eh BARC!?&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechbarc&quot;&gt;&lt;span&gt;BARC&lt;/span&gt;&lt;span&gt;(text-style:&quot;fidget&quot;)[Yip!]&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="44" name="the-plan-maintext-3" tags="" position="1950,1600" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;speechraphael&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Do you want this locket back or what?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="45" name="the-plan-maintext-4" tags="" position="1950,1700" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Do you want this locket back or what?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="45" name="the-plan-maintext-4" tags="" position="1950,1700" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;The security guard takes 15 minutes to do his rounds. Unfortunately, I don&#39;t know how often he does it though.&lt;/span&gt;&lt;/span&gt;
-{ (set: $guardroundstime to (60 * 15)) }</tw-passagedata><tw-passagedata pid="46" name="the-plan-prompts-2" tags="" position="1850,1500" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Sorry...&quot;) [
-        (set: $response to &quot;Sorry...&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-5&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-5&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Wow... You lot are serious!&quot;) [
-        (set: $response to &quot;Wow... You lot are serious!&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-3&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-3&quot;) ]
-    ] &lt;/span&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Can we recap what we know?&quot;) [
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-2&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
-        (goto: &quot;the-mission-start&quot;)
-    ] &lt;/span&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="47" name="the-plan-prompts-3" tags="" position="1850,1600" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Got any ideas then?&quot;) [
-        (set: $response to &quot;Got any ideas?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-4&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-4&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Fair point... Any ideas?&quot;) [
-        (set: $response to &quot;Fair point... Any ideas?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-5&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-5&quot;) ]
-    ] &lt;/span&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Can we recap what we know?&quot;) [
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-3&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
-        (goto: &quot;the-mission-start&quot;)
-    ] &lt;/span&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="48" name="the-plan-prompts-4" tags="" position="1850,1700" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;You know, Jess?&quot;) [
-        (set: $response to &quot;You know, Jess?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-6&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-6&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Any way we can find out?&quot;) [
-        (set: $response to &quot;Any way we can find out?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-6&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-6&quot;) ]
-    ] &lt;/span&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Can we recap what we know?&quot;) [
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-4&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
-        (goto: &quot;the-mission-start&quot;)
-    ] &lt;/span&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="49" name="the-plan-maintext-5" tags="" position="1950,1800" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
+{ (set: $guardroundstime to (60 * 15)) }</tw-passagedata><tw-passagedata pid="46" name="the-plan-prompts-2" tags="" position="1850,1500" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Sorry...&quot;) [
+                (set: $response to &quot;Sorry...&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-5&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-5&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Wow... You lot are serious!&quot;) [
+                (set: $response to &quot;Wow... You lot are serious!&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-3&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-3&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Can we recap what we know?&quot;) [
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-2&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
+                (goto: &quot;the-mission-start&quot;)
+            ]
+        &lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="47" name="the-plan-prompts-3" tags="" position="1850,1600" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Got any ideas then?&quot;) [
+                (set: $response to &quot;Got any ideas?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-4&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-4&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Fair point... Any ideas?&quot;) [
+                (set: $response to &quot;Fair point... Any ideas?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-5&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-5&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Can we recap what we know?&quot;) [
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-3&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
+                (goto: &quot;the-mission-start&quot;)
+            ]
+        &lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="48" name="the-plan-prompts-4" tags="" position="1850,1700" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;You know, Jess?&quot;) [
+                (set: $response to &quot;You know, Jess?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-6&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-6&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Any way we can find out?&quot;) [
+                (set: $response to &quot;Any way we can find out?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-6&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-6&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Can we recap what we know?&quot;) [
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-4&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
+                (goto: &quot;the-mission-start&quot;)
+            ]
+        &lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="49" name="the-plan-maintext-5" tags="" position="1950,1800" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Alright, maybe we were a bit harsh.&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Oh, it was a joke... Hah-hah... I think!?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="50" name="the-plan-prompts-5" tags="" position="1850,1800" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Any ideas, Rafa?&quot;) [
-        (set: $response to &quot;Any ideas, Rafa?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-4&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-4&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Any ideas, Jess?&quot;) [
-        (set: $response to &quot;Any ideas, Jess?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-6&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-6&quot;) ]
-    ] &lt;/span&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Can we recap what we know?&quot;) [
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-5&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
-        (goto: &quot;the-mission-start&quot;)
-    ] &lt;/span&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="51" name="the-plan-maintext-recap" tags="" position="1700,1700" size="100,100">(set: $recap to (macro: [
+&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Oh, it was a joke... Hah-hah... I think!?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="50" name="the-plan-prompts-5" tags="" position="1850,1800" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Any ideas, Rafa?&quot;) [
+                (set: $response to &quot;Any ideas, Rafa?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-4&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-4&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Any ideas, Jess?&quot;) [
+                (set: $response to &quot;Any ideas, Jess?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-6&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-6&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Can we recap what we know?&quot;) [
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-5&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
+                (goto: &quot;the-mission-start&quot;)
+            ]
+        &lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="51" name="the-plan-maintext-recap" tags="" position="1700,1700" size="100,100">(set: $recap to (macro: [
     (output:) [ \
         OK. So let&#39;s have a recap... \
         (cond: $guardroundstime &gt; 0, &quot;&lt;br/&gt; &gt; We know the guard&#39;s round time is &quot; + (text: $guardroundstime / 60) + &quot; mins.&quot;, &quot;&quot;) \
@@ -1305,168 +1347,244 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
     ]
 ])) \
 &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;($recap:)&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="52" name="the-plan-maintext-6" tags="" position="2200,1400" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Hmmm. I know there&#39;s a security guards office just to the right of the lab block entrace.&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="53" name="the-plan-prompts-6" tags="" position="2100,1400" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;How will we get in?&quot;) [
-        (set: $response to &quot;How will we get in?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-8&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-8&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;How will that help?&quot;) [
-        (set: $response to &quot;How will that help?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-7&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-7&quot;) ]
-    ] &lt;/span&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Can we recap what we know?&quot;) [
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-6&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
-        (goto: &quot;the-mission-start&quot;)
-    ] &lt;/span&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="54" name="the-plan-maintext-7" tags="" position="2200,1500" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Think maybe we can sneak into the room and somebody keep watch of the monitors?&lt;/span&gt;&lt;/span&gt;{ (set: $guardsecuritymonitors to true) }</tw-passagedata><tw-passagedata pid="55" name="the-plan-prompts-7" tags="" position="2100,1500" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;How will we get in?&quot;) [
-        (set: $response to &quot;How will we get in?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-8&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-8&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Any ideas, Rafa?&quot;) [
-        (set: $response to &quot;Any ideas, Rafa?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-8&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-8&quot;) ]
-    ] &lt;/span&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Can we recap what we know?&quot;) [
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-7&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
-        (goto: &quot;the-mission-start&quot;)
-    ] &lt;/span&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="56" name="the-plan-maintext-8" tags="" position="2200,1600" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;I&#39;m sure BARC can get us into the office. Then one of us can keep an eye on the monitors. We&#39;ll need to know when to begin, though!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="57" name="the-plan-prompts-8" tags="" position="2100,1600" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Great. Yeah, how do we find out?&quot;) [
-        (set: $response to &quot;Great. Yeah, how do we find out?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-9&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-9&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Any other bright ideas?&quot;) [
-        (set: $response to &quot;Any other bright ideas?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-9&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-9&quot;) ]
-    ] &lt;/span&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Can we recap what we know?&quot;) [
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-8&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
-        (goto: &quot;the-mission-start&quot;)
-    ] &lt;/span&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="58" name="the-plan-maintext-9" tags="" position="2200,1700" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Hmmm. I know there&#39;s a security guards office just to the right of the lab block entrace.&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="53" name="the-plan-prompts-6" tags="" position="2100,1400" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;How will we get in?&quot;) [
+                (set: $response to &quot;How will we get in?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-8&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-8&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;How will that help?&quot;) [
+                (set: $response to &quot;How will that help?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-7&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-7&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Can we recap what we know?&quot;) [
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-6&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
+                (goto: &quot;the-mission-start&quot;)
+            ]
+        &lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="54" name="the-plan-maintext-7" tags="" position="2200,1500" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Think maybe we can sneak into the room and somebody keep watch of the monitors?&lt;/span&gt;&lt;/span&gt;{ (set: $guardsecuritymonitors to true) }</tw-passagedata><tw-passagedata pid="55" name="the-plan-prompts-7" tags="" position="2100,1500" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;How will we get in?&quot;) [
+                (set: $response to &quot;How will we get in?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-8&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-8&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Any ideas, Rafa?&quot;) [
+                (set: $response to &quot;Any ideas, Rafa?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-8&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-8&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Can we recap what we know?&quot;) [
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-7&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
+                (goto: &quot;the-mission-start&quot;)
+            ]
+        &lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="56" name="the-plan-maintext-8" tags="" position="2200,1600" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;I&#39;m sure BARC can get us into the office. Then one of us can keep an eye on the monitors. We&#39;ll need to know when to begin, though!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="57" name="the-plan-prompts-8" tags="" position="2100,1600" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Great. Yeah, how do we find out?&quot;) [
+                (set: $response to &quot;Great. Yeah, how do we find out?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-9&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-9&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Any other bright ideas?&quot;) [
+                (set: $response to &quot;Any other bright ideas?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-9&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-9&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Can we recap what we know?&quot;) [
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-8&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
+                (goto: &quot;the-mission-start&quot;)
+            ]
+        &lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="58" name="the-plan-maintext-9" tags="" position="2200,1700" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Give me a min. Steph has been working on experiments over night. I&#39;ll message her...&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;float-left&quot;&gt;Jess steps a way for a moment...&lt;/span&gt;</tw-passagedata><tw-passagedata pid="59" name="the-plan-prompts-9" tags="" position="2100,1700" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Have I upset you, Rafa?&quot;) [
-        (set: $response to &quot;Have I upset you, Rafa?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-10&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-10&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Shall we just wait for Jess?&quot;) [
-        (set: $response to &quot;Shall we just wait for Jess?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-13&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-13&quot;) ]
-    ] &lt;/span&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Can we recap what we know?&quot;) [
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-9&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
-        (goto: &quot;the-mission-start&quot;)
-    ] &lt;/span&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="60" name="the-plan-maintext-10" tags="" position="2200,1800" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;What!? Noooo... What makes you say that?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="61" name="the-plan-prompts-10" tags="" position="2100,1800" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Hmmm. Perhaps telling TJ to shove it!&quot;) [
-        (set: $response to &quot;Hmmm. Perhaps telling TJ to shove it!&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-11&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-11&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Shall we just wait for Jess?&quot;) [
-        (set: $response to &quot;Shall we just wait for Jess?&quot;)
-        set: $guardroundrequency to (60 * 60 * 2))
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-13&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-13&quot;) ]
-    ] &lt;/span&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Can we recap what we know?&quot;) [
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-10&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
-        (goto: &quot;the-mission-start&quot;)
-    ] &lt;/span&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="62" name="the-plan-maintext-11" tags="" position="2450,1400" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;float-left&quot;&gt;Jess steps a way for a moment...&lt;/span&gt;</tw-passagedata><tw-passagedata pid="59" name="the-plan-prompts-9" tags="" position="2100,1700" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Have I upset you, Rafa?&quot;) [
+                (set: $response to &quot;Have I upset you, Rafa?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-10&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-10&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Shall we just wait for Jess?&quot;) [
+                (set: $response to &quot;Shall we just wait for Jess?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-13&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-13&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Can we recap what we know?&quot;) [
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-9&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
+                (goto: &quot;the-mission-start&quot;)
+            ]
+        &lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="60" name="the-plan-maintext-10" tags="" position="2200,1800" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;What!? Noooo... What makes you say that?&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="61" name="the-plan-prompts-10" tags="" position="2100,1800" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Hmmm. Perhaps telling TJ to shove it!&quot;) [
+                (set: $response to &quot;Hmmm. Perhaps telling TJ to shove it!&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-11&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-11&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Shall we just wait for Jess?&quot;) [
+                (set: $response to &quot;Shall we just wait for Jess?&quot;)
+                (set: $guardroundrequency to (60 * 60 * 2))
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-13&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-13&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Can we recap what we know?&quot;) [
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-10&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Let&#39;s just go for it!!!&quot;) [
+                (goto: &quot;the-mission-start&quot;)
+            ]
+        &lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="62" name="the-plan-maintext-11" tags="" position="2450,1400" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Oh, you heard that did you??? Thanks for letting me know when I&#39;m speaking too loud, BARC! Just can&#39;t build the friends nowadays!&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechbarc&quot;&gt;&lt;span&gt;BARC&lt;/span&gt;&lt;span&gt;(text-style:&quot;shudder&quot;)[Whimper...]&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Great... Now he&#39;ll sulk for days!!!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="63" name="the-plan-prompts-11" tags="" position="2350,1400" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;How about we start afresh?&quot;) [
-        (set: $response to &quot;How about we start afresh?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-12&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-12&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Go and do one, Rafa!!!&quot;) [
-        (set: $response to &quot;Go and do one, Rafa!!!&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-14&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-14&quot;) ]
-    ] &lt;/span&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Can we recap what we know?&quot;) [
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-11&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Shall we just wait for Jess?&quot;) [
-        (set: $response to &quot;Shall we just wait for Jess?&quot;)
-        (set: $guardroundrequency to (60 * 60 * 2))
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-13&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-13&quot;) ]
-    ] &lt;/span&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="64" name="the-plan-maintext-12" tags="" position="2450,1500" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Great... Now he&#39;ll sulk for days!!!&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="63" name="the-plan-prompts-11" tags="" position="2350,1400" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;How about we start afresh?&quot;) [
+                (set: $response to &quot;How about we start afresh?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-12&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-12&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Go and do one, Rafa!!!&quot;) [
+                (set: $response to &quot;Go and do one, Rafa!!!&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-14&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-14&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Can we recap what we know?&quot;) [
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-11&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Shall we just wait for Jess?&quot;) [
+                (set: $response to &quot;Shall we just wait for Jess?&quot;)
+                (set: $guardroundrequency to (60 * 60 * 2))
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-13&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-13&quot;) ]
+            ]
+        &lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="64" name="the-plan-maintext-12" tags="" position="2450,1500" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Yeah, perhaps you&#39;re right. Jess is always telling me I&#39;m difficult to like at first. I don&#39;t mean to be, but with my accident and all...&lt;/span&gt;&lt;/span&gt;
 (text-style:&quot;fidget&quot;)[Rafa seems to be reluctant to talk about it...]
-&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Enough about that. Perhaps you&#39;re right. We&#39;re cool...&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="65" name="the-plan-prompts-12" tags="" position="2350,1500" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Glad that&#39;s sorted.&quot;) [
-        (set: $response to &quot;Glad that&#39;s sorted.&quot;)
-        (set: $makeupwithrafa to true)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-13&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-13&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;On second thoughts, let&#39;s leave it!&quot;) [
-        (set: $response to &quot;On second thoughts, let&#39;s leave it!&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-13&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-13&quot;) ]
-    ] &lt;/span&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Can we recap what we know?&quot;) [
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-12&quot;) ]
-    ] &lt;/span&gt; \
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Shall we just wait for Jess?&quot;) [
-        (set: $response to &quot;Shall we just wait for Jess?&quot;)
-        (append: ?maintext) [ (display: &quot;the-plan-maintext-13&quot;) ]
-        (replace: ?prompts) [ (display: &quot;the-plan-prompts-13&quot;) ]
-    ] &lt;/span&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="66" name="the-plan-prompts-13" tags="" position="2350,1600" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    &lt;span class=&quot;question&quot;&gt; (if: $makeupwithrafa is true) [ \
-        (link-reveal: &quot;Anything we&#39;ve forgotten?&quot;) [
-            (set: $response to &quot;Anything we&#39;ve forgotten?&quot;)
-            (append: ?maintext) [ (display: &quot;the-plan-maintext-15&quot;) ]
-            (replace: ?prompts) [ (display: &quot;the-plan-prompts-15&quot;) ]
-        ]
-    ] (else:) [ (link-reveal: &quot;Err, we done? Let&#39;s go then!&quot;) [
-        (goto: &quot;the-mission-start&quot;)
-    ] ] &lt;/span&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="67" name="the-plan-maintext-13" tags="" position="2450,1600" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Enough about that. Perhaps you&#39;re right. We&#39;re cool...&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="65" name="the-plan-prompts-12" tags="" position="2350,1500" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Glad that&#39;s sorted.&quot;) [
+                (set: $response to &quot;Glad that&#39;s sorted.&quot;)
+                (set: $makeupwithrafa to true)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-13&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-13&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;On second thoughts, let&#39;s leave it!&quot;) [
+                (set: $response to &quot;On second thoughts, let&#39;s leave it!&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-13&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-13&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Can we recap what we know?&quot;) [
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-recap&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-12&quot;) ]
+            ]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Shall we just wait for Jess?&quot;) [
+                (set: $response to &quot;Shall we just wait for Jess?&quot;)
+                (append: ?maintext) [ (display: &quot;the-plan-maintext-13&quot;) ]
+                (replace: ?prompts) [ (display: &quot;the-plan-prompts-13&quot;) ]
+            ]
+        &lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="66" name="the-plan-prompts-13" tags="" position="2350,1600" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (if: $makeupwithrafa is true) [
+                (link-reveal: &quot;Anything we&#39;ve forgotten?&quot;) [
+                    (set: $response to &quot;Anything we&#39;ve forgotten?&quot;)
+                    (append: ?maintext) [ (display: &quot;the-plan-maintext-15&quot;) ]
+                    (replace: ?prompts) [ (display: &quot;the-plan-prompts-15&quot;) ]
+                ]
+            ] (else:) [
+                (link-reveal: &quot;Err, we done? Let&#39;s go then!&quot;) [
+                    (goto: &quot;the-mission-start&quot;)
+                ]
+            ]
+        &lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="67" name="the-plan-maintext-13" tags="" position="2450,1600" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Right... Seems like he&#39;ll be off on his rounds every  hour. If we time it right, that should give us the full time of his round to get in and out.&lt;/span&gt;&lt;/span&gt;
 { (set: $guardroundrequency to (60 * 60 * 1)) }</tw-passagedata><tw-passagedata pid="68" name="the-plan-maintext-14" tags="" position="2450,1700" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Oh, very nice. Right, I... I mean we, will do one! See Ya!!!&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;speechbarc&quot;&gt;&lt;span&gt;BARC&lt;/span&gt;&lt;span&gt;Smeg head!!! I mean... (text-style:&quot;rumble&quot;)[Grrrrrrrrrr!!!]&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="69" name="the-plan-prompts-14" tags="" position="2350,1700" size="100,100">(replace: ?subtext) [ (text-colour:orange) [You&#39;ve upset Rafa, and BARC, and they&#39;ve left...]
-(replace: ?prompts) [
-&lt;span class=&quot;h1&quot;&gt;(text-colour:red)[The END...]&lt;/span&gt;
-]</tw-passagedata><tw-passagedata pid="70" name="the-plan-maintext-15" tags="" position="2450,1800" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;speechbarc&quot;&gt;&lt;span&gt;BARC&lt;/span&gt;&lt;span&gt;Smeg head!!! I mean... (text-style:&quot;rumble&quot;)[Grrrrrrrrrr!!!]&lt;/span&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="69" name="the-plan-prompts-14" tags="" position="2350,1700" size="100,100">{
+    (replace: ?subtext) [ (text-colour:orange) [You&#39;ve upset Rafa, and BARC, and they&#39;ve left...]
+    (replace: ?prompts) [ &lt;span class=&quot;h1&quot;&gt;(text-colour:red)[The END...]&lt;/span&gt; ]
+}</tw-passagedata><tw-passagedata pid="70" name="the-plan-maintext-15" tags="" position="2450,1800" size="100,100">&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;$response&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Oh, yeah, another thing...
 
 There&#39;s a key card hidden under the big plant to the right of the lab. Apparently, Prof T. is always forgetting it, so keeps a spare handy.
@@ -1475,9 +1593,13 @@ Prof. Duh, more like!!!&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Huh, huh, huh...&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;You&#39;re so bad!&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;speechbarc&quot;&gt;&lt;span&gt;BARC&lt;/span&gt;&lt;span&gt;Ruff! Pant...&lt;/span&gt;&lt;/span&gt;
-{ (set: $keycardknowledge to true) }</tw-passagedata><tw-passagedata pid="71" name="the-plan-prompts-15" tags="" position="2350,1800" size="100,100">&lt;span class=&quot;questions&quot;&gt;
-    &lt;span class=&quot;question&quot;&gt; (link-reveal: &quot;Nice... Let&#39;s go!&quot;) [ (goto: &quot;the-mission-start&quot;) ] &lt;/span&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="72" name="key-code-path" tags="" position="1300,700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+{ (set: $keycardknowledge to true) }</tw-passagedata><tw-passagedata pid="71" name="the-plan-prompts-15" tags="" position="2350,1800" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Nice... Let&#39;s go!&quot;) [ (goto: &quot;the-mission-start&quot;) ]
+        &lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="72" name="key-code-path" tags="" position="1300,700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;maingate-found-note-1024x768.webp&quot;)
 &lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
 (display: &quot;layout-template&quot;)
