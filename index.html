@@ -213,6 +213,7 @@ tw-sidebar {
   overflow-x: hidden;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
   overflow-wrap: anywhere;
   font-size: 1em;
   line-height: 1.5;
@@ -654,10 +655,15 @@ tw-sidebar {
 
   .background-image {
     object-fit: cover;
+    object-position: center bottom;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .maintext-container {
+    scroll-behavior: auto;
+  }
+
   .questions .question {
     transition: none;
   }
@@ -666,7 +672,40 @@ tw-sidebar {
   .questions .question:active {
     transform: none;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="start" tags="" position="1100,100" size="100,100">&lt;!-- Set variables upon game start. --&gt; \
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">(() => {
+    let scrollFrame;
+
+    const observer = new MutationObserver((mutations) => {
+        const maintext = document.querySelector(
+            "tw-passage:not(.transition-out) .maintext-container"
+        );
+
+        if (!maintext) return;
+
+        const contentAdded = mutations.some(mutation =>
+            maintext.contains(mutation.target) &&
+            mutation.addedNodes.length > 0
+        );
+
+        if (!contentAdded) return;
+
+        cancelAnimationFrame(scrollFrame);
+
+        scrollFrame = requestAnimationFrame(() => {
+            maintext.scrollTo({
+                top: maintext.scrollHeight,
+                behavior: window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                ).matches ? "instant" : "smooth"
+            });
+        });
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+})();</script><tw-passagedata pid="1" name="start" tags="" position="1100,100" size="100,100">&lt;!-- Set variables upon game start. --&gt; \
 (set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;) 
 &lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
 (display: &quot;layout-template&quot;)
