@@ -9,8 +9,7 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Campus Life - The Case of the Missing Locket.</tw-noscript></noscript></tw-story>
-<tw-storydata name="Campus Life - The Case of the Missing Locket" startnode="1" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="a73a0585-f677-44e1-a123-40ab0aa008a3" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
-html,
+<tw-storydata name="Campus Life - The Case of the Missing Locket" startnode="1" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="a73a0585-f677-44e1-a123-40ab0aa008a3" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">html,
 body {
   width: 100%;
   height: 100%;
@@ -26,9 +25,9 @@ body {
 tw-story {
   display: block;
   width: 100%;
-  max-width: 100%;
+  max-width: 1024px;
   height: 100vh;
-  height: 100dvh;
+  height: 100svh;
   min-height: 0;
   margin: 0 auto;
   padding: 12px;
@@ -39,6 +38,7 @@ tw-story {
 
 tw-passage {
   display: block;
+  container-type: inline-size;
   width: 100%;
   height: 100%;
   min-width: 0;
@@ -51,87 +51,87 @@ tw-sidebar {
   display: none !important;
 }
 
-@media (min-width: 768px) {
-  tw-story {
-    max-width: 900px;
-  }
-}
-
-@media (min-width: 1280px) {
-  tw-story {
-    max-width: 1200px;
-  }
-}
-
-@media (min-width: 1920px) {
-  tw-story {
-    max-width: 1500px;
-  }
-}
-
-@media (min-width: 2560px) {
-  tw-story {
-    max-width: 1800px;
-  }
-}
-
 .all-container {
   --content-width: min(100%, 1024px);
+  --prompts-height: 180px;
+  --image-ratio: 0.75;
+  --image-height: min(
+    calc(min(100cqw, 1024px) * var(--image-ratio)),
+    48%
+  );
+
   display: grid;
-  width: 100%;
-  height: 100%;
+  position: fixed !important;
+  top: 12px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: calc(100% - 24px) !important;
+  max-width: 1000px !important;
+  height: calc(100vh - 24px);
+  height: calc(100svh - 24px) !important;
   min-width: 0;
   min-height: 0;
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
-    "stats"
     "image"
     "narrative"
     "choices";
   grid-template-rows:
-    auto
-    minmax(0, auto)
+    var(--image-height)
     minmax(0, 1fr)
-    180px;
+    var(--prompts-height);
   gap: 10px;
   align-items: stretch;
   overflow: hidden;
 }
 
 .stats-container {
-  grid-area: stats;
+  grid-area: image;
+  display: block;
+  align-self: start;
+  justify-self: center;
+  z-index: 3;
+  width: calc(var(--content-width) - 16px);
+  max-width: 100%;
+  min-width: 0;
+  margin: 8px 0 0;
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  font-size: clamp(10px, 1.5vw, 12.8px);
+  line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.stats {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  width: var(--content-width);
-  max-width: 100%;
+  justify-content: space-between;
+  width: 100%;
   min-width: 0;
-  justify-self: center;
-  gap: 4px 10px;
-  font-size: 80%;
+  gap: 4px 12px;
 }
 
-.stats-container span {
-  display: inline-block;
+.stats .stat {
+  display: block;
+  min-width: 0;
+  white-space: nowrap;
 }
 
-.stats-container:empty,
-.stats-container:not(:has(tw-hook:not(:empty))) {
+.stats > br {
   display: none;
 }
 
-.all-container:has(.stats-container:empty),
-.all-container:has(
-  .stats-container:not(:has(tw-hook:not(:empty)))
-) {
-  grid-template-areas:
-    "image"
-    "narrative"
-    "choices";
-  grid-template-rows:
-    minmax(0, auto)
-    minmax(0, 1fr)
-    180px;
+.stats-container tw-colour,
+.stats-container tw-hook[style*="color:"] {
+  color: #9dccff !important;
+}
+
+.stats-container:not(:has(.stat)) {
+  display: none;
 }
 
 .background-container {
@@ -139,19 +139,30 @@ tw-sidebar {
   display: flex;
   align-items: center;
   justify-content: center;
+  justify-self: center;
   width: var(--content-width);
+  height: 100%;
   max-width: 100%;
   min-width: 0;
   min-height: 0;
-  justify-self: center;
   overflow: hidden;
+  background-color: black;
+  contain: size;
   z-index: 0;
+}
+
+.background-container > tw-hook {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
 }
 
 .background-image {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
@@ -161,27 +172,40 @@ tw-sidebar {
 
 .titletext-container {
   grid-area: image;
-  z-index: 1;
+  z-index: 2;
   justify-self: center;
-  align-self: start;
+  align-self: end;
   width: fit-content;
-  max-width: calc(100% - 20px);
-  margin-top: 10px;
-  padding: 6px 14px;
+  max-width: calc(var(--content-width) - 20px);
+  margin: 0 0 12px;
+  padding: 8px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.65);
+  background-color: rgba(0, 0, 0, 0.45);
   color: white;
-  font-size: 120%;
+  font-size: clamp(20px, 2.5vw, 24px);
+  font-weight: 600;
+  line-height: 1.3;
   text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  overflow-wrap: anywhere;
+}
+
+.titletext-container:empty,
+.titletext-container:not(:has(tw-hook:not(:empty))) {
+  display: none;
 }
 
 .maintext-container {
   grid-area: narrative;
+  display: block;
   width: var(--content-width);
   max-width: 100%;
   min-width: 0;
   min-height: 0;
-  height: auto;
+  height: 100%;
+  max-height: 100%;
+  contain: size;
   justify-self: center;
   padding: 0 5px 8px 0;
   overflow-y: auto;
@@ -193,6 +217,7 @@ tw-sidebar {
   line-height: 1.5;
   scrollbar-width: thin;
   scrollbar-color: #888 #292929;
+  scrollbar-gutter: stable;
   border-bottom: 1px solid #555;
 }
 
@@ -231,10 +256,13 @@ tw-sidebar {
   display: block;
   width: var(--content-width);
   max-width: 100%;
-  height: 180px;
+  height: var(--prompts-height);
   min-width: 0;
   min-height: 0;
+  max-height: var(--prompts-height);
+  contain: size;
   justify-self: center;
+  align-self: start;
   padding: 4px 0;
   overflow-y: auto;
   overflow-x: hidden;
@@ -286,6 +314,10 @@ tw-sidebar {
 
 .questions tw-hook {
   display: contents;
+}
+
+.questions > br {
+  display: none;
 }
 
 .questions .question {
@@ -610,63 +642,15 @@ tw-sidebar {
   display: none;
 }
 
-@media (max-width: 380px) {
-  tw-story {
-    padding: 8px;
-  }
-
+@media (max-width: 767px) {
   .all-container {
-    gap: 8px;
-  }
-
-  .maintext-container .title-image {
-    width: 55px;
-    margin: 0 10px 6px 0;
-  }
-
-  .speechbad,
-  .speechgood,
-  .speechnormal,
-  .speechjess,
-  .speechrafa,
-  .speechbarc,
-  .speechnarrator,
-  .speechproft,
-  .speechplayer {
-    max-width: 90%;
-  }
-
-  .questions .question {
-    font-size: 75%;
-    padding: 6px;
-  }
-
-  .questions .question tw-link {
-    padding: 4px 12px;
+    --image-ratio: 0.5625;
   }
 }
 
 @media (max-height: 550px) {
   .all-container {
-    grid-template-rows:
-      auto
-      minmax(0, auto)
-      minmax(0, 1fr)
-      160px;
-  }
-
-  .all-container:has(.stats-container:empty),
-  .all-container:has(
-    .stats-container:not(:has(tw-hook:not(:empty)))
-  ) {
-    grid-template-rows:
-      minmax(0, auto)
-      minmax(0, 1fr)
-      160px;
-  }
-
-  .prompts-container {
-    height: 160px;
+    --prompts-height: 160px;
   }
 }
 
@@ -679,49 +663,7 @@ tw-sidebar {
   .questions .question:active {
     transform: none;
   }
-}
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">$(document).ready(function () {
-  let activePane = null;
-  let observer = null;
-  let previousHeight = 0;
-
-  function watchMainText() {
-    const pane = document.querySelector(".maintext-container");
-
-    if (!pane || pane === activePane) return;
-
-    if (observer) observer.disconnect();
-
-    activePane = pane;
-    previousHeight = pane.scrollHeight;
-
-    observer = new MutationObserver(function () {
-      const newHeight = pane.scrollHeight;
-
-      if (newHeight > previousHeight) {
-        pane.scrollTop = newHeight;
-      }
-
-      previousHeight = newHeight;
-    });
-
-    observer.observe(pane, {
-      childList: true,
-      subtree: true,
-      characterData: true
-    });
-  }
-
-  const passageObserver = new MutationObserver(watchMainText);
-
-  passageObserver.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
-
-  watchMainText();
-});
-</script><tw-passagedata pid="1" name="start" tags="" position="1100,100" size="100,100">&lt;!-- Set variables upon game start. --&gt; \
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="start" tags="" position="1100,100" size="100,100">&lt;!-- Set variables upon game start. --&gt; \
 (set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;) 
 &lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
 (display: &quot;layout-template&quot;)
@@ -846,11 +788,14 @@ Unsurprisingly, at this hour, the gate is locked!
     2. [[Step back for a a rethink...-&gt;maingate]]
 ]
 &lt;!-- Display &quot;lthe-meet-live-template&quot; passage . --&gt; \
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="5" name="stats-timer-update" tags="" position="300,1500" size="100,100">&lt;!-- This path is called from main paths. --&gt; \
-&lt;span&gt;Name: (text-colour:blue)[$givenname]&lt;/span&gt; \
-&lt;span&gt;Achievement: (text-colour:blue)[(round: $rating)]%&lt;/span&gt; \
-&lt;span&gt;Times Detected: (text-colour:blue) [$timesdetected]&lt;/span&gt; \
-&lt;span&gt;Time Left: (text-colour:blue) [$timer] sec(s)&lt;/span&gt;</tw-passagedata><tw-passagedata pid="6" name="look-around-bin-path" tags="" position="1700,700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="5" name="stats-timer-update" tags="" position="300,1500" size="100,100">{
+    &lt;span class=&quot;stats&quot;&gt;
+        &lt;span class=&quot;stat&quot;&gt;Name: (text-colour:blue)[$givenname]&lt;/span&gt;
+        &lt;span class=&quot;stat&quot;&gt;Achievement: (text-colour:blue)[(round: $rating)]%&lt;/span&gt;
+        &lt;span class=&quot;stat&quot;&gt;Times Detected: (text-colour:blue)[$timesdetected]&lt;/span&gt;
+        &lt;span class=&quot;stat&quot;&gt;Time Left: (text-colour:blue)[$timer] sec(s)&lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="6" name="look-around-bin-path" tags="" position="1700,700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;bin-passage-chock-1024x768.webp&quot;)
 &lt;!-- Display &quot;layout-template&quot; passage . --&gt; \
 (display: &quot;layout-template&quot;)
@@ -1110,10 +1055,13 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
 &lt;!-- Update prompts content. --&gt; \
 (replace: ?prompts) [ What do you want to do?
     1. [[Go back to the wall.-&gt;bush-path-clear]]
-]</tw-passagedata><tw-passagedata pid="17" name="stats-notimer-update" tags="" position="400,1500" size="100,100">&lt;!-- This path is called from main paths. --&gt; \
-&lt;span&gt;Name: (text-colour:blue)[$givenname]&lt;/span&gt; \
-&lt;span&gt;Achievement: (text-colour:blue)[(round: $rating)]%&lt;/span&gt; \
-&lt;span&gt;Times Detected: (text-colour:blue) [$timesdetected]&lt;span&gt;</tw-passagedata><tw-passagedata pid="18" name="ask-for-password" tags="" position="1100,1000" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+]</tw-passagedata><tw-passagedata pid="17" name="stats-notimer-update" tags="" position="400,1500" size="100,100">{
+    &lt;span class=&quot;stats&quot;&gt;
+        &lt;span class=&quot;stat&quot;&gt;Name: (text-colour:blue)[$givenname]&lt;/span&gt;
+        &lt;span class=&quot;stat&quot;&gt;Achievement: (text-colour:blue)[(round: $rating)]%&lt;/span&gt;
+        &lt;span class=&quot;stat&quot;&gt;Times Detected: (text-colour:blue)[$timesdetected]&lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="18" name="ask-for-password" tags="" position="1100,1000" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-entrance-passage-jess-silhouette-1024x768.webp&quot;)
 &lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
 (display: &quot;layout-template&quot;)
