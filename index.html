@@ -38,7 +38,6 @@ tw-story {
 
 tw-passage {
   display: block;
-  container-type: inline-size;
   width: 100%;
   height: 100%;
   min-width: 0;
@@ -52,13 +51,15 @@ tw-sidebar {
 }
 
 .all-container {
-  --content-width: min(100%, 1024px);
-  --prompts-height: 180px;
+  --content-width: 100%;
+  --prompts-height: 130px;
   --image-ratio: 0.75;
+  --available-width: min(calc(100vw - 24px), 1000px);
   --image-height: min(
-    calc(min(100cqw, 1024px) * var(--image-ratio)),
-    48%
+    calc(var(--available-width) * var(--image-ratio)),
+    48svh
   );
+  --image-width: calc(var(--image-height) / var(--image-ratio));
 
   display: grid;
   position: fixed !important;
@@ -91,7 +92,7 @@ tw-sidebar {
   align-self: start;
   justify-self: center;
   z-index: 3;
-  width: calc(var(--content-width) - 16px);
+  width: calc(var(--image-width) - 16px);
   max-width: 100%;
   min-width: 0;
   margin: 8px 0 0;
@@ -140,8 +141,8 @@ tw-sidebar {
   align-items: center;
   justify-content: center;
   justify-self: center;
-  width: var(--content-width);
-  height: 100%;
+  width: var(--image-width);
+  height: var(--image-height);
   max-width: 100%;
   min-width: 0;
   min-height: 0;
@@ -176,7 +177,7 @@ tw-sidebar {
   justify-self: center;
   align-self: end;
   width: fit-content;
-  max-width: calc(var(--content-width) - 20px);
+  max-width: calc(var(--image-width) - 20px);
   margin: 0 0 12px;
   padding: 8px 20px;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -645,12 +646,14 @@ tw-sidebar {
 @media (max-width: 767px) {
   .all-container {
     --image-ratio: 0.5625;
+    --image-width: var(--available-width);
+    --image-height: calc(
+      var(--image-width) * var(--image-ratio)
+    );
   }
-}
 
-@media (max-height: 550px) {
-  .all-container {
-    --prompts-height: 160px;
+  .background-image {
+    object-fit: cover;
   }
 }
 
