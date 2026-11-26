@@ -409,20 +409,19 @@ tw-sidebar {
       255,
       calc(var(--glass-shine) * 0.2)
     );
-  pointer-events: none !important;
+  pointer-events: none;
 }
 
 .questions .question tw-link {
   display: block !important;
   flex: 1 1 auto;
-  align-self: stretch !important;
-  align-content: center;
+  align-self: center;
   position: static !important;
   box-sizing: border-box;
   width: 100% !important;
   min-width: 0;
   max-width: 100%;
-  min-height: 46px;
+  min-height: 0;
   margin: 0;
   padding: 10px 28px;
   border-radius: inherit;
@@ -432,16 +431,13 @@ tw-sidebar {
   white-space: normal;
   overflow-wrap: anywhere;
   cursor: pointer;
-  pointer-events: auto !important;
 }
 
 .questions .question tw-link::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
+  content: "";
+  position: absolute;
+  inset: 0;
   border-radius: inherit;
-  pointer-events: auto !important;
-  z-index: 2;
 }
 
 .questions .question tw-link::after {
@@ -468,7 +464,7 @@ tw-sidebar {
   line-height: 1;
   color: white;
   opacity: 0.8;
-  pointer-events: none !important;
+  pointer-events: none;
 }
 
 .questions .question tw-link,
@@ -772,7 +768,8 @@ tw-sidebar {
   .prompts-container > tw-hook > tw-link:active {
     transform: none;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">(() => {
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">
+(() => {
     let scrollFrame;
 
     const observer = new MutationObserver((mutations) => {
@@ -805,6 +802,25 @@ tw-sidebar {
         childList: true,
         subtree: true
     });
+
+    document.addEventListener("click", (event) => {
+        const question = event.target.closest(
+            ".questions .question"
+        );
+
+        if (!question) return;
+
+        const link = question.querySelector("tw-link");
+
+        if (!link) return;
+
+        if (link.contains(event.target)) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        link.click();
+    }, true);
 })();</script><tw-passagedata pid="1" name="start" tags="" position="1100,100" size="100,100">
 &lt;!-- Set variables upon game start. --&gt; \
 (set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;) 
