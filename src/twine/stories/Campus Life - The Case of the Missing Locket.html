@@ -1232,7 +1232,8 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
     &lt;/span&gt;
 }]
 &lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="15" name="bush-path-trough-fail" tags="" position="500,300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="15" name="bush-path-trough-fail" tags="" position="500,300" size="100,100">
+&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;bush-passage-trough-1024x768.webp&quot;)
 &lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
 (display: &quot;layout-template&quot;)
@@ -1244,33 +1245,51 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 &lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-&lt;!-- Update &quot;maintext&quot; content. --&gt; \
-(replace: ?maintext) [ You rummage around in the trough and...
-
-    (text-style:&quot;rumble&quot;) [ (text-colour:#e03131)[&quot;&#39;&#39;Arghhhh!!!&#39;&#39;&quot;]]
-
-    Something slimy jumps towards you. Phew! Only a toad.
-
-    Somebody shouts from the other side of the wall...
-    
-    &lt;span class=&quot;speechbad&quot;&gt;&lt;span&gt;Unknown&lt;/span&gt;&lt;span&gt;What the hell... Who&#39;s there?&lt;/span&gt;&lt;/span&gt;
-    (if: visits is 1) [ \
-        (display: &quot;times-detected-inc&quot;)
-    ]
-]
 &lt;!-- Update &quot;prompts&quot; content. --&gt; \
-(replace: ?prompts) [{
-    &lt;span class=&quot;questions&quot;&gt;
-        &lt;span class=&quot;question&quot;&gt;
-            [[Return to bush.-&gt;bush-path]]
+(replace: ?prompts) []
+&lt;!-- Update &quot;maintext&quot; content. --&gt; \
+(replace: ?maintext) [
+    You rummage around in the trough and...
+]
+(after: 1.5s) [{
+    (append: ?maintext) [
+        (text-style:&quot;rumble&quot;)[(text-colour:#e03131)[&quot;&#39;&#39;Arghhhh!!!&#39;&#39;&quot;]]
+    ]
+}]
+(after: 3s) [{
+    (append: ?maintext) [
+        Something slimy jumps towards you. Phew! Only a toad.
+    ]
+}]
+(after: 4.5s) [{
+    (append: ?maintext) [
+        Somebody shouts from the other side of the wall...
+        &lt;span class=&quot;speechbad&quot;&gt;&lt;span&gt;Unknown&lt;/span&gt;&lt;span&gt;What the hell... Who&#39;s there!?&lt;/span&gt;&lt;/span&gt;
+    ]
+}]
+(after:6s) [{
+    (if: visits is 1) [
+        (append: ?maintext) [
+            (display: &quot;times-detected-inc&quot;)
+        ]
+    ]
+}]
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
+(after: 6s) [{
+    (replace: ?prompts) [{
+        &lt;span class=&quot;questions&quot;&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                [[Return to bush.-&gt;bush-path]]
+            &lt;/span&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                [[Return to main gate.-&gt;maingate]]
+            &lt;/span&gt;
         &lt;/span&gt;
-        &lt;span class=&quot;question&quot;&gt;
-            [[Return to main gate.-&gt;maingate]]
-        &lt;/span&gt;
-    &lt;/span&gt;
+    }]
 }]
 &lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
-(display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="16" name="lab-path" tags="" position="1100,900" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(display: &quot;the-meet-live-template&quot;)
+</tw-passagedata><tw-passagedata pid="16" name="lab-path" tags="" position="1100,900" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-entrance-passage-1024x768.webp&quot;)
 &lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
 (display: &quot;layout-template&quot;)
@@ -1514,6 +1533,7 @@ It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so
 (if: visits is 1) [
     (set: $havebox to false)
     (set: $windowpeekcount to 0)
+    (set: $caughtbycleaner to false)
 ]
 &lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
@@ -2206,10 +2226,12 @@ Maybe the PIN can be used somewhere else?]
 (replace: ?prompts) [{
     &lt;span class=&quot;questions&quot;&gt;
         &lt;span class=&quot;question&quot;&gt;
-            (if: $havebox) [
+            (if: $havebox is false) [
+                [[Look in the window.-&gt;lab-block-left-1st-passage-windows-fail]]
+            ] (else-if: $caughtbycleaner is false) [
                 [[Look in the window.-&gt;lab-block-left-1st-passage-windows]]
             ] (else:) [
-                [[Look in the window.-&gt;lab-block-left-1st-passage-windows-fail]]
+                (text-colour:grey)[Look in the window.]
             ]
         &lt;/span&gt;
         &lt;span class=&quot;question&quot;&gt;
@@ -2446,8 +2468,11 @@ Maybe the PIN can be used somewhere else?]
 (live: 3s) [
     (set: $backgroundurl to &quot;lab-entrance-passage-right-part3-window-lighton-1024x768.webp&quot;)
     (display: &quot;bg-fade-template&quot;)
-    (append: ?maintext) [ I don&#39;t even know how to describe what I saw in there! ]
-    (display: &quot;window-peek-count-inc&quot;)
+    (append: ?maintext) [
+        I don&#39;t even know how to describe what I saw in there!
+    
+        (display: &quot;window-peek-count-inc&quot;)
+    ]
     (stop:)
 ]</tw-passagedata><tw-passagedata pid="88" name="lab-block-right-3rd-passage-window-fail" tags="" position="100,2500" size="100,100">&lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
 (display: &quot;layout-template&quot;)
@@ -2542,44 +2567,59 @@ Maybe the PIN can be used somewhere else?]
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 &lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
+(replace: ?prompts) []
 &lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [
     You see Scott, the security guard, sitting inside.
-
-    He appears to be getting ready to leave the office...
-
-    (if: $guardsecuritymonitors is true or $guardroundstime &gt; 0 or $guardroundrequency &gt; 0) [
-        (if: $guardsecuritymonitors is true) [ \
-            You notice the security monitors, which Jess seemed to be right about.
-            &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Nice one, Jess!&lt;/span&gt;&lt;/span&gt;
-        ]
-
-        (if: $guardroundstime &gt; 0) [ \
-            &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;I wonder if Rafa&#39;s right about his round frequency? Let&#39;s hope so.&lt;/span&gt;&lt;/span&gt;
-        ]
-
-        (if: $guardroundrequency &gt; 0) [ \
-            &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;If Rafa&#39;s right about his round frequency, we should be able to sneak in.&lt;/span&gt;&lt;/span&gt;
+]
+(after: 1.5s) [{
+    (append: ?maintext) [
+        He appears to be getting ready to leave the office...
+    ]
+}]
+(if: $guardsecuritymonitors is true) [{
+    (after: 3s) [{
+        (append: ?maintext) [
+            You notice the security monitors, which Jess was to be right about.
+            &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Hey... Nice one, Jess!&lt;/span&gt;&lt;/span&gt;
         ]
     ]
-
-    Hang on...
-
-    You notice he is typing his password into the security system...
-
-    (text-colour:blue)[$terrypassword]
-
-    I guess his name is Terry then!
-
-    &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Best get back to the others so we can all get going.&lt;/span&gt;&lt;/span&gt;
+}]
+(if: $guardroundstime &gt; 0) [
+    (after: 4.5s) [{
+        (append: ?maintext) [{
+            &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;I wonder if Rafa&#39;s right about his round frequency? Let&#39;s hope so.&lt;/span&gt;&lt;/span&gt;
+        }]
+    }]
 ]
+(if: $guardroundrequency &gt; 0) [
+    (after: 6s) [{
+        (append: ?maintext) [{
+            &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;If Rafa&#39;s right about his round frequency, we should be able to sneak in.&lt;/span&gt;&lt;/span&gt;
+        }]
+    }]
+]
+(after: 7.5s) [{
+    (append: ?maintext) [
+        Wait. You notice he has a sticky note next to the security system... (text-colour:blue)[$terrypassword]
+    ]
+}]
+(after: 9s) [{
+    (append: ?maintext) [
+        I guess his name is Terry then!
+        &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Best get back to the others so we can all get going.&lt;/span&gt;&lt;/span&gt;
+    ]
+}]
 &lt;!-- Update &quot;prompts&quot; content. --&gt; \
-(replace: ?prompts) [{
-    &lt;span class=&quot;questions&quot;&gt;
-        &lt;span class=&quot;question&quot;&gt;
-            [[Continue...-&gt;lab-block-right-1st-passage]]
+(after: 10.5s) [{
+    (replace: ?prompts) [{
+        &lt;span class=&quot;questions&quot;&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                [[Continue...-&gt;lab-block-right-1st-passage]]
+            &lt;/span&gt;
         &lt;/span&gt;
-    &lt;/span&gt;
+    }]
 }]
 &lt;!-- Display &quot;the-mission-live-template&quot; passage. --&gt; \
 (display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="93" name="lab-block-left-bin" tags="" position="1900,2300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
@@ -2909,11 +2949,14 @@ Maybe the PIN can be used somewhere else?]
 &lt;!-- Set variables upon first visit. --&gt; \
 (if: visits is 1) [
     (set: $windowspeekcount to it + 1)
+    (set: $caughtbycleaner to true)
 ]
 &lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 &lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
+(replace: ?prompts) []
 &lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You hop up onto the stool and peek in...
 
@@ -2921,14 +2964,6 @@ Maybe the PIN can be used somewhere else?]
 
     You also notice a cleaner&#39;s trolley near the door.
 ]
-&lt;!-- Update &quot;prompts&quot; content. --&gt; \
-(replace: ?prompts) [{
-    &lt;span class=&quot;questions&quot;&gt;
-        &lt;span class=&quot;question&quot;&gt;
-            [[Continue.-&gt;lab-block-left-1st-passage]]
-        &lt;/span&gt;
-    &lt;/span&gt;
-}]
 &lt;!-- Display &quot;the-mission-live-template&quot; passage. --&gt; \
 (display: &quot;the-mission-live-template&quot;)
 &lt;!-- Fade out after 4 seconds. --&gt; \
@@ -2936,19 +2971,38 @@ Maybe the PIN can be used somewhere else?]
     (display: &quot;bg-fade-out-template&quot;)
     (set: $backgroundurl to &quot;lab-entrance-passage-left-window-cleaner-1024x768.webp&quot;)
     (display: &quot;bg-template&quot;)
-    (append: ?maintext) [
+    (replace: ?maintext) [
         The cleaner comes out of one of the cubicles, spotting you peering through the window.
-
-        She lets out an almighty gasp, causing you to tumble off the stool and onto your backside, unceremoniously!
-
-        (text-style:&quot;flat&quot;)[(text-colour:yellow)[Thump!!!!]]
-
-        //(text-style:&quot;sway&quot;)[Dazed, you pick yourself up off the floor.]//
-
-        (display: &quot;times-detected-inc&quot;) \
-        (display: &quot;window-peek-count-inc&quot;)
     ]
     (stop:)
+]
+(after: 5.5s) [
+    (append: ?maintext) [
+        She lets out an almighty gasp, causing you to tumble off the stool and onto your backside, unceremoniously!
+    ]
+]
+(after: 7s) [
+    (append: ?maintext) [
+        (text-style:&quot;flat&quot;)[(text-colour:yellow)[Thump!!!!]]
+    ]
+]
+(after: 8.5s) [
+    (append: ?maintext) [
+        //(text-style:&quot;sway&quot;)[Dazed, you pick yourself up off the floor.]//
+        
+        (display: &quot;times-detected-inc&quot;) \
+        (display: &quot;window-peek-count-inc&quot;) \
+    ]
+]
+&lt;!-- Update &quot;prompts&quot; content. --&gt; \
+(after: 10s) [
+    (replace: ?prompts) [{
+        &lt;span class=&quot;questions&quot;&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                [[Continue.-&gt;lab-block-left-1st-passage]]
+            &lt;/span&gt;
+        &lt;/span&gt;
+    }]
 ]</tw-passagedata><tw-passagedata pid="103" name="lab-block-left-1st-passage-windows-fail" tags="" position="2100,2100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-entrance-passage-left-1024x768.webp&quot;)
 &lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
