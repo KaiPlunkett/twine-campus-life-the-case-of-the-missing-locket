@@ -62,6 +62,9 @@ tw-sidebar {
   --image-width: calc(var(--image-height) / var(--image-ratio));
   --glass-shine: 0.65;
   --glass-radius: 24px;
+  --speech-glass-shine: 0.55;
+  --speech-glass-radius: 16px;
+  --speech-glass-tint: 65%;
 
   display: grid;
   position: fixed !important;
@@ -522,129 +525,6 @@ tw-sidebar {
 }
 
 .speechbad,
-.speechgood,
-.speechnormal,
-.speechjess,
-.speechrafa,
-.speechbarc,
-.speechnarrator,
-.speechproft,
-.speechplayer {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  clear: both;
-  width: fit-content;
-  max-width: 88%;
-  min-width: 0;
-  margin: 4px auto 12px 3px;
-  padding: 0;
-  box-sizing: border-box;
-  border: 2px solid var(--speech-border);
-  border-radius: 12px;
-  border-bottom-left-radius: 2px;
-  background-color: var(--speech-colour);
-  background-image: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.08),
-    rgba(0, 0, 0, 0.18)
-  );
-  box-shadow:
-    0 3px 0 rgba(0, 0, 0, 0.5),
-    0 5px 10px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  color: white;
-  font-size: 0.9em;
-  line-height: 1.4;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
-  overflow-wrap: anywhere;
-}
-
-.speechbad > :first-child,
-.speechgood > :first-child,
-.speechnormal > :first-child,
-.speechjess > :first-child,
-.speechrafa > :first-child,
-.speechbarc > :first-child,
-.speechnarrator > :first-child,
-.speechproft > :first-child,
-.speechplayer > :first-child {
-  display: block;
-  padding: 6px 12px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background-color: color-mix(
-    in srgb,
-    var(--speech-colour) 70%,
-    black
-  );
-  color: white;
-  font-size: 85%;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  opacity: 1;
-}
-
-.speechbad > :last-child,
-.speechgood > :last-child,
-.speechnormal > :last-child,
-.speechjess > :last-child,
-.speechrafa > :last-child,
-.speechbarc > :last-child,
-.speechnarrator > :last-child,
-.speechproft > :last-child,
-.speechplayer > :last-child {
-  padding: 10px 12px;
-}
-
-.speechbad::after,
-.speechgood::after,
-.speechnormal::after,
-.speechjess::after,
-.speechrafa::after,
-.speechbarc::after,
-.speechnarrator::after,
-.speechproft::after,
-.speechplayer::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: -2px;
-  width: 0;
-  height: 0;
-  border-top: 12px solid var(--speech-border);
-  border-right: 14px solid transparent;
-  pointer-events: none;
-}
-
-.speechbad::before,
-.speechgood::before,
-.speechnormal::before,
-.speechjess::before,
-.speechrafa::before,
-.speechbarc::before,
-.speechnarrator::before,
-.speechproft::before,
-.speechplayer::before {
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-top: 9px solid color-mix(
-    in srgb,
-    var(--speech-colour) 82%,
-    black
-  );
-  border-right: 10px solid transparent;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.speechbad,
 .speechproft {
   --speech-colour: #E2725B;
   --speech-border: #7C3030;
@@ -679,24 +559,170 @@ tw-sidebar {
 .speechplayer {
   --speech-colour: #808080;
   --speech-border: #404040;
+}
+
+:is(
+  .speechbad,
+  .speechgood,
+  .speechnormal,
+  .speechjess,
+  .speechrafa,
+  .speechbarc,
+  .speechnarrator,
+  .speechproft,
+  .speechplayer
+) {
+  --speech-glass-light: color-mix(
+    in srgb,
+    var(--speech-colour) var(--speech-glass-tint),
+    #101010
+  );
+  --speech-glass-dark: color-mix(
+    in srgb,
+    var(--speech-colour) calc(var(--speech-glass-tint) * 0.46),
+    #080808
+  );
+  --speech-glass-left-edge: color-mix(
+    in srgb,
+    var(--speech-glass-light) 75%,
+    white
+  );
+  --speech-glass-right-edge: color-mix(
+    in srgb,
+    var(--speech-glass-dark) 65%,
+    white
+  );
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  isolation: isolate;
+  clear: both;
+  width: fit-content;
+  max-width: 88%;
+  min-width: 0;
+  margin: 4px auto 12px 3px;
+  padding: 0;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: var(--speech-glass-radius);
+  border-bottom-left-radius: 4px;
+  background:
+    linear-gradient(
+      90deg,
+      var(--speech-glass-light),
+      var(--speech-glass-dark)
+    ) padding-box,
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, var(--speech-glass-shine)),
+      var(--speech-glass-left-edge) 40%,
+      rgba(255, 255, 255, 0.07) 65%,
+      var(--speech-glass-right-edge)
+    ) border-box;
+  box-shadow:
+    inset 1px 1px 3px rgba(
+      255,
+      255,
+      255,
+      calc(var(--speech-glass-shine) * 0.45)
+    ),
+    inset -1px -2px 4px rgba(255, 255, 255, 0.08),
+    0 4px 8px rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 0.9em;
+  line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  overflow-wrap: anywhere;
+}
+
+:is(
+  .speechbad,
+  .speechgood,
+  .speechnormal,
+  .speechjess,
+  .speechrafa,
+  .speechbarc,
+  .speechnarrator,
+  .speechproft,
+  .speechplayer
+) > :first-child {
+  display: block;
+  padding: 6px 12px;
+  border-top-left-radius: calc(var(--speech-glass-radius) - 1px);
+  border-top-right-radius: calc(var(--speech-glass-radius) - 1px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.035),
+      rgba(0, 0, 0, 0.25)
+    ),
+    rgba(0, 0, 0, 0.18);
+  color: white;
+  font-size: 85%;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+:is(
+  .speechbad,
+  .speechgood,
+  .speechnormal,
+  .speechjess,
+  .speechrafa,
+  .speechbarc,
+  .speechnarrator,
+  .speechproft,
+  .speechplayer
+) > :last-child {
+  padding: 10px 12px;
+}
+
+:is(
+  .speechbad,
+  .speechgood,
+  .speechnormal,
+  .speechjess,
+  .speechrafa,
+  .speechbarc,
+  .speechnarrator,
+  .speechproft,
+  .speechplayer
+)::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 2px;
+  width: 11px;
+  height: 11px;
+  background: var(--speech-glass-light);
+  border-left: 1px solid var(--speech-glass-left-edge);
+  border-bottom: 1px solid var(--speech-glass-left-edge);
+  border-bottom-left-radius: 2px;
+  transform: skewY(-38deg);
+  pointer-events: none;
+}
+
+.speechplayer {
   margin-left: auto;
   margin-right: 3px;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: var(--speech-glass-radius);
+  border-bottom-right-radius: 4px;
 }
 
 .speechplayer::after {
   left: auto;
-  right: -2px;
-  border-right: 0;
-  border-left: 14px solid transparent;
-}
-
-.speechplayer::before {
-  left: auto;
-  right: 0;
-  border-right: 0;
-  border-left: 10px solid transparent;
+  right: 2px;
+  background: var(--speech-glass-dark);
+  border-left: 0;
+  border-right: 1px solid var(--speech-glass-right-edge);
+  border-bottom: 1px solid var(--speech-glass-right-edge);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 2px;
+  transform: skewY(38deg);
 }
 
 .maintext-container :is(
@@ -1290,18 +1316,17 @@ Up ahead, you see the //lab block// entrance and a couple of //figures// hiding 
 &lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Meet ]
 &lt;!-- Update &quot;maintext&quot; content. --&gt; \
-(replace: ?maintext) [ (if: $passwrongchoicecount is 0) [ Phew, you made it...
+(replace: ?maintext) [{ (if: $passwrongchoicecount is 0) [ Phew, you made it...
 
 Watching the clock tick down was making you nervous.
 
 You hear a whispered voice from the shadows...
 ] (elseif: $passwrongchoicecount &lt; $maxpasswrongchoicecount) [  The voice says...
     &lt;span class=&quot;speechbad&quot;&gt;&lt;span&gt;Unknown&lt;/span&gt;&lt;span&gt;Wrong! I&#39;ll give you one more try.&lt;/span&gt;&lt;/span&gt;  ] (else:) [  (go-to: &quot;tj-friends-leave&quot;)  ]
-  &lt;span class=&quot;speechnormal&quot;&gt;&lt;span&gt;Unknown&lt;/span&gt;&lt;span&gt;What&#39;s the password?&lt;/span&gt;&lt;/span&gt;
-]
+  &lt;span class=&quot;speechnormal&quot;&gt;&lt;span&gt;Unknown&lt;/span&gt;&lt;span&gt;What&#39;s the password?&lt;/span&gt;&lt;/span&gt;} ]
 &lt;!-- Update &quot;prompts&quot; content. --&gt; \
-(replace: ?prompts) [ (display: &quot;password-template&quot;) ]</tw-passagedata><tw-passagedata pid="19" name="wrong-password" tags="" position="1050,1100" size="100,100">&lt;!-- This path is called from &quot;ask-for-password&quot; path. --&gt;
-(set: $passwrongchoicecount to it + 1)
+(replace: ?prompts) [ (display: &quot;password-template&quot;) ]</tw-passagedata><tw-passagedata pid="19" name="wrong-password" tags="" position="1050,1100" size="100,100">&lt;!-- This path is called from &quot;ask-for-password&quot; path. --&gt; \
+(set: $passwrongchoicecount to it + 1) \
 (go-to: &quot;ask-for-password&quot;)</tw-passagedata><tw-passagedata pid="20" name="right-password" tags="" position="1150,1100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-entrance-passage-jess-silhouette-1024x768.webp&quot;)
 &lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
@@ -3127,13 +3152,15 @@ Ooo, it&#39;s very dark in there. Better not be any spiders!? ]
     (go-to: &quot;start&quot;)
 ]</tw-passagedata><tw-passagedata pid="112" name="password-template" tags="" position="400,1400" size="100,100">{
     (if: $password is &quot;&quot;) [
-        (set: $password_list to (shuffled:
-            &quot;lock-it-out&quot;,
-            &quot;rock-it-out&quot;,
-            &quot;lock-it-up&quot;,
-            &quot;check-it-in&quot;
+        (set: _password_pool to (shuffled:
+            &quot;lock-it-out&quot;, &quot;rock-it-out&quot;, &quot;lock-it-up&quot;, &quot;check-it-in&quot;,
+            &quot;check-it-out&quot;, &quot;rock-it-up&quot;, &quot;lock-it-down&quot;, &quot;shut-it-down&quot;,
+            &quot;shut-it-out&quot;, &quot;keep-it-safe&quot;, &quot;keep-it-locked&quot;, &quot;key-it-in&quot;,
+            &quot;key-it-up&quot;, &quot;let-me-in&quot;, &quot;let-me-out&quot;, &quot;crack-the-code&quot;,
+            &quot;break-the-lock&quot;, &quot;pick-the-lock&quot;, &quot;turn-the-key&quot;, &quot;watch-your-step&quot;
         ))
-        (set: $password to $password_list&#39;s 1)
+        (set: $password_list to (subarray: _password_pool, 1, 4))
+        (set: $password to (either: ...$password_list))
     ] (else:) [
         &lt;span class=&quot;questions&quot;&gt;
             (for: each _curr_pass, ...$password_list) [
