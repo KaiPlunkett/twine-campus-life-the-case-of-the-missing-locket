@@ -61,7 +61,7 @@ tw-sidebar {
   );
   --image-width: calc(var(--image-height) / var(--image-ratio));
   --stats-font-size: 16px;
-  --stats-inset: 5px;
+  --stats-inset: 20px;
   --glass-shine: 0.65;
   --glass-radius: 24px;
   --speech-glass-shine: 0.55;
@@ -91,6 +91,14 @@ tw-sidebar {
   gap: 10px;
   align-items: stretch;
   overflow: hidden;
+}
+
+.all-container:has(.prompts-container .questions > .question:nth-of-type(5)) {
+  --prompts-height: 190px;
+}
+
+.all-container:has(.prompts-container .questions > .question:nth-of-type(7)) {
+  --prompts-height: 250px;
 }
 
 .stats-container {
@@ -807,6 +815,7 @@ tw-sidebar {
       var(--image-width) * var(--image-ratio)
     );
     --stats-font-size: 14px;
+    --stats-inset: 5px;
   }
 
   .stats-container .stat {
@@ -1745,6 +1754,7 @@ The SD card is in that locket, so I must get it back!&lt;/span&gt;&lt;/span&gt;<
     (set: $havekeycard to false)
     (set: $windowspeekcount to 0)
     (set: $terrypassword to &quot;TerryISaC00Lguy!&quot;)
+    (set: $securityofficeentered to false)
 ]
 &lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
@@ -2523,7 +2533,8 @@ Maybe the PIN can be used somewhere else?]
     &lt;/span&gt;
 }]
 &lt;!-- Display &quot;the-mission-live-template&quot; passage. --&gt; \
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="81" name="lab-block-hallway-1" tags="" position="1100,2100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="81" name="lab-block-hallway-1" tags="" position="1100,2100" size="100,100">
+&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-hallway-part1-1024x768.webp&quot;)
 &lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
 (display: &quot;layout-template&quot;)
@@ -2543,7 +2554,11 @@ Maybe the PIN can be used somewhere else?]
             [[Walk down hallway...-&gt;lab-block-hallway-2]]
         &lt;/span&gt;
         &lt;span class=&quot;question&quot;&gt;
-            [[Ask someone if it&#39;s possible to enter the security office.-&gt;lab-block-hallway-guard-room]]
+            (if: $securityofficeentered is false) [
+                [[Ask someone if it&#39;s possible to enter the security office.-&gt;lab-block-hallway-guard-room]]
+            ] (else:) [
+                (text-colour:grey)[Ask someone if it&#39;s possible to enter the security office.]
+            ]
         &lt;/span&gt;
         &lt;span class=&quot;question&quot;&gt;
             [[Enter the storeroom.-&gt;lab-block-hallway-storeroom]]
@@ -2554,7 +2569,8 @@ Maybe the PIN can be used somewhere else?]
     &lt;/span&gt;
 }]
 &lt;!-- Display &quot;the-mission-live-template&quot; passage. --&gt; \
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="82" name="the-mission-live-template" tags="" position="200,1500" size="100,100">&lt;!-- Dynamically refreshed content. --&gt;
+(display: &quot;the-mission-live-template&quot;)
+</tw-passagedata><tw-passagedata pid="82" name="the-mission-live-template" tags="" position="200,1500" size="100,100">&lt;!-- Dynamically refreshed content. --&gt;
 (live: 1s) [
     (if: $timer &gt; 0) [ (set: $timer to it -1) ]
     (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
@@ -2807,56 +2823,88 @@ Maybe the PIN can be used somewhere else?]
 (set: $backgroundurl to &quot;lab-entrance-passage-right-part1-window-1024x768.webp&quot;)
 &lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
 (display: &quot;layout-template&quot;)
+&lt;!-- Set narrative variables. --&gt; \
+(set: _readingstage to 1)
+(set: _narrative to (a:
+    &quot;&lt;p&gt;You see Scott, the security guard, sitting inside.&lt;/p&gt;&quot;,
+    &quot;&lt;p&gt;He appears to be getting ready to leave the office...&lt;/p&gt;&quot;
+))
+&lt;!-- Add conditional narrative. --&gt; \
+(if: $guardsecuritymonitors is true) [
+    (set: _narrative to _narrative + (a:
+        &#39;&lt;p&gt;You notice the security monitors, which Jess was to be right about.&lt;/p&gt;&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Hey... Nice one, Jess!&lt;/span&gt;&lt;/span&gt;&#39;
+    ))
+]
+(if: $guardroundstime &gt; 0) [
+    (set: _narrative to _narrative + (a:
+        &#39;&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;I wonder if Rafa\&#39;s right about his round frequency? Let\&#39;s hope so.&lt;/span&gt;&lt;/span&gt;&#39;
+    ))
+]
+(if: $guardroundrequency &gt; 0) [
+    (set: _narrative to _narrative + (a:
+        &#39;&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;If Rafa\&#39;s right about his round frequency, we should be able to sneak in.&lt;/span&gt;&lt;/span&gt;&#39;
+    ))
+]
+&lt;!-- Add remaining narrative. --&gt; \
+(set: _narrative to _narrative + (a:
+    &quot;&lt;p&gt;Wait. You notice he has a sticky note next to the security system... (text-colour:blue)[$terrypassword]&lt;/p&gt;&quot;,
+    &#39;&lt;p&gt;I guess his name is Terry then!&lt;/p&gt;&lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Best get back to the others so we can all get going.&lt;/span&gt;&lt;/span&gt;&#39;
+))
 &lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 &lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-&lt;!-- Update &quot;prompts&quot; content. --&gt; \
-(replace: ?prompts) []
-&lt;!-- Update &quot;maintext&quot; content. --&gt; \
-(replace: ?maintext) [
-    You see Scott, the security guard, sitting inside.
-]
-(after: 1.5s) [{
-    (append: ?maintext) [
-        He appears to be getting ready to leave the office...
-    ]
+&lt;!-- Update narrative on first visit. --&gt; \
+(if: visits is 1) [{
+    (replace: ?maintext) [{
+        (print: _narrative&#39;s 1st)
+    }]
+    (replace: ?prompts) [{
+        &lt;span class=&quot;questions&quot;&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                (link-rerun: &quot;Continue reading...&quot;) [{
+                    (set: _readingstage to _readingstage + 1)
+                    (append: ?maintext) [{
+                        (print: _narrative&#39;s (_readingstage))
+                    }]
+                    (if: _readingstage is _narrative&#39;s length) [{
+                        (replace: ?prompts) [{
+                            &lt;span class=&quot;questions&quot;&gt;
+                                &lt;span class=&quot;question&quot;&gt;
+                                    [[Continue...-&gt;lab-block-right-1st-passage]]
+                                &lt;/span&gt;
+                            &lt;/span&gt;
+                        }]
+                    }]
+                }]
+            &lt;/span&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                (link: &quot;Reveal all&quot;) [{
+                    (append: ?maintext) [{
+                        (for: each _paragraph, ...(subarray: _narrative, _readingstage + 1, _narrative&#39;s length)) [
+                            (print: _paragraph)
+                        ]
+                    }]
+                    (set: _readingstage to _narrative&#39;s length)
+                    (replace: ?prompts) [{
+                        &lt;span class=&quot;questions&quot;&gt;
+                            &lt;span class=&quot;question&quot;&gt;
+                                [[Continue...-&gt;lab-block-right-1st-passage]]
+                            &lt;/span&gt;
+                        &lt;/span&gt;
+                    }]
+                }]
+            &lt;/span&gt;
+        &lt;/span&gt;
+    }]
 }]
-(if: $guardsecuritymonitors is true) [{
-    (after: 3s) [{
-        (append: ?maintext) [
-            You notice the security monitors, which Jess was to be right about.
-            &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Hey... Nice one, Jess!&lt;/span&gt;&lt;/span&gt;
+&lt;!-- Update narrative on subsequent visits. --&gt; \
+(else:) [{
+    (replace: ?maintext) [{
+        (for: each _paragraph, ..._narrative) [
+            (print: _paragraph)
         ]
-    ]
-}]
-(if: $guardroundstime &gt; 0) [
-    (after: 4.5s) [{
-        (append: ?maintext) [{
-            &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;I wonder if Rafa&#39;s right about his round frequency? Let&#39;s hope so.&lt;/span&gt;&lt;/span&gt;
-        }]
     }]
-]
-(if: $guardroundrequency &gt; 0) [
-    (after: 6s) [{
-        (append: ?maintext) [{
-            &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;If Rafa&#39;s right about his round frequency, we should be able to sneak in.&lt;/span&gt;&lt;/span&gt;
-        }]
-    }]
-]
-(after: 7.5s) [{
-    (append: ?maintext) [
-        Wait. You notice he has a sticky note next to the security system... (text-colour:blue)[$terrypassword]
-    ]
-}]
-(after: 9s) [{
-    (append: ?maintext) [
-        I guess his name is Terry then!
-        &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Best get back to the others so we can all get going.&lt;/span&gt;&lt;/span&gt;
-    ]
-}]
-&lt;!-- Update &quot;prompts&quot; content. --&gt; \
-(after: 10.5s) [{
     (replace: ?prompts) [{
         &lt;span class=&quot;questions&quot;&gt;
             &lt;span class=&quot;question&quot;&gt;
@@ -2895,26 +2943,20 @@ Maybe the PIN can be used somewhere else?]
 (set: $backgroundurl to &quot;lab-block-hallway-part1-1024x768.webp&quot;)
 &lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
 (display: &quot;layout-template&quot;)
-&lt;!-- Update &quot;stats&quot; content. --&gt; \
-(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
-&lt;!-- Update &quot;titletext&quot; content. --&gt; \
-(replace: ?titletext) [ The Mission ]
-&lt;!-- Update &quot;maintext&quot; content. --&gt; \
-(replace: ?maintext) [ &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Step aside, BARC and I have got this.&lt;/span&gt;&lt;/span&gt;
-
-    BARC&#39;s nose opens and produces a lock-pick from the cavity.
-
-    Carefully wiggling the protrusion in the lock for a few moments, a click is heard and the door suddenly swings open!
-
-    &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Good boy, BARC. We better keep that little skill between friends though. We&#39;re still not sure about this one!&lt;/span&gt;&lt;/span&gt;
-
-    &lt;span class=&quot;speechbarc&quot;&gt;&lt;span&gt;BARC&lt;/span&gt;&lt;span&gt;(text-style:&quot;buoy&quot;)[//Owwww...//]&lt;/span&gt;&lt;/span&gt;
-
-    &lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Right, you two. You get off and grab that locket and we&#39;ll let you know if old Tezza is on his way back.&lt;/span&gt;&lt;/span&gt;
-]
-&lt;!-- Update &quot;prompts&quot; content. --&gt; \
-(replace: ?prompts) [{
+&lt;!-- Set further variables. --&gt; \
+(set: _readingstage to 1)
+(set: _narrative to (a:
+    &#39;&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Step aside, BARC and I have got this.&lt;/span&gt;&lt;/span&gt;&#39;,
+    &quot;&lt;p&gt;BARC&#39;s nose opens and produces a lock-pick from the cavity. Carefully wiggling the protrusion in the lock for a few moments, a click is heard and the door suddenly swings open!&lt;/p&gt;&quot;,
+    &#39;&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Good boy, BARC. We better keep that little skill between friends though. We\&#39;re still not sure about this one!&lt;/span&gt;&lt;/span&gt;&#39;,
+    &#39;&lt;span class=&quot;speechbarc&quot;&gt;&lt;span&gt;BARC&lt;/span&gt;&lt;span&gt;(text-style:&quot;buoy&quot;)[//Owwww...//]&lt;/span&gt;&lt;/span&gt;&#39;,
+    &#39;&lt;span class=&quot;speechrafa&quot;&gt;&lt;span&gt;Rafa&lt;/span&gt;&lt;span&gt;Right, you two. You get off and grab that locket and we\&#39;ll let you know if old Tezza is on his way back.&lt;/span&gt;&lt;/span&gt;&#39;
+))
+(set: _finalprompts to &#39;{
     &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            [[Enter the storeroom.-&gt;lab-block-hallway-storeroom]]
+        &lt;/span&gt;
         &lt;span class=&quot;question&quot;&gt;
             [[Walk down hallway...-&gt;lab-block-hallway-2]]
         &lt;/span&gt;
@@ -2922,6 +2964,58 @@ Maybe the PIN can be used somewhere else?]
             [[Exit the building.-&gt;outside-lab-block]]
         &lt;/span&gt;
     &lt;/span&gt;
+}&#39;)
+&lt;!-- Update &quot;stats&quot; content. --&gt; \
+(replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
+&lt;!-- Update &quot;titletext&quot; content. --&gt; \
+(replace: ?titletext) [ The Mission ]
+&lt;!-- Update narrative on first visit. --&gt; \
+(if: visits is 1) [{
+    (set: $securityofficeentered to true)
+    (replace: ?maintext) [{
+        (print: _narrative&#39;s 1st)
+    }]
+    (replace: ?prompts) [{
+        &lt;span class=&quot;questions&quot;&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                (link-rerun: &quot;Continue reading...&quot;) [{
+                    (set: _readingstage to _readingstage + 1)
+                    (append: ?maintext) [{
+                        (print: _narrative&#39;s (_readingstage))
+                    }]
+                    (if: _readingstage is _narrative&#39;s length) [{
+                        (replace: ?prompts) [{
+                            (print: _finalprompts)
+                        }]
+                    }]
+                }]
+            &lt;/span&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                (link: &quot;Reveal all&quot;) [{
+                    (append: ?maintext) [{
+                        (for: each _paragraph, ...(subarray: _narrative, _readingstage + 1, _narrative&#39;s length)) [
+                            (print: _paragraph)
+                        ]
+                    }]
+                    (set: _readingstage to _narrative&#39;s length)
+                    (replace: ?prompts) [{
+                        (print: _finalprompts)
+                    }]
+                }]
+            &lt;/span&gt;
+        &lt;/span&gt;
+    }]
+}]
+&lt;!-- Update narrative on subsequent visits. --&gt; \
+(else:) [{
+    (replace: ?maintext) [{
+        (for: each _paragraph, ..._narrative) [
+            (print: _paragraph)
+        ]
+    }]
+    (replace: ?prompts) [{
+        (print: _finalprompts)
+    }]
 }]
 &lt;!-- Display &quot;the-mission-live-template&quot; passage. --&gt; \
 (display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="95" name="lab-block-hallway-storeroom" tags="" position="1300,2100" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
@@ -2940,7 +3034,7 @@ Maybe the PIN can be used somewhere else?]
     Not much more to say really!
 
     (if: visits is 1) [
-        &lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;What do you intend to do, make the cleaner&#39;s life easier?&lt;/span&gt;&lt;/span&gt;
+        &lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;Narrator&lt;/span&gt;&lt;span&gt;What do you intend to do, make the cleaner&#39;s life easier?&lt;/span&gt;&lt;/span&gt;
     ]
 ]
 &lt;!-- Update &quot;prompts&quot; content. --&gt; \
@@ -3488,9 +3582,15 @@ Ooo, it&#39;s very dark in there. Better not be any spiders!? ]
     &lt;/span&gt;
 }]
 &lt;!-- Display &quot;the-mission-live-template&quot; passage. --&gt; \
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="111" name="restart-game-template" tags="" position="500,1500" size="100,100">(link-reveal: &quot;Restart Game&quot;) [
-    (go-to: &quot;start&quot;)
-]</tw-passagedata><tw-passagedata pid="112" name="password-template" tags="" position="400,1400" size="100,100">{
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="111" name="restart-game-template" tags="" position="500,1500" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Restart Game&quot;) [{
+                (go-to: &quot;start&quot;)
+            }]
+        &lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="112" name="password-template" tags="" position="400,1400" size="100,100">{
     (if: $password is &quot;&quot;) [
         (set: _password_pool to (shuffled:
             &quot;lock-it-out&quot;, &quot;rock-it-out&quot;, &quot;lock-it-up&quot;, &quot;check-it-in&quot;,
@@ -3519,36 +3619,89 @@ Ooo, it&#39;s very dark in there. Better not be any spiders!? ]
         &lt;/span&gt;
     ]
 }</tw-passagedata><tw-passagedata pid="113" name="lab-block-hallway-storeroom-look" tags="" position="1300,2300" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
-(set: $backgroundurl to &quot;lab-block-hallway-storeroom-broom-1024x768.webp&quot;)
+(set: $backgroundurl to &quot;lab-block-hallway-storeroom-1024x768.webp&quot;)
 &lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
 (display: &quot;layout-template&quot;)
 &lt;!-- Set variables upon first visit. --&gt; \
 (if: visits is 1) [
     (set: $steppedonbrush to true)
 ]
+&lt;!-- Set narrative variables. --&gt; \
+(set: _readingstage to 1)
+(set: _narrative to (a:
+    &quot;&lt;p&gt;You don&#39;t see anything worth grabbing.&lt;/p&gt;&quot;,
+    &#39;&lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;Narrator&lt;/span&gt;&lt;span&gt;You wouldn\&#39;t know a broom if one hit you in the face.&lt;/span&gt;&lt;/span&gt;&#39;,
+    &quot;&lt;p&gt;As you step forward, well, would you believe that!? You step on the end of a... yes, you guessed it, broom, and catch one right in the eye!&lt;/p&gt;&quot;,
+    &#39;&lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;Narrator&lt;/span&gt;&lt;span&gt;Whoops, clumsy!&lt;/span&gt;&lt;/span&gt;&#39;
+))
 &lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 &lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Mission ]
-&lt;!-- Update &quot;maintext&quot; content. --&gt; \
-(replace: ?maintext) [ You don&#39;t see anything worth grabbing.
-
-    (if: visits is 1) [
-        &lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;You wouldn&#39;t know a broom if one hit you in the face.&lt;/span&gt;&lt;/span&gt;
-
-        &lt;span class=&quot;float-clear&quot;/&gt;
-        As you step forward, well, would you believe that!? You step on the end of a... yes, you guessed it, broom, and catch one right in the eye!
-
-        &lt;span class=&quot;speechnarrator&quot;&gt;&lt;span&gt;Whoops, clumsy!&lt;/span&gt;&lt;/span&gt;
-    ]
-]
-&lt;!-- Update &quot;prompts&quot; content. --&gt; \
-(replace: ?prompts) [{
-    &lt;span class=&quot;questions&quot;&gt;
-        &lt;span class=&quot;question&quot;&gt;
-            [[Exit the storeroom.-&gt;lab-block-hallway-1]]
+&lt;!-- Update narrative on first visit. --&gt; \
+(if: visits is 1) [{
+    (replace: ?maintext) [{
+        (print: _narrative&#39;s 1st)
+    }]
+    (replace: ?prompts) [{
+        &lt;span class=&quot;questions&quot;&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                (link-rerun: &quot;Continue reading...&quot;) [{
+                    (set: _readingstage to _readingstage + 1)
+                    (append: ?maintext) [{
+                        (print: _narrative&#39;s (_readingstage))
+                    }]
+                    (if: _readingstage is 3) [{
+                        (set: $backgroundurl to &quot;lab-block-hallway-storeroom-broom-1024x768.webp&quot;)
+                        (display: &quot;bg-template&quot;)
+                    }]
+                    (if: _readingstage is _narrative&#39;s length) [{
+                        (replace: ?prompts) [{
+                            &lt;span class=&quot;questions&quot;&gt;
+                                &lt;span class=&quot;question&quot;&gt;
+                                    [[Exit the storeroom.-&gt;lab-block-hallway-1]]
+                                &lt;/span&gt;
+                            &lt;/span&gt;
+                        }]
+                    }]
+                }]
+            &lt;/span&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                (link: &quot;Reveal all&quot;) [{
+                    (append: ?maintext) [{
+                        (for: each _paragraph, ...(subarray: _narrative, _readingstage + 1, _narrative&#39;s length)) [
+                            (print: _paragraph)
+                        ]
+                    }]
+                    (if: _readingstage &lt; 3) [{
+                        (set: $backgroundurl to &quot;lab-block-hallway-storeroom-broom-1024x768.webp&quot;)
+                        (display: &quot;bg-template&quot;)
+                    }]
+                    (set: _readingstage to _narrative&#39;s length)
+                    (replace: ?prompts) [{
+                        &lt;span class=&quot;questions&quot;&gt;
+                            &lt;span class=&quot;question&quot;&gt;
+                                [[Exit the storeroom.-&gt;lab-block-hallway-1]]
+                            &lt;/span&gt;
+                        &lt;/span&gt;
+                    }]
+                }]
+            &lt;/span&gt;
         &lt;/span&gt;
-    &lt;/span&gt;
+    }]
+}]
+&lt;!-- Update narrative on subsequent visits. --&gt; \
+(else:) [{
+    (replace: ?maintext) [{
+        (print: _narrative&#39;s 1st)
+    }]
+    (replace: ?prompts) [{
+        &lt;span class=&quot;questions&quot;&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                [[Exit the storeroom.-&gt;lab-block-hallway-1]]
+            &lt;/span&gt;
+        &lt;/span&gt;
+    }]
 }]
 &lt;!-- Display &quot;the-mission-live-template&quot; passage. --&gt; \
 (display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="114" name="lab-block-hallway-elevator-level-0" tags="" position="1100,2700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
@@ -3616,20 +3769,19 @@ Ooo, it&#39;s very dark in there. Better not be any spiders!? ]
 &lt;!-- Update &quot;maintext&quot; content. --&gt; \
 (replace: ?maintext) [ You are startled by a voice behind you...
 
-&lt;span class=&quot;speechbad&quot;&gt;&lt;span&gt;Oi!!! What are you two doing in here!?
+&lt;span class=&quot;speechbad&quot;&gt;&lt;span&gt;Unknown&lt;/span&gt;&lt;span&gt;Oi!!! What are you two doing in here!?
 
-Nobody is supposed to be in here this late.
-&lt;/span&gt;&lt;/span&gt;
+Nobody is supposed to be in here this late.&lt;/span&gt;&lt;/span&gt;
 
-&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Oh, err, sorry. We were looking for Steffy. Thought she was working tonight!&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;speechjess&quot;&gt;&lt;span&gt;Jess&lt;/span&gt;&lt;span&gt;Oh, err, sorry. We were looking for Steffy. Thought she was working tonight!&lt;/span&gt;&lt;/span&gt;
 
-&lt;span class=&quot;speechproft&quot;&gt;&lt;span&gt;Nooo. Steffany is not in tonight!&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;speechproft&quot;&gt;&lt;span&gt;Professor T&lt;/span&gt;&lt;span&gt;Nooo. Steffany is not in tonight!&lt;/span&gt;&lt;/span&gt;
 
 &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;That&#39;s a shame. OK, thanks, we&#39;ll be off then...&lt;/span&gt;&lt;/span&gt;
 
 &lt;span class=&quot;speechplayer&quot;&gt;&lt;span&gt;$givenname&lt;/span&gt;&lt;span&gt;Come on Jess!?.&lt;/span&gt;&lt;/span&gt;
 
-&lt;span class=&quot;speechproft&quot;&gt;&lt;span&gt;Oh no you two... I&#39;m afraid I can&#39;t let you leave yet!!!&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;speechproft&quot;&gt;&lt;span&gt;Professor T&lt;/span&gt;&lt;span&gt;Oh no you two... I&#39;m afraid I can&#39;t let you leave yet!!!&lt;/span&gt;&lt;/span&gt;
 ]
 &lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) []
@@ -3637,9 +3789,19 @@ Nobody is supposed to be in here this late.
 (live: 5s) [
     (display: &quot;to-be-continued-template&quot;)
     (stop:)
-]</tw-passagedata><tw-passagedata pid="117" name="the-end-template" tags="" position="500,1400" size="100,100">&lt;!-- Set variables upon section visit. --&gt;
+]</tw-passagedata><tw-passagedata pid="117" name="the-end-template" tags="" position="500,1400" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;game-over-1024x768.webp&quot;)
-(replace: ?background) [  (transition: &quot;fade&quot;) + (transition-time:  5s) [  (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;) ] ]&lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="118" name="bg-fade-template" tags="" position="600,1600" size="100,100">(replace: ?background) [  (transition: &quot;fade&quot;) + (transition-delay: 1s) + (transition-time:  2s) [  (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;) ] ]&lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="119" name="lab-door-fail" tags="" position="1300,2700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+&lt;!-- Update &quot;background&quot; content. --&gt; \
+(replace: ?background) [{
+    (transition: &quot;fade&quot;) + (transition-time:  5s) [{
+        (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;)
+    }]
+}]</tw-passagedata><tw-passagedata pid="118" name="bg-fade-template" tags="" position="600,1600" size="100,100">&lt;!-- Update &quot;background&quot; content. --&gt; \
+(replace: ?background) [{
+    (transition: &quot;fade&quot;) + (transition-delay: 1s) + (transition-time:  2s) [{
+        (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;)
+    }]
+}]</tw-passagedata><tw-passagedata pid="119" name="lab-door-fail" tags="" position="1300,2700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;lab-block-lab-entrance-1024x768.webp&quot;)
 &lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
 (display: &quot;layout-template&quot;)
@@ -3696,44 +3858,67 @@ Nobody is supposed to be in here this late.
 &lt;!-- Update &quot;prompts&quot; content. --&gt; \
 (replace: ?prompts) [ (display: &quot;plant-choices-template&quot;) ]
 &lt;!-- Display &quot;the-mission-live-template&quot; passage. --&gt; \
-(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="121" name="plant-choices-template" tags="" position="500,1600" size="100,100">What do you want to do?
-1. (link-reveal: &quot;Delve in plant pot.&quot;) [ 
-    (append: ?maintext) [ Nope. Not there! 
-    ]
-    (replace: ?prompts) [ (display: &quot;plant-choices-template&quot;) ]
-]
-2. (link-reveal: &quot;Look in foliage.&quot;) [ 
-    (append: ?maintext) [ Nope. Not there! 
-    ]
-    (replace: ?prompts) [ (display: &quot;plant-choices-template&quot;) ]
-]
-3. (link-reveal: &quot;Ask Jess to lift plant pot.&quot;) [
-    (append: ?maintext) [ That&#39;s got it! 
-    ]
-    (set: $havekeycard to true)
-    (set: $backgroundurl to &quot;lab-block-lab-entrance-found-pass-1024x768.webp&quot;)
-    (display: &quot;bg-template&quot;)
-    (replace: ?prompts) [ (link-reveal: &quot;Pick up key card.&quot;) [ What do you want to do?
-        (go-to: &quot;lab-entrance&quot;) ]
-    ]
-]
-4. (link-reveal: &quot;Swivel plant pot.&quot;) [
-    (append: ?maintext) [ Nope. Not there! 
-    ]
-    (replace: ?prompts) [ (display: &quot;plant-choices-template&quot;) ]
-]
-5. (link-reveal: &quot;Lift plant pot.&quot;) [
-    (append: ?maintext) [ Nope. Not there! 
-    ]
-    (replace: ?prompts) [ (display: &quot;plant-choices-template&quot;) ]
-]
-6. (link-reveal: &quot;Tickle plant&#39;s leaves.&quot;) [
-    (append: ?maintext) [ Nope. Not there! 
-    ]
-    (replace: ?prompts) [ (display: &quot;plant-choices-template&quot;) ]
-]</tw-passagedata><tw-passagedata pid="122" name="to-be-continued-template" tags="" position="600,1400" size="100,100">&lt;!-- Set variables upon section visit. --&gt;
+(display: &quot;the-mission-live-template&quot;)</tw-passagedata><tw-passagedata pid="121" name="plant-choices-template" tags="" position="500,1600" size="100,100">{
+    &lt;span class=&quot;questions&quot;&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Delve in plant pot.&quot;) [{
+                (append: ?maintext) [ Nope. Not there! ]
+                (replace: ?prompts) [ (display: &quot;plant-choices-template&quot;) ]
+            }]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Look in foliage.&quot;) [{
+                (append: ?maintext) [ Nope. Not there! ]
+                (replace: ?prompts) [ (display: &quot;plant-choices-template&quot;) ]
+            }]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Ask Jess to lift plant pot.&quot;) [{
+                (append: ?maintext) [ That&#39;s got it! ]
+                (set: $havekeycard to true)
+                (set: $backgroundurl to &quot;lab-block-lab-entrance-found-pass-1024x768.webp&quot;)
+                (display: &quot;bg-template&quot;)
+                (replace: ?prompts) [{
+                    &lt;span class=&quot;questions&quot;&gt;
+                        &lt;span class=&quot;question&quot;&gt;
+                            (link-reveal: &quot;Pick up key card.&quot;) [{
+                                (go-to: &quot;lab-entrance&quot;)
+                            }]
+                        &lt;/span&gt;
+                    &lt;/span&gt;
+                }]
+            }]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Swivel plant pot.&quot;) [{
+                (append: ?maintext) [ Nope. Not there! ]
+                (replace: ?prompts) [ (display: &quot;plant-choices-template&quot;) ]
+            }]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Lift plant pot.&quot;) [{
+                (append: ?maintext) [ Nope. Not there! ]
+                (replace: ?prompts) [ (display: &quot;plant-choices-template&quot;) ]
+            }]
+        &lt;/span&gt;
+        &lt;span class=&quot;question&quot;&gt;
+            (link-reveal: &quot;Tickle plant&#39;s leaves.&quot;) [{
+                (append: ?maintext) [ Nope. Not there! ]
+                (replace: ?prompts) [ (display: &quot;plant-choices-template&quot;) ]
+            }]
+        &lt;/span&gt;
+    &lt;/span&gt;
+}</tw-passagedata><tw-passagedata pid="122" name="to-be-continued-template" tags="" position="600,1400" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;to-be-continued-1024x768.webp&quot;)
-(replace: ?background) [  (transition: &quot;fade&quot;) + (transition-delay: 1s) + (transition-time:  6s) [  (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;) ] ]&lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata><tw-passagedata pid="123" name="bg-fade-out-template" tags="" position="600,1500" size="100,100">(replace: ?background) [  (transition-depart: &quot;fade&quot;) + (transition-delay: 1s) + (transition-time:  6s) [ ] ]&lt;!-- Update &quot;background&quot; content. --&gt;</tw-passagedata></tw-storydata>
+&lt;!-- Update &quot;background&quot; content. --&gt; \
+(replace: ?background) [{
+    (transition: &quot;fade&quot;) + (transition-delay: 1s) + (transition-time:  6s) [{
+        (print: &#39;&lt;img class=&quot;background-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/backgrounds/&#39; + $backgroundurl + &#39;&quot;/&gt;&#39;)
+    }]
+}]</tw-passagedata><tw-passagedata pid="123" name="bg-fade-out-template" tags="" position="600,1500" size="100,100">&lt;!-- Update &quot;background&quot; content. --&gt; \
+(replace: ?background) [{
+    (transition-depart: &quot;fade&quot;) + (transition-delay: 1s) + (transition-time:  6s) [ ]
+}]</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
