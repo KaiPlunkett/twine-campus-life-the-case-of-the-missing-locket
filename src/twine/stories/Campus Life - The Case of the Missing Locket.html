@@ -61,7 +61,7 @@ tw-sidebar {
   );
   --image-width: calc(var(--image-height) / var(--image-ratio));
   --stats-font-size: 16px;
-  --stats-inset: 20px;
+  --stats-inset: 5px;
   --glass-shine: 0.65;
   --glass-radius: 24px;
   --speech-glass-shine: 0.55;
@@ -886,9 +886,8 @@ tw-sidebar {
 
         link.click();
     }, true);
-})();</script><tw-passagedata pid="1" name="start" tags="" position="1100,100" size="100,100">
-&lt;!-- Set variables upon game start. --&gt; \
-(set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;) 
+})();</script><tw-passagedata pid="1" name="start" tags="" position="1100,100" size="100,100">&lt;!-- Set variables upon game start. --&gt; \
+(set: $backgroundurl to &quot;start-passage-1024x768.webp&quot;)
 &lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
 (display: &quot;layout-template&quot;)
 &lt;!-- Set variables upon game start. --&gt; \
@@ -907,28 +906,74 @@ tw-sidebar {
 (set: $bindesc to &quot;large wheely bin&quot;)
 (set: $password to &quot;&quot;)
 (display: &quot;password-template&quot;)
+(set: _readingstage to 1)
+(set: _narrative to (a:
+    &#39;&lt;img class=&quot;title-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/images/silver-locket-new.png&quot;/&gt;Earlier in the day, Tabitha Leaf stole your locket and sneaked it into Professsor Tankerton\&#39;s desk in the lab.&#39;,
+    &quot;If Prof. T opens it up and sees whats inside, it could give away your suspicions that she is not all that it would appear. You simply must get it back before classes begin in the morning.&quot;,
+    &quot;Your friend, Tobias Jamerson (TJ), said a couple of his friends can help get it back after hours, and to meet up with them by the lab block of the campus at (text-colour:blue)[10pm].&quot;,
+    &#39;You\&#39;re going to need to identify yourself as a friend by quoting the password (text-colour:blue)[&quot;$password&quot;].&#39;
+))
 &lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Case of the Missing Locket ]
-&lt;!-- Update &quot;maintext&quot; content. --&gt; \
-(replace: ?maintext) [ &lt;img class=&quot;title-image&quot; src=&quot;https://kaiplunkett.github.io/twine-campus-life-the-case-of-the-missing-locket/resources/images/silver-locket-new.png&quot;/&gt;Earlier in the day, Tabitha Leaf stole your locket and sneaked it into Professsor Tankerton&#39;s desk in the lab.
-
-If Prof. T opens it up and sees whats inside, it could give away your suspicions that she is not all that it would appear.
-
-You simply must get it back before classes begin in the morning.
-
-Your friend, Tobias Jamerson (TJ),  said a couple of his friends can help get it back after hours, and to meet up with them by the lab block of the campus at (text-colour:blue)[10pm].
-
-You&#39;re going to need to identify yourself as a friend by quoting the password (text-colour:blue)[&quot;$password&quot;]. 
-]
-&lt;!-- Update &quot;prompts&quot; content. --&gt; \
-(replace: ?prompts) [{
-    &lt;span class=&quot;questions&quot;&gt;
-        &lt;span class=&quot;question&quot;&gt;
-            [[Start...-&gt;maingate]]
+&lt;!-- Update narrative on first visit. --&gt; \
+(if: visits is 1) [{
+    (replace: ?maintext) [{
+        &lt;p&gt;(print: _narrative&#39;s 1st)&lt;/p&gt;
+    }]
+    (replace: ?prompts) [{
+        &lt;span class=&quot;questions&quot;&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                (link-rerun: &quot;Continue reading...&quot;) [{
+                    (set: _readingstage to _readingstage + 1)
+                    (append: ?maintext) [{
+                        &lt;p&gt;(print: _narrative&#39;s (_readingstage))&lt;/p&gt;
+                    }]
+                    (if: _readingstage is _narrative&#39;s length) [{
+                        (replace: ?prompts) [{
+                            &lt;span class=&quot;questions&quot;&gt;
+                                &lt;span class=&quot;question&quot;&gt;
+                                    [[Start...-&gt;maingate]]
+                                &lt;/span&gt;
+                            &lt;/span&gt;
+                        }]
+                    }]
+                }]
+            &lt;/span&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                (link: &quot;Reveal all&quot;) [{
+                    (append: ?maintext) [{
+                        (for: each _paragraph, ...(subarray: _narrative, _readingstage + 1, _narrative&#39;s length)) [
+                            &lt;p&gt;(print: _paragraph)&lt;/p&gt;
+                        ]
+                    }]
+                    (set: _readingstage to _narrative&#39;s length)
+                    (replace: ?prompts) [{
+                        &lt;span class=&quot;questions&quot;&gt;
+                            &lt;span class=&quot;question&quot;&gt;
+                                [[Start...-&gt;maingate]]
+                            &lt;/span&gt;
+                        &lt;/span&gt;
+                    }]
+                }]
+            &lt;/span&gt;
         &lt;/span&gt;
-    &lt;/span&gt;
+    }]
 }]
-</tw-passagedata><tw-passagedata pid="2" name="bush-path" tags="" position="300,500" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
+&lt;!-- Update narrative on subsequent visits. --&gt; \
+(else:) [{
+    (replace: ?maintext) [{
+        (for: each _paragraph, ..._narrative) [
+            &lt;p&gt;(print: _paragraph)&lt;/p&gt;
+        ]
+    }]
+    (replace: ?prompts) [{
+        &lt;span class=&quot;questions&quot;&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                [[Start...-&gt;maingate]]
+            &lt;/span&gt;
+        &lt;/span&gt;
+    }]
+}]</tw-passagedata><tw-passagedata pid="2" name="bush-path" tags="" position="300,500" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
 (set: $backgroundurl to &quot;bush-passage-1024x768.webp&quot;)
 &lt;!-- Display &quot;layout-template&quot; passage. --&gt; \
 (display: &quot;layout-template&quot;)
@@ -1586,35 +1631,106 @@ The SD card is in that locket, so I must get it back!&lt;/span&gt;&lt;/span&gt;<
         (set: $initials to ($givenname&#39;s 1st + $surname&#39;s 1st))
     ]
 ]
+&lt;!-- Set narrative variables. --&gt; \
+(set: _readingstage to 1)
+(set: _narrative to (a:
+    &quot;You&#39;re standing in front of a massive ornate gate at the front of the medical college campus. The detail on this thing... It looks like the Illuminati could have built it!&quot;,
+    &quot;You were so glad being accepted to such a prestigous medical college. The lecturers are great, but you&#39;re not sure about Professor T. You&#39;re still familiarising yourself with the campus, but you know where the lab block is and TJ&#39;s friends are waiting for you, so better get moving!&quot;,
+    &quot;The //gate// is directly in front of you. Looking around you notice a //bush// to the left and a //$bindesc// to the right.&quot;,
+    &quot;It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so you better hurry up so as to not miss TJ&#39;s friends.&quot;
+))
 &lt;!-- Update &quot;stats&quot; content. --&gt; \
 (replace: ?stats) [ (display: &quot;stats-timer-update&quot;) ]
 &lt;!-- Update &quot;titletext&quot; content. --&gt; \
 (replace: ?titletext) [ The Way In ]
-&lt;!-- Update &quot;maintext&quot; content. --&gt; \
-(replace: ?maintext) [ You&#39;re standing in front of a massive ornate gate at the front of the medical college campus. The detail on this thing... It looks like the Illuminati could have built it!
-
-You were so glad being accepted to such a prestigous medical college. The lecturers are great, but you&#39;re not sure about Professor T. You&#39;re still familiarising yourself with the campus, but you know where the lab block is and TJ&#39;s friends are waiting for you, so better get moving!
-
-With exception of the massive //gate// directly in front of you, you look around and notice a //bush// to the left and a //$bindesc// to the right.
-
-It was (text-colour:cyan)[&#39;&#39;9:50pm&#39;&#39;] when you first arrived, so you better hurry up so as to not miss TJ&#39;s friends.]
-&lt;!-- Update &quot;prompts&quot; content. --&gt; \
-(replace: ?prompts) [{
-    &lt;span class=&quot;questions&quot;&gt;
-        &lt;span class=&quot;question&quot;&gt;
-            (if: $pinnumberfound is false)[
-                [[Try the gate.-&gt;gate-path]]
-            ] (else:) [
-                (text-colour:grey)[Try the gate.]
-            ]
+&lt;!-- Update narrative on first visit. --&gt; \
+(if: visits is 1) [{
+    (replace: ?maintext) [{
+        &lt;p&gt;(print: _narrative&#39;s 1st)&lt;/p&gt;
+    }]
+    (replace: ?prompts) [{
+        &lt;span class=&quot;questions&quot;&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                (link-rerun: &quot;Continue reading...&quot;) [{
+                    (set: _readingstage to _readingstage + 1)
+                    (append: ?maintext) [{
+                        &lt;p&gt;(print: _narrative&#39;s (_readingstage))&lt;/p&gt;
+                    }]
+                    (if: _readingstage is _narrative&#39;s length) [{
+                        (replace: ?prompts) [{
+                            &lt;span class=&quot;questions&quot;&gt;
+                                &lt;span class=&quot;question&quot;&gt;
+                                    (if: $pinnumberfound is false)[
+                                        [[Try the gate.-&gt;gate-path]]
+                                    ] (else:) [
+                                        (text-colour:grey)[Try the gate.]
+                                    ]
+                                &lt;/span&gt;
+                                &lt;span class=&quot;question&quot;&gt;
+                                    [[Walk to the bush.-&gt;bush-path]]
+                                &lt;/span&gt;
+                                &lt;span class=&quot;question&quot;&gt;
+                                    [[Walk to the $bindesc.-&gt;bin-path]]
+                                &lt;/span&gt;
+                            &lt;/span&gt;
+                        }]
+                    }]
+                }]
+            &lt;/span&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                (link: &quot;Reveal all&quot;) [{
+                    (append: ?maintext) [{
+                        (for: each _paragraph, ...(subarray: _narrative, _readingstage + 1, _narrative&#39;s length)) [
+                            &lt;p&gt;(print: _paragraph)&lt;/p&gt;
+                        ]
+                    }]
+                    (set: _readingstage to _narrative&#39;s length)
+                    (replace: ?prompts) [{
+                        &lt;span class=&quot;questions&quot;&gt;
+                            &lt;span class=&quot;question&quot;&gt;
+                                (if: $pinnumberfound is false)[
+                                    [[Try the gate.-&gt;gate-path]]
+                                ] (else:) [
+                                    (text-colour:grey)[Try the gate.]
+                                ]
+                            &lt;/span&gt;
+                            &lt;span class=&quot;question&quot;&gt;
+                                [[Walk to the bush.-&gt;bush-path]]
+                            &lt;/span&gt;
+                            &lt;span class=&quot;question&quot;&gt;
+                                [[Walk to the $bindesc.-&gt;bin-path]]
+                            &lt;/span&gt;
+                        &lt;/span&gt;
+                    }]
+                }]
+            &lt;/span&gt;
         &lt;/span&gt;
-        &lt;span class=&quot;question&quot;&gt;
-            [[Walk to the bush.-&gt;bush-path]]
+    }]
+}]
+&lt;!-- Update narrative on subsequent visits. --&gt; \
+(else:) [{
+    (replace: ?maintext) [{
+        (for: each _paragraph, ..._narrative) [
+            &lt;p&gt;(print: _paragraph)&lt;/p&gt;
+        ]
+    }]
+    (replace: ?prompts) [{
+        &lt;span class=&quot;questions&quot;&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                (if: $pinnumberfound is false)[
+                    [[Try the gate.-&gt;gate-path]]
+                ] (else:) [
+                    (text-colour:grey)[Try the gate.]
+                ]
+            &lt;/span&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                [[Walk to the bush.-&gt;bush-path]]
+            &lt;/span&gt;
+            &lt;span class=&quot;question&quot;&gt;
+                [[Walk to the $bindesc.-&gt;bin-path]]
+            &lt;/span&gt;
         &lt;/span&gt;
-        &lt;span class=&quot;question&quot;&gt;
-            [[Walk to the $bindesc.-&gt;bin-path]]
-        &lt;/span&gt;
-    &lt;/span&gt;
+    }]
 }]
 &lt;!-- Display &quot;the-meet-live-template&quot; passage. --&gt; \
 (display: &quot;the-meet-live-template&quot;)</tw-passagedata><tw-passagedata pid="36" name="the-mission-start" tags="" position="1100,1700" size="100,100">&lt;!-- Set variables upon section visit. --&gt; \
